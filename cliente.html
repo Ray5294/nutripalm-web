@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NutriPalm — Mi semana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--g:#1D9E75;--gd:#085041;--gl:#E1F5EE;--gm:#5DCAA5;--off:#F7F5F0;--dark:#1A1A18;--mid:#5F5E5A;--light:#B4B2A9;--danger:#E24B4A}
+body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--dark)}
+.app{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+.sidebar{background:var(--dark);padding:28px 20px;display:flex;flex-direction:column;gap:8px}
+.slogo{font-family:'DM Serif Display',serif;font-size:20px;color:#fff;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,.1);text-decoration:none;display:block}
+.slogo span{color:var(--gm)}
+.nav{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;font-size:13px;color:rgba(255,255,255,.5);cursor:pointer;text-decoration:none;border:none;background:transparent;width:100%;font-family:'DM Sans',sans-serif}
+.nav:hover{background:rgba(255,255,255,.06);color:rgba(255,255,255,.9)}
+.nav.active{background:var(--gd);color:#fff}
+.nav svg{width:16px;height:16px;flex-shrink:0}
+.sp{flex:1}
+.uinfo{padding:12px 14px;background:rgba(255,255,255,.06);border-radius:10px}
+.uname{font-size:13px;font-weight:500;color:#fff}
+.uplan{font-size:11px;color:rgba(255,255,255,.4);margin-top:2px}
+.main{padding:32px;overflow-y:auto}
+.ph{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px}
+.pt{font-family:'DM Serif Display',serif;font-size:28px;color:var(--dark)}
+.ps{font-size:14px;color:var(--mid);margin-top:4px}
+.btng{background:var(--g);color:#fff;border:none;padding:10px 22px;border-radius:100px;font-size:13px;font-weight:500;cursor:pointer}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}
+.metric{background:#fff;border-radius:14px;padding:18px;border:1px solid rgba(0,0,0,.06)}
+.ml{font-size:11px;color:var(--light);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.mv{font-size:24px;font-weight:500;color:var(--dark)}
+.ms{font-size:12px;color:var(--mid);margin-top:4px}
+.mb{display:inline-block;font-size:11px;color:var(--g);background:var(--gl);padding:2px 8px;border-radius:100px;margin-top:6px}
+.wcard{background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,.06);margin-bottom:20px}
+.wh{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid rgba(0,0,0,.06)}
+.wt{font-size:15px;font-weight:500}
+.wdl{font-size:12px;color:var(--danger);background:#FCEBEB;padding:3px 10px;border-radius:100px}
+.dgrid{padding:16px 24px;display:flex;flex-direction:column;gap:8px}
+.drow{display:grid;grid-template-columns:90px 1fr 1fr 110px;gap:12px;align-items:center;padding:12px 16px;border-radius:12px;background:var(--off)}
+.drow.ok{background:var(--gl);border:1px solid rgba(29,158,117,.2)}
+.dn{font-size:13px;font-weight:500}
+.dd{font-size:11px;color:var(--light)}
+.opt{padding:8px 12px;border-radius:8px;font-size:12px;cursor:pointer;border:1.5px solid transparent;background:transparent;color:var(--mid);text-align:left;width:100%;font-family:'DM Sans',sans-serif}
+.opt:hover{border-color:var(--gm);background:#fff}
+.opt.sel{background:#fff;border-color:var(--g);color:var(--gd);font-weight:500}
+.sok{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--g);font-weight:500}
+.spend{font-size:12px;color:var(--light)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
+.card{background:#fff;border-radius:16px;padding:20px 24px;border:1px solid rgba(0,0,0,.06)}
+.ct{font-size:14px;font-weight:500;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center}
+.cl{font-size:12px;color:var(--g);cursor:pointer}
+.hr{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(0,0,0,.05);font-size:13px}
+.hr:last-child{border-bottom:none}
+.hd{color:var(--mid)}
+.hs{font-size:11px;padding:2px 8px;border-radius:100px}
+.rec{background:var(--gl);color:var(--gd)}
+.norec{background:#FCEBEB;color:var(--danger)}
+.nr{display:flex;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid rgba(0,0,0,.05)}
+.nr:last-child{border-bottom:none}
+.ndot{width:8px;height:8px;border-radius:50%;background:var(--gm);flex-shrink:0}
+.ndy{font-size:12px;color:var(--light);width:60px;flex-shrink:0}
+/* menu */
+.wtabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.wtab{padding:8px 18px;border-radius:100px;font-size:13px;cursor:pointer;border:1px solid rgba(0,0,0,.1);background:transparent;color:var(--mid);font-family:'DM Sans',sans-serif}
+.wtab.active{background:var(--dark);color:#fff;border-color:var(--dark)}
+.wtab.nxt{border-color:var(--g);color:var(--g)}
+.wtab.tent{border-color:var(--light);color:var(--light)}
+.wbadge{display:inline-flex;font-size:12px;color:var(--light);background:var(--off);padding:4px 12px;border-radius:100px;margin-bottom:16px}
+.wbadge.cur{color:var(--gd);background:var(--gl)}
+.wbadge.upc{color:#633806;background:#FAEEDA}
+.dpills{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.dp{padding:8px 16px;border-radius:100px;font-size:13px;cursor:pointer;border:1px solid rgba(0,0,0,.08);background:#fff;color:var(--mid);font-family:'DM Sans',sans-serif}
+.dp.active{background:var(--g);color:#fff;border-color:var(--g)}
+.dp.done{background:var(--gl);color:var(--gd);border-color:var(--gm)}
+.dcard{background:#fff;border-radius:20px;overflow:hidden;border:1px solid rgba(0,0,0,.06)}
+.dvis{height:200px;display:flex;flex-direction:column;justify-content:flex-end;padding:24px;position:relative}
+.demoji{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:100px;opacity:.15;user-select:none}
+.ddaybadge{font-size:11px;color:var(--gd);background:rgba(255,255,255,.7);padding:3px 10px;border-radius:100px;display:inline-block;margin-bottom:6px;position:relative}
+.dtitle{font-family:'DM Serif Display',serif;font-size:22px;color:var(--gd);position:relative;line-height:1.2}
+.dbody{padding:24px}
+.gibadge{display:inline-flex;align-items:center;gap:5px;font-size:12px;padding:4px 12px;border-radius:100px;font-weight:500;margin-bottom:16px}
+.gilow{background:#EAF3DE;color:#27500A}
+.gimid{background:#FAEEDA;color:#633806}
+.gidot{width:7px;height:7px;border-radius:50%}
+.dsecs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.dsec{background:var(--off);border-radius:14px;padding:14px}
+.dstitle{font-size:11px;color:var(--light);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;font-weight:500}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.itag{font-size:11px;color:var(--gd);background:var(--gl);padding:2px 9px;border-radius:100px}
+.vtag{font-size:11px;color:#534AB7;background:#EEEDFE;padding:2px 9px;border-radius:100px}
+.nrow{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.nc{text-align:center;background:#fff;border-radius:8px;padding:8px 4px}
+.ncv{font-size:15px;font-weight:500;color:var(--dark)}
+.ncl{font-size:10px;color:var(--light);margin-top:2px}
+.ben{display:flex;gap:7px;font-size:12px;color:var(--mid);padding:4px 0;border-bottom:1px solid rgba(0,0,0,.04)}
+.ben:last-child{border-bottom:none}
+.bdot{width:5px;height:5px;border-radius:50%;background:var(--g);flex-shrink:0;margin-top:5px}
+/* historial */
+.hist-filters{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap}
+.hfil{padding:7px 18px;border-radius:100px;font-size:13px;cursor:pointer;border:1px solid rgba(0,0,0,.1);background:transparent;color:var(--mid);font-family:'DM Sans',sans-serif}
+.hfil.active{background:var(--dark);color:#fff;border-color:var(--dark)}
+.hist-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}
+.htable{background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,.06);overflow:hidden}
+.hthead{display:grid;grid-template-columns:110px 1fr 100px 90px 90px;gap:12px;padding:12px 20px;font-size:11px;color:var(--light);text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid rgba(0,0,0,.06)}
+.htrow{display:grid;grid-template-columns:110px 1fr 100px 90px 90px;gap:12px;padding:14px 20px;border-bottom:1px solid rgba(0,0,0,.04);font-size:13px;align-items:center}
+.htrow:last-child{border-bottom:none}
+.htrow:hover{background:var(--off)}
+.hdate{color:var(--mid)}
+.hpill{font-size:11px;padding:3px 10px;border-radius:100px}
+.hrec{background:var(--gl);color:var(--gd)}
+.hnorec{background:#FCEBEB;color:var(--danger)}
+.hplan{background:var(--off);color:var(--mid)}
+.hweek-sep{padding:8px 20px;font-size:11px;font-weight:500;color:var(--light);background:var(--off);text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid rgba(0,0,0,.04)}
+.hchart-wrap{background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,.06);padding:20px 24px;margin-bottom:20px}
+.hchart-title{font-size:14px;font-weight:500;margin-bottom:16px;display:flex;justify-content:space-between}
+.hbars{display:flex;align-items:flex-end;gap:6px;height:80px}
+.hbar-wrap{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1}
+.hbar{width:100%;border-radius:4px 4px 0 0;transition:height .3s}
+.hbar-lbl{font-size:10px;color:var(--light)}
+/* perfil */
+.perfil-wrap{display:grid;grid-template-columns:300px 1fr;gap:20px;align-items:start}
+.pcard-user{background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,.06);overflow:hidden;position:sticky;top:20px}
+.pcu-top{background:var(--dark);padding:28px 24px;text-align:center}
+.pcu-av{width:72px;height:72px;border-radius:50%;background:var(--gd);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:24px;color:#fff;margin:0 auto 12px;border:3px solid rgba(255,255,255,.15)}
+.pcu-name{font-family:'DM Serif Display',serif;font-size:18px;color:#fff;margin-bottom:4px}
+.pcu-plan{font-size:12px;color:var(--gm);background:rgba(93,202,165,.15);padding:3px 12px;border-radius:100px;display:inline-block}
+.pcu-body{padding:16px}
+.pcu-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(0,0,0,.05);font-size:13px}
+.pcu-row:last-child{border-bottom:none}
+.pcu-label{color:var(--mid)}
+.pcu-val{font-weight:500;color:var(--dark)}
+.pcu-val.g{color:var(--g)}
+.pcu-actions{padding:16px;border-top:1px solid rgba(0,0,0,.06);display:flex;flex-direction:column;gap:8px}
+.pcu-btn{width:100%;padding:10px;border-radius:100px;font-size:13px;font-weight:500;cursor:pointer;border:none;font-family:'DM Sans',sans-serif}
+.pcu-btn.primary{background:var(--g);color:#fff}
+.pcu-btn.secondary{background:transparent;border:1px solid rgba(0,0,0,.12);color:var(--mid)}
+.pcu-btn.danger{background:transparent;border:1px solid rgba(226,75,74,.2);color:var(--danger)}
+.perfil-forms{display:flex;flex-direction:column;gap:16px}
+.pf-section{background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,.06);padding:20px 24px}
+.pfs-title{font-size:14px;font-weight:500;margin-bottom:4px}
+.pfs-sub{font-size:12px;color:var(--light);margin-bottom:18px}
+.pf-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pf-grid.three{grid-template-columns:1fr 1fr 1fr}
+.pfg2{display:flex;flex-direction:column;gap:5px}
+.pfg2.span2{grid-column:span 2}
+.pfg2 label{font-size:11px;color:var(--light);text-transform:uppercase;letter-spacing:.06em}
+.pfg2 input,.pfg2 select{border:1px solid rgba(0,0,0,.1);border-radius:8px;padding:9px 12px;font-size:13px;font-family:'DM Sans',sans-serif;color:var(--dark);outline:none;background:#fff}
+.pfg2 input:focus,.pfg2 select:focus{border-color:var(--g)}
+.notif-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(0,0,0,.05)}
+.notif-row:last-child{border-bottom:none}
+.notif-info{font-size:13px;color:var(--dark)}
+.notif-desc{font-size:12px;color:var(--light);margin-top:2px}
+.toggle{width:36px;height:20px;border-radius:100px;border:none;cursor:pointer;position:relative;flex-shrink:0;transition:background .2s}
+.toggle.on{background:var(--g)}
+.toggle.off{background:var(--light)}
+.toggle::after{content:'';width:14px;height:14px;border-radius:50%;background:#fff;position:absolute;top:3px;transition:left .2s}
+.toggle.on::after{left:19px}
+.toggle.off::after{left:3px}
+.nut-asig{display:flex;align-items:center;gap:14px;padding:16px;background:var(--gl);border-radius:12px;border:1px solid rgba(29,158,117,.2)}
+.nut-av2{width:48px;height:48px;border-radius:50%;background:var(--gd);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:16px;color:#fff;flex-shrink:0}
+.nut-inf{flex:1}
+.nut-nm{font-size:14px;font-weight:500;color:var(--gd)}
+.nut-de{font-size:12px;color:var(--g);margin-top:2px}
+.nut-stars2{color:#BA7517;font-size:12px}
+.pf-save-row{display:flex;justify-content:flex-end;padding-top:4px}
+.pf-save{background:var(--g);color:#fff;border:none;padding:10px 28px;border-radius:100px;font-size:13px;font-weight:500;cursor:pointer}
+/* onboarding overlay */
+.ob-overlay{position:fixed;inset:0;background:rgba(26,26,24,.75);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px}
+.ob-modal{background:#fff;border-radius:24px;width:100%;max-width:560px;overflow:hidden}
+.ob-progress{height:3px;background:rgba(0,0,0,.08)}
+.ob-bar{height:100%;background:var(--g);transition:width .4s}
+.ob-body{padding:40px}
+.ob-step{display:none}
+.ob-step.active{display:block}
+.ob-eyebrow{font-size:11px;color:var(--g);text-transform:uppercase;letter-spacing:.1em;font-weight:500;margin-bottom:10px}
+.ob-title{font-family:'DM Serif Display',serif;font-size:26px;color:var(--dark);margin-bottom:8px;line-height:1.2}
+.ob-sub{font-size:14px;color:var(--mid);line-height:1.6;margin-bottom:28px}
+.ob-nut-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:28px}
+.ob-nut{border:1.5px solid rgba(0,0,0,.08);border-radius:14px;padding:14px;cursor:pointer;transition:border-color .2s,background .2s;text-align:center}
+.ob-nut:hover{border-color:var(--gm)}
+.ob-nut.sel{border-color:var(--g);background:var(--gl)}
+.ob-av{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:15px;margin:0 auto 8px}
+.ob-nn{font-size:13px;font-weight:500;color:var(--dark);margin-bottom:2px}
+.ob-ns{font-size:11px;color:var(--mid)}
+.ob-nst{color:#BA7517;font-size:11px}
+.ob-plan-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:28px}
+.ob-plan{border:1.5px solid rgba(0,0,0,.08);border-radius:14px;padding:16px;cursor:pointer;transition:border-color .2s}
+.ob-plan.sel{border-color:var(--g);background:var(--gl)}
+.ob-plan.feat{border-color:var(--dark);background:var(--dark)}
+.ob-plan.feat.sel{border-color:var(--g)}
+.ob-pname{font-family:'DM Serif Display',serif;font-size:16px;margin-bottom:4px}
+.ob-pname.lt{color:#fff}
+.ob-pprice{font-size:22px;font-weight:500;margin-bottom:2px}
+.ob-pprice.lt{color:#fff}
+.ob-pper{font-size:11px;color:var(--mid);margin-bottom:10px}
+.ob-pper.lt{color:rgba(255,255,255,.5)}
+.ob-pf{font-size:11px;color:var(--mid);padding:4px 0;border-top:1px solid rgba(0,0,0,.06);display:flex;gap:6px}
+.ob-pf.lt{color:rgba(255,255,255,.6);border-color:rgba(255,255,255,.1)}
+.ob-pf::before{content:'—';color:var(--gm);flex-shrink:0}
+.ob-loc-grid{display:grid;grid-template-columns:1fr;gap:8px;margin-bottom:28px}
+.ob-loc{border:1.5px solid rgba(0,0,0,.08);border-radius:12px;padding:14px 16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.ob-loc.sel{border-color:var(--g);background:var(--gl)}
+.ob-loc-name{font-size:13px;font-weight:500;color:var(--dark)}
+.ob-loc-desc{font-size:12px;color:var(--mid);margin-top:2px}
+.ob-loc-badge{font-size:11px;color:var(--g);background:var(--gl);padding:2px 8px;border-radius:100px;border:1px solid rgba(29,158,117,.2)}
+.ob-foot{display:flex;justify-content:space-between;align-items:center;padding:20px 40px;border-top:1px solid rgba(0,0,0,.06)}
+.ob-skip{font-size:13px;color:var(--light);border:none;background:none;cursor:pointer}
+.ob-next{background:var(--dark);color:#fff;border:none;padding:11px 28px;border-radius:100px;font-size:13px;font-weight:500;cursor:pointer}
+.ob-next:disabled{opacity:.4;cursor:default}
+/* notification bell cliente */
+.main-topbar{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px}
+.c-bell-wrap{position:relative}
+.c-bell-btn{width:36px;height:36px;border-radius:50%;border:1px solid rgba(0,0,0,.1);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.c-bell-dot{width:8px;height:8px;border-radius:50%;background:var(--danger);position:absolute;top:1px;right:1px;border:2px solid var(--off)}
+.c-notif-panel{position:absolute;right:0;top:44px;width:310px;background:#fff;border-radius:14px;border:1px solid rgba(0,0,0,.1);box-shadow:0 8px 32px rgba(0,0,0,.12);z-index:200;display:none}
+.c-notif-panel.open{display:block}
+.np-head{padding:14px 16px;border-bottom:1px solid rgba(0,0,0,.06);display:flex;justify-content:space-between;align-items:center}
+.np-title{font-size:13px;font-weight:500}
+.np-clear{font-size:12px;color:var(--g);cursor:pointer;border:none;background:none}
+.np-item{display:flex;gap:10px;padding:12px 16px;border-bottom:1px solid rgba(0,0,0,.04);cursor:pointer}
+.np-item:last-child{border-bottom:none}
+.np-item:hover{background:var(--off)}
+.np-item.unread{background:#F0FBF7}
+.np-icon{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px}
+.np-icon.green{background:var(--gl)}
+.np-icon.amber{background:#FAEEDA}
+.np-icon.blue{background:#E6F1FB}
+.np-body{flex:1}
+.np-msg{font-size:12px;color:var(--dark);line-height:1.4;margin-bottom:3px}
+.np-time{font-size:11px;color:var(--light)}
+/* ── Estado vacío ── */
+.empty-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 40px;text-align:center}
+.empty-illo{width:120px;height:120px;border-radius:50%;background:var(--gl);display:flex;align-items:center;justify-content:center;font-size:52px;margin:0 auto 28px}
+.empty-title{font-family:'DM Serif Display',serif;font-size:26px;color:var(--dark);margin-bottom:10px}
+.empty-sub{font-size:15px;color:var(--mid);line-height:1.7;max-width:400px;margin:0 auto 32px}
+.empty-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:560px;margin:0 auto 36px;text-align:left}
+.es-card{background:#fff;border-radius:14px;padding:18px;border:1px solid rgba(0,0,0,.06)}
+.es-num{font-family:'DM Serif Display',serif;font-size:28px;color:var(--gl);font-style:italic;margin-bottom:8px}
+.es-tit{font-size:13px;font-weight:500;margin-bottom:4px}
+.es-desc{font-size:12px;color:var(--mid);line-height:1.5}
+/* ── Gestión de suscripción (modal) ── */
+.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:600;display:flex;align-items:center;justify-content:center;padding:20px}
+.modal-box{background:#fff;border-radius:20px;width:100%;max-width:520px;max-height:90vh;overflow-y:auto}
+.modal-head{padding:20px 24px;border-bottom:1px solid rgba(0,0,0,.06);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:#fff;z-index:1}
+.modal-title{font-family:'DM Serif Display',serif;font-size:20px}
+.modal-close{width:28px;height:28px;border-radius:50%;border:none;background:var(--off);cursor:pointer;font-size:16px;color:var(--mid);display:flex;align-items:center;justify-content:center}
+.modal-body{padding:24px}
+.sus-current{background:var(--dark);border-radius:14px;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.sus-cl{font-size:12px;color:rgba(255,255,255,.5);margin-bottom:4px}
+.sus-cv{font-family:'DM Serif Display',serif;font-size:20px;color:#fff}
+.sus-cs{font-size:12px;color:var(--gm);margin-top:3px}
+.sus-badge{background:rgba(93,202,165,.2);color:var(--gm);font-size:11px;padding:4px 12px;border-radius:100px;border:1px solid rgba(93,202,165,.3)}
+.sus-opts{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+.sus-opt{border:1.5px solid rgba(0,0,0,.08);border-radius:12px;padding:14px 16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:border-color .15s}
+.sus-opt:hover{border-color:var(--gm)}
+.sus-opt.danger:hover{border-color:var(--danger)}
+.sus-opt-left{}
+.sus-opt-title{font-size:13px;font-weight:500;margin-bottom:2px}
+.sus-opt-desc{font-size:12px;color:var(--mid)}
+.sus-opt-arrow{font-size:16px;color:var(--light)}
+.sus-opt.danger .sus-opt-title{color:var(--danger)}
+.plan-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px}
+.plan-c{border:1.5px solid rgba(0,0,0,.08);border-radius:12px;padding:14px;cursor:pointer;transition:border-color .15s}
+.plan-c.active{border-color:var(--g);background:var(--gl)}
+.plan-c.dark{background:var(--dark);border-color:var(--dark)}
+.plan-c.dark.active{border-color:var(--g)}
+.plan-c-name{font-size:13px;font-weight:500;margin-bottom:4px}
+.plan-c-name.lt{color:#fff}
+.plan-c-price{font-size:20px;font-weight:500;margin-bottom:2px}
+.plan-c-price.lt{color:#fff}
+.plan-c-per{font-size:11px;color:var(--mid)}
+.plan-c-per.lt{color:rgba(255,255,255,.5)}
+.modal-footer{padding:16px 24px;border-top:1px solid rgba(0,0,0,.06);display:flex;gap:10px;justify-content:flex-end;background:#fff;border-radius:0 0 20px 20px}
+.mf-cancel{background:transparent;border:1px solid rgba(0,0,0,.1);color:var(--mid);padding:10px 20px;border-radius:100px;font-size:13px;cursor:pointer}
+.mf-confirm{background:var(--g);color:#fff;border:none;padding:10px 24px;border-radius:100px;font-size:13px;font-weight:500;cursor:pointer}
+.mf-danger{background:transparent;color:var(--danger);border:1px solid rgba(226,75,74,.25);padding:10px 20px;border-radius:100px;font-size:13px;cursor:pointer}
+/* ── Confirmación de pago ── */
+.confirm-ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:700;display:flex;align-items:center;justify-content:center;padding:20px}
+.confirm-box{background:#fff;border-radius:24px;width:100%;max-width:460px;overflow:hidden;text-align:center}
+.confirm-top{background:var(--dark);padding:36px 32px 28px}
+.confirm-check{width:64px;height:64px;border-radius:50%;background:var(--g);display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.confirm-ttl{font-family:'DM Serif Display',serif;font-size:24px;color:#fff;margin-bottom:6px}
+.confirm-sub{font-size:13px;color:rgba(255,255,255,.5)}
+.confirm-body{padding:24px 28px}
+.confirm-rows{background:var(--off);border-radius:12px;padding:4px 0;margin-bottom:20px}
+.confirm-row{display:flex;justify-content:space-between;padding:10px 16px;font-size:13px;border-bottom:1px solid rgba(0,0,0,.05)}
+.confirm-row:last-child{border-bottom:none;font-weight:500}
+.confirm-nut{display:flex;align-items:center;gap:10px;background:var(--gl);border-radius:10px;padding:12px 14px;margin-bottom:20px}
+.confirm-nut-av{width:36px;height:36px;border-radius:50%;background:var(--gd);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:13px;color:#fff;flex-shrink:0}
+.confirm-nut-name{font-size:13px;font-weight:500;color:var(--gd)}
+.confirm-nut-desc{font-size:12px;color:var(--g)}
+.confirm-note{font-size:12px;color:var(--mid);line-height:1.6;margin-bottom:24px}
+.confirm-btn{width:100%;background:var(--g);color:#fff;border:none;padding:13px;border-radius:100px;font-size:14px;font-weight:500;cursor:pointer;margin-bottom:10px}
+.confirm-sec{width:100%;background:transparent;border:none;color:var(--mid);font-size:13px;cursor:pointer;padding:6px}
+/* ── Reseñas ── */
+.review-ov{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:800;display:flex;align-items:center;justify-content:center;padding:20px}
+.review-box{background:#fff;border-radius:20px;width:100%;max-width:440px}
+.review-head{padding:20px 24px;border-bottom:1px solid rgba(0,0,0,.06);display:flex;justify-content:space-between;align-items:center}
+.review-body{padding:24px}
+.review-dish{display:flex;align-items:center;gap:14px;padding:14px;background:var(--off);border-radius:12px;margin-bottom:22px}
+.review-dish-emoji{width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+.review-dish-name{font-size:14px;font-weight:500;margin-bottom:2px}
+.review-dish-day{font-size:12px;color:var(--mid)}
+.star-row{display:flex;gap:8px;justify-content:center;margin-bottom:8px}
+.star{font-size:32px;cursor:pointer;opacity:.25;transition:opacity .15s,transform .15s;user-select:none}
+.star.lit{opacity:1}
+.star:hover{transform:scale(1.1)}
+.star-label{font-size:13px;color:var(--mid);text-align:center;margin-bottom:20px;min-height:18px}
+.review-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px;justify-content:center}
+.rtag{border:1px solid rgba(0,0,0,.1);border-radius:100px;padding:6px 14px;font-size:12px;color:var(--mid);cursor:pointer;background:#fff}
+.rtag.sel{border-color:var(--g);background:var(--gl);color:var(--gd)}
+.review-textarea{width:100%;border:1px solid rgba(0,0,0,.1);border-radius:10px;padding:10px 14px;font-size:13px;font-family:'DM Sans',sans-serif;resize:none;min-height:72px;outline:none;margin-bottom:16px}
+.review-textarea:focus{border-color:var(--g)}
+.review-footer{padding:16px 24px;border-top:1px solid rgba(0,0,0,.06);display:flex;gap:10px;justify-content:flex-end}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="sidebar">
+    <a class="slogo" href="index.html">Nutri<span>Palm</span></a>
+    <button class="nav active" onclick="showV('week',this)">
+      <svg viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="6" height="6" rx="1.5" fill="currentColor" opacity=".7"/><rect x="9" y="1" width="6" height="6" rx="1.5" fill="currentColor"/><rect x="1" y="9" width="6" height="6" rx="1.5" fill="currentColor" opacity=".5"/><rect x="9" y="9" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/></svg>
+      Mi semana
+    </button>
+    <button class="nav" onclick="showV('menu',this)">
+      <svg viewBox="0 0 16 16" fill="none"><path d="M2 4h12M2 8h8M2 12h10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+      Menú semanal
+    </button>
+    <button class="nav" onclick="showV('historial',this)">
+      <svg viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="11" rx="2" stroke="currentColor" stroke-width="1.2"/><path d="M5 1v4M11 1v4M2 7h12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+      Historial
+    </button>
+    <button class="nav" onclick="showV('perfil',this)">
+      <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="6" r="3" stroke="currentColor" stroke-width="1.2"/><path d="M2 14c0-3.314 2.686-5 6-5s6 1.686 6 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+      Perfil
+    </button>
+    <button class="nav" onclick="showV('empty',this)" style="margin-top:8px;border-top:1px solid rgba(255,255,255,.06);padding-top:16px">
+      <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2 2"/></svg>
+      Vista vacía
+    </button>
+    <div class="sp"></div>
+    <div class="uinfo"><div class="uname">Carlos Ramírez</div><div class="uplan">Plan Premium · activo</div></div>
+  </div>
+
+  <div class="main">
+    <div id="vweek">
+      <div class="main-topbar">
+        <div><div class="pt">Hola, Carlos.</div><div class="ps">Semana del 3 al 7 de febrero</div></div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <button class="btng" onclick="openSus()">Gestionar suscripción</button>
+          <div class="c-bell-wrap">
+            <button class="c-bell-btn" onclick="toggleCNotif(this)">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1.5a4.5 4.5 0 00-4.5 4.5v2.5L2 10h12l-1.5-1.5V6A4.5 4.5 0 008 1.5z" stroke="#5F5E5A" stroke-width="1.2"/><path d="M6.5 10.5a1.5 1.5 0 003 0" stroke="#5F5E5A" stroke-width="1.2"/></svg>
+            </button>
+            <div class="c-bell-dot"></div>
+            <div class="c-notif-panel" id="c-notif-panel">
+              <div class="np-head"><span class="np-title">Notificaciones</span><button class="np-clear" onclick="clearCNotifs()">Marcar leídas</button></div>
+              <div class="np-item unread">
+                <div class="np-icon green">🍽️</div>
+                <div class="np-body"><div class="np-msg"><strong>¡Tu platillo está listo!</strong> Pollo al limón ya está en Escápate Café.</div><div class="np-time">Hace 20 min</div></div>
+              </div>
+              <div class="np-item unread">
+                <div class="np-icon amber">📋</div>
+                <div class="np-body"><div class="np-msg"><strong>Cierre de selección mañana:</strong> Elige tu menú antes de las 8 PM del miércoles.</div><div class="np-time">Hace 2 horas</div></div>
+              </div>
+              <div class="np-item">
+                <div class="np-icon blue">📅</div>
+                <div class="np-body"><div class="np-msg"><strong>Menú disponible:</strong> Valeria publicó el menú de la semana del 10–14 feb.</div><div class="np-time">Ayer</div></div>
+              </div>
+              <div class="np-item">
+                <div class="np-icon amber">💳</div>
+                <div class="np-body"><div class="np-msg"><strong>Recordatorio de cobro:</strong> Mañana miércoles se cargará $650 a tu método de pago.</div><div class="np-time">Ayer</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="metrics">
+        <div class="metric"><div class="ml">Semanas activo</div><div class="mv">6</div><div class="ms">desde nov 2024</div></div>
+        <div class="metric"><div class="ml">Esta semana</div><div class="mv">2/5</div><div class="ms">platillos elegidos</div><div class="mb">Faltan 3</div></div>
+        <div class="metric"><div class="ml">Plan activo</div><div class="mv" style="font-size:18px;padding-top:3px">Premium</div><div class="ms">$650/semana</div></div>
+        <div class="metric"><div class="ml">Próximo cobro</div><div class="mv" style="font-size:18px;padding-top:3px">Mié 5 feb</div><div class="ms">$650 MXN</div></div>
+      </div>
+      <div class="wcard">
+        <div class="wh"><div class="wt">Semana del 3–7 feb — elige tu menú</div><div style="display:flex;gap:8px;align-items:center"><div class="wdl">Cierre: miérc 29 ene, 8 PM</div><button style="background:var(--g);color:#fff;border:none;padding:6px 16px;border-radius:100px;font-size:12px;font-weight:500;cursor:pointer" onclick="openConfirm()">Confirmar selección</button></div></div>
+        <div class="dgrid">
+          <div class="drow ok">
+            <div><div class="dn">Lunes</div><div class="dd">3 feb</div></div>
+            <button class="opt sel">Pollo al limón con quinoa</button>
+            <button class="opt">Bowl mediterráneo</button>
+            <div><span class="sok"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7L6 10.5L11.5 4" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round"/></svg>Elegido</span></div>
+          </div>
+          <div class="drow ok">
+            <div><div class="dn">Martes</div><div class="dd">4 feb</div></div>
+            <button class="opt sel">Salmón con puré de coliflor</button>
+            <button class="opt">Pollo a la mostaza</button>
+            <div><span class="sok"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7L6 10.5L11.5 4" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round"/></svg>Elegido</span></div>
+          </div>
+          <div class="drow">
+            <div><div class="dn">Miércoles</div><div class="dd">5 feb</div></div>
+            <button class="opt" style="border-color:rgba(0,0,0,.1);background:#fff" onclick="selOpt(this)">Bowl de res</button>
+            <button class="opt" style="border-color:rgba(0,0,0,.1);background:#fff" onclick="selOpt(this)">Ensalada de pollo</button>
+            <div><span class="spend">Pendiente</span></div>
+          </div>
+          <div class="drow">
+            <div><div class="dn">Jueves</div><div class="dd">6 feb</div></div>
+            <button class="opt" style="border-color:rgba(0,0,0,.1);background:#fff" onclick="selOpt(this)">Pollo a la mostaza</button>
+            <button class="opt" style="border-color:rgba(0,0,0,.1);background:#fff" onclick="selOpt(this)">Tacos de atún</button>
+            <div><span class="spend">Pendiente</span></div>
+          </div>
+          <div class="drow">
+            <div><div class="dn">Viernes</div><div class="dd">7 feb</div></div>
+            <button class="opt" style="border-color:rgba(0,0,0,.1);background:#fff" onclick="selOpt(this)">Bowl mediterráneo</button>
+            <button class="opt" style="border-color:rgba(0,0,0,.1);background:#fff" onclick="selOpt(this)">Salmón al horno</button>
+            <div><span class="spend">Pendiente</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="g2">
+        <div class="card">
+          <div class="ct">Historial reciente <span class="cl">Ver todo</span></div>
+          <div class="hr"><span class="hd">Vie 31 ene</span><span>Salmón al horno</span><span class="hs rec">Recogido</span></div>
+          <div class="hr"><span class="hd">Jue 30 ene</span><span>Pollo a la mostaza</span><span class="hs rec">Recogido</span></div>
+          <div class="hr"><span class="hd">Mié 29 ene</span><span>Bowl de res</span><span class="hs norec">No recogido</span></div>
+          <div class="hr"><span class="hd">Mar 28 ene</span><span>Salmón glaseado</span><span class="hs rec">Recogido</span></div>
+          <div class="hr"><span class="hd">Lun 27 ene</span><span>Pollo al limón</span><span class="hs rec">Recogido</span></div>
+        </div>
+        <div class="card">
+          <div class="ct">Próxima semana <span class="cl" onclick="showV('menu')">Ver menú completo</span></div>
+          <div class="nr"><div class="ndot"></div><div class="ndy">Lunes</div><div>Disponible el mié 5 feb</div></div>
+          <div class="nr"><div class="ndot" style="background:var(--light)"></div><div class="ndy">Martes</div><div style="color:var(--light)">Pendiente</div></div>
+          <div class="nr"><div class="ndot" style="background:var(--light)"></div><div class="ndy">Miércoles</div><div style="color:var(--light)">Pendiente</div></div>
+          <div class="nr"><div class="ndot" style="background:var(--light)"></div><div class="ndy">Jueves</div><div style="color:var(--light)">Pendiente</div></div>
+          <div class="nr"><div class="ndot" style="background:var(--light)"></div><div class="ndy">Viernes</div><div style="color:var(--light)">Pendiente</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="vmenu" style="display:none">
+      <div class="ph"><div><div class="pt">Menú semanal</div><div class="ps">Ingredientes, nutrición y beneficios de cada platillo</div></div></div>
+      <div class="wtabs">
+        <button class="wtab active" onclick="setWk(0,this)">Esta semana (pagada)</button>
+        <button class="wtab nxt" onclick="setWk(1,this)">Próxima semana</button>
+        <button class="wtab tent" onclick="setWk(2,this)">Semana tentativa</button>
+      </div>
+      <div id="wkbadge" class="wbadge cur">Semana del 3 al 7 de febrero · Ya pagada</div>
+      <div class="dpills">
+        <button class="dp done" onclick="setDay(0,this)">Lun 3</button>
+        <button class="dp done" onclick="setDay(1,this)">Mar 4</button>
+        <button class="dp active" onclick="setDay(2,this)">Mié 5</button>
+        <button class="dp" onclick="setDay(3,this)">Jue 6</button>
+        <button class="dp" onclick="setDay(4,this)">Vie 7</button>
+      </div>
+      <div id="ddisplay"></div>
+    </div>
+
+    <!-- HISTORIAL -->
+    <div id="vhistorial" style="display:none">
+      <div class="ph">
+        <div><div class="pt">Historial</div><div class="ps">Todos tus platillos desde que empezaste</div></div>
+      </div>
+      <div class="hist-stats">
+        <div class="metric"><div class="ml">Semanas activo</div><div class="mv">6</div><div class="ms">desde nov 2024</div></div>
+        <div class="metric"><div class="ml">Platillos recogidos</div><div class="mv">27</div><div class="ms">de 30 totales</div></div>
+        <div class="metric"><div class="ml">Tasa de recogida</div><div class="mv">90%</div><div class="ms"><span style="color:var(--g)">↑ muy bien</span></div></div>
+        <div class="metric"><div class="ml">Total invertido</div><div class="mv">$3,900</div><div class="ms">6 semanas · Plan Premium</div></div>
+      </div>
+
+      <div class="hchart-wrap">
+        <div class="hchart-title">
+          <span>Platillos recogidos por semana</span>
+          <span style="font-size:12px;color:var(--light);font-weight:400">últimas 6 semanas</span>
+        </div>
+        <div class="hbars" id="hbars"></div>
+      </div>
+
+      <div class="hist-filters">
+        <button class="hfil active" onclick="filterHist('all',this)">Todos</button>
+        <button class="hfil" onclick="filterHist('rec',this)">Recogidos</button>
+        <button class="hfil" onclick="filterHist('norec',this)">No recogidos</button>
+      </div>
+
+      <div class="htable">
+        <div class="hthead">
+          <div>Fecha</div><div>Platillo</div><div>Nutrióloga</div><div>Plan</div><div>Estado</div><div></div>
+        </div>
+        <div id="hist-body"></div>
+      </div>
+    </div>
+
+    <!-- PERFIL -->
+    <div id="vperfil" style="display:none">
+      <div class="ph">
+        <div><div class="pt">Mi perfil</div><div class="ps">Datos de tu cuenta y preferencias</div></div>
+      </div>
+      <div class="perfil-wrap">
+
+        <div class="pcard-user">
+          <div class="pcu-top">
+            <div class="pcu-av">CR</div>
+            <div class="pcu-name">Carlos Ramírez</div>
+            <div style="margin-top:6px"><span class="pcu-plan">Plan Premium · activo</span></div>
+          </div>
+          <div class="pcu-body">
+            <div class="pcu-row"><span class="pcu-label">Miembro desde</span><span class="pcu-val">Nov 2024</span></div>
+            <div class="pcu-row"><span class="pcu-label">Semanas activas</span><span class="pcu-val">6</span></div>
+            <div class="pcu-row"><span class="pcu-label">Próximo cobro</span><span class="pcu-val">Mié 5 feb</span></div>
+            <div class="pcu-row"><span class="pcu-label">Monto</span><span class="pcu-val g">$650 MXN</span></div>
+            <div class="pcu-row"><span class="pcu-label">Punto de recogida</span><span class="pcu-val">Escápate Café</span></div>
+          </div>
+          <div class="pcu-actions">
+            <button class="pcu-btn primary" onclick="openSus()">Gestionar suscripción</button>
+            <button class="pcu-btn secondary">Cambiar de plan</button>
+            <button class="pcu-btn danger">Pausar suscripción</button>
+          </div>
+        </div>
+
+        <div class="perfil-forms">
+
+          <div class="pf-section">
+            <div class="pfs-title">Datos personales</div>
+            <div class="pfs-sub">Tu información de contacto y entrega</div>
+            <div class="pf-grid">
+              <div class="pfg2"><label>Nombre</label><input value="Carlos"></div>
+              <div class="pfg2"><label>Apellido</label><input value="Ramírez"></div>
+              <div class="pfg2"><label>Teléfono</label><input value="+52 844 123 4567"></div>
+              <div class="pfg2"><label>Correo electrónico</label><input value="carlos.ramirez@gmail.com"></div>
+              <div class="pfg2 span2"><label>Empresa u oficina (opcional)</label><input placeholder="Ej. Planta Chrysler — turno matutino"></div>
+            </div>
+            <div class="pf-save-row" style="margin-top:16px"><button class="pf-save">Guardar cambios</button></div>
+          </div>
+
+          <div class="pf-section">
+            <div class="pfs-title">Mi nutrióloga asignada</div>
+            <div class="pfs-sub">Quien prepara tus alimentos esta temporada</div>
+            <div class="nut-asig">
+              <div class="nut-av2">VM</div>
+              <div class="nut-inf">
+                <div class="nut-nm">Valeria Montoya</div>
+                <div class="nut-de">Nutrición clínica · UANL · 6 años de experiencia</div>
+                <div style="margin-top:4px"><span class="nut-stars2">★★★★★</span><span style="font-size:12px;color:var(--mid)">4.9 · 38 reseñas</span></div>
+              </div>
+              <button style="font-size:12px;color:var(--g);border:1px solid rgba(29,158,117,.3);background:transparent;padding:6px 14px;border-radius:100px;cursor:pointer">Ver perfil</button>
+            </div>
+            <div style="margin-top:14px;font-size:13px;color:var(--mid);line-height:1.6">¿Quieres cambiar de nutrióloga? Puedes hacerlo al inicio de cada ciclo mensual desde la sección <span style="color:var(--g);cursor:pointer">Gestionar suscripción</span>.</div>
+          </div>
+
+          <div class="pf-section">
+            <div class="pfs-title">Preferencias alimentarias</div>
+            <div class="pfs-sub">Tu nutrióloga las considera al armar el menú</div>
+            <div class="pf-grid three">
+              <div class="pfg2"><label>Objetivo principal</label>
+                <select>
+                  <option>Bajar de peso</option>
+                  <option selected>Comer más sano</option>
+                  <option>Ganar músculo</option>
+                  <option>Control glucémico</option>
+                </select>
+              </div>
+              <div class="pfg2"><label>Proteína preferida</label>
+                <select>
+                  <option>Sin preferencia</option>
+                  <option selected>Pollo y pescado</option>
+                  <option>Solo pollo</option>
+                  <option>Res y pollo</option>
+                </select>
+              </div>
+              <div class="pfg2"><label>Alergias o restricciones</label>
+                <select>
+                  <option selected>Ninguna</option>
+                  <option>Sin gluten</option>
+                  <option>Sin lácteos</option>
+                  <option>Sin mariscos</option>
+                </select>
+              </div>
+            </div>
+            <div class="pf-save-row" style="margin-top:16px"><button class="pf-save">Guardar preferencias</button></div>
+          </div>
+
+          <div class="pf-section">
+            <div class="pfs-title">Notificaciones</div>
+            <div class="pfs-sub">Elige cómo quieres recibir recordatorios</div>
+            <div class="notif-row">
+              <div><div class="notif-info">Recordatorio de selección semanal</div><div class="notif-desc">Te avisamos los miércoles a las 6 PM para que elijas tu menú</div></div>
+              <button class="toggle on" onclick="this.classList.toggle('on');this.classList.toggle('off')"></button>
+            </div>
+            <div class="notif-row">
+              <div><div class="notif-info">Aviso de platillo listo</div><div class="notif-desc">Notificación cuando tu comida está en Escápate Café</div></div>
+              <button class="toggle on" onclick="this.classList.toggle('on');this.classList.toggle('off')"></button>
+            </div>
+            <div class="notif-row">
+              <div><div class="notif-info">Menú de la siguiente semana disponible</div><div class="notif-desc">Te avisamos cuando la nutrióloga publica el menú</div></div>
+              <button class="toggle off" onclick="this.classList.toggle('on');this.classList.toggle('off')"></button>
+            </div>
+            <div class="notif-row">
+              <div><div class="notif-info">Recordatorio de cobro</div><div class="notif-desc">Aviso 24 hrs antes de cada cargo semanal</div></div>
+              <button class="toggle on" onclick="this.classList.toggle('on');this.classList.toggle('off')"></button>
+            </div>
+          </div>
+
+          <div class="pf-section">
+            <div class="pfs-title">Seguridad</div>
+            <div class="pfs-sub">Contraseña y acceso a tu cuenta</div>
+            <div class="pf-grid">
+              <div class="pfg2"><label>Contraseña actual</label><input type="password" value="••••••••"></div>
+              <div class="pfg2"><label>Nueva contraseña</label><input type="password" placeholder="Mínimo 8 caracteres"></div>
+            </div>
+            <div class="pf-save-row" style="margin-top:16px"><button class="pf-save">Actualizar contraseña</button></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── ESTADO VACÍO (se muestra dentro de vweek cuando no hay selecciones) ── -->
+<div id="vempty" style="display:none">
+  <div class="main-topbar">
+    <div><div class="pt">Hola, Carlos.</div><div class="ps">Bienvenido a NutriPalm</div></div>
+  </div>
+  <div class="empty-wrap">
+    <div class="empty-illo">🥗</div>
+    <div class="empty-title">Tu primera semana está por comenzar.</div>
+    <div class="empty-sub">Ya elegiste tu nutrióloga y tu plan. Ahora solo falta seleccionar tus platillos para esta semana — tienes hasta el <strong>miércoles a las 8 PM.</strong></div>
+    <div class="empty-steps">
+      <div class="es-card"><div class="es-num">01</div><div class="es-tit">Revisa el menú</div><div class="es-desc">Valeria ya publicó sus 5 platillos de esta semana con ingredientes y macros.</div></div>
+      <div class="es-card"><div class="es-num">02</div><div class="es-tit">Elige antes del miércoles</div><div class="es-desc">2 opciones por día. Selecciona la que más te guste — puedes cambiar hasta el cierre.</div></div>
+      <div class="es-card"><div class="es-num">03</div><div class="es-tit">Recoge de 4 a 9 PM</div><div class="es-desc">Tu platillo estará etiquetado con tu nombre en Escápate Café. Llega cuando puedas.</div></div>
+    </div>
+    <button class="btnp" onclick="showV('menu',document.querySelectorAll('.nav')[1])">Ver menú de esta semana →</button>
+    <div style="margin-top:14px;font-size:13px;color:var(--light)">Tu plan Premium comienza el lunes 3 feb · $650/semana</div>
+  </div>
+</div>
+
+<!-- ── GESTIÓN DE SUSCRIPCIÓN (modal) ── -->
+<div class="modal-ov" id="sus-modal" style="display:none" onclick="if(event.target===this)closeSus()">
+  <div class="modal-box" id="sus-inner">
+    <!-- Vista principal -->
+    <div id="sus-main">
+      <div class="modal-head">
+        <div class="modal-title">Gestionar suscripción</div>
+        <button class="modal-close" onclick="closeSus()">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="sus-current">
+          <div><div class="sus-cl">Plan activo</div><div class="sus-cv">Plan Premium</div><div class="sus-cs">Próximo cobro: miérc 5 feb · $650</div></div>
+          <span class="sus-badge">Activo</span>
+        </div>
+        <div class="sus-opts">
+          <div class="sus-opt" onclick="susSub('plan')">
+            <div class="sus-opt-left"><div class="sus-opt-title">Cambiar de plan</div><div class="sus-opt-desc">Básico $550 · Premium $650 · Pareja $1,200</div></div>
+            <div class="sus-opt-arrow">›</div>
+          </div>
+          <div class="sus-opt" onclick="susSub('nut')">
+            <div class="sus-opt-left"><div class="sus-opt-title">Cambiar de nutrióloga</div><div class="sus-opt-desc">Aplica al inicio del próximo ciclo mensual</div></div>
+            <div class="sus-opt-arrow">›</div>
+          </div>
+          <div class="sus-opt" onclick="susSub('pause')">
+            <div class="sus-opt-left"><div class="sus-opt-title">Pausar suscripción</div><div class="sus-opt-desc">Sin cobros hasta que la reactives</div></div>
+            <div class="sus-opt-arrow">›</div>
+          </div>
+          <div class="sus-opt" onclick="susSub('punto')">
+            <div class="sus-opt-left"><div class="sus-opt-title">Cambiar punto de recogida</div><div class="sus-opt-desc">Actualmente: Escápate Café — Zona Centro</div></div>
+            <div class="sus-opt-arrow">›</div>
+          </div>
+          <div class="sus-opt danger" onclick="susSub('cancel')">
+            <div class="sus-opt-left"><div class="sus-opt-title">Cancelar suscripción</div><div class="sus-opt-desc">Perderás el acceso al finalizar el ciclo pagado</div></div>
+            <div class="sus-opt-arrow" style="color:var(--danger)">›</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Sub-vista: cambiar plan -->
+    <div id="sus-plan" style="display:none">
+      <div class="modal-head">
+        <button class="modal-close" onclick="susSub('main')" style="margin-right:8px">‹</button>
+        <div class="modal-title">Cambiar de plan</div>
+        <button class="modal-close" onclick="closeSus()">×</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:13px;color:var(--mid);margin-bottom:16px">El cambio aplica desde el próximo ciclo de pago.</p>
+        <div class="plan-cards">
+          <div class="plan-c" onclick="selPlan(this)">
+            <div class="plan-c-name">Básico</div>
+            <div class="plan-c-price">$550</div>
+            <div class="plan-c-per">/semana</div>
+          </div>
+          <div class="plan-c dark active" onclick="selPlan(this)">
+            <div style="font-size:10px;color:var(--gm);margin-bottom:4px">Actual</div>
+            <div class="plan-c-name lt">Premium</div>
+            <div class="plan-c-price lt">$650</div>
+            <div class="plan-c-per lt">/semana</div>
+          </div>
+          <div class="plan-c" onclick="selPlan(this)">
+            <div class="plan-c-name">Pareja</div>
+            <div class="plan-c-price">$1,200</div>
+            <div class="plan-c-per">/semana</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer"><button class="mf-cancel" onclick="susSub('main')">Cancelar</button><button class="mf-confirm" onclick="confirmSusChange('plan')">Confirmar cambio</button></div>
+    </div>
+    <!-- Sub-vista: pausar -->
+    <div id="sus-pause" style="display:none">
+      <div class="modal-head">
+        <button class="modal-close" onclick="susSub('main')" style="margin-right:8px">‹</button>
+        <div class="modal-title">Pausar suscripción</div>
+        <button class="modal-close" onclick="closeSus()">×</button>
+      </div>
+      <div class="modal-body">
+        <div style="background:var(--warnl,#FAEEDA);border-radius:12px;padding:16px;margin-bottom:16px;font-size:13px;color:#633806;line-height:1.6">Pausar detiene los cobros y entregas. Puedes reactivar cuando quieras desde esta misma pantalla. Tu historial y preferencias se conservan.</div>
+        <div style="font-size:13px;color:var(--mid);margin-bottom:6px">¿Cuánto tiempo quieres pausar?</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <label style="display:flex;align-items:center;gap:10px;padding:12px;border:1.5px solid rgba(0,0,0,.08);border-radius:10px;cursor:pointer;font-size:13px"><input type="radio" name="pause" value="1" style="accent-color:var(--g)"> 1 semana</label>
+          <label style="display:flex;align-items:center;gap:10px;padding:12px;border:1.5px solid rgba(0,0,0,.08);border-radius:10px;cursor:pointer;font-size:13px"><input type="radio" name="pause" value="2" style="accent-color:var(--g)"> 2 semanas</label>
+          <label style="display:flex;align-items:center;gap:10px;padding:12px;border:1.5px solid rgba(0,0,0,.08);border-radius:10px;cursor:pointer;font-size:13px"><input type="radio" name="pause" value="0" style="accent-color:var(--g)"> Hasta que yo reactive</label>
+        </div>
+      </div>
+      <div class="modal-footer"><button class="mf-cancel" onclick="susSub('main')">Cancelar</button><button class="mf-confirm" onclick="confirmSusChange('pause')">Pausar ahora</button></div>
+    </div>
+    <!-- Sub-vista: cancelar -->
+    <div id="sus-cancel" style="display:none">
+      <div class="modal-head">
+        <button class="modal-close" onclick="susSub('main')" style="margin-right:8px">‹</button>
+        <div class="modal-title">Cancelar suscripción</div>
+        <button class="modal-close" onclick="closeSus()">×</button>
+      </div>
+      <div class="modal-body">
+        <div style="background:#FCEBEB;border-radius:12px;padding:16px;margin-bottom:16px;font-size:13px;color:#791F1F;line-height:1.6">Al cancelar seguirás recibiendo tu servicio hasta el <strong>domingo 9 de febrero</strong> (fin del ciclo pagado). Después de esa fecha no se realizarán más cobros.</div>
+        <div style="font-size:13px;color:var(--mid);margin-bottom:10px">¿Por qué quieres cancelar?</div>
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <label style="display:flex;align-items:center;gap:10px;font-size:13px;cursor:pointer"><input type="radio" name="cancel" style="accent-color:var(--g)"> Es muy caro para mí</label>
+          <label style="display:flex;align-items:center;gap:10px;font-size:13px;cursor:pointer"><input type="radio" name="cancel" style="accent-color:var(--g)"> No tengo tiempo de recoger</label>
+          <label style="display:flex;align-items:center;gap:10px;font-size:13px;cursor:pointer"><input type="radio" name="cancel" style="accent-color:var(--g)"> Los platillos no me convencieron</label>
+          <label style="display:flex;align-items:center;gap:10px;font-size:13px;cursor:pointer"><input type="radio" name="cancel" style="accent-color:var(--g)"> Otra razón</label>
+        </div>
+      </div>
+      <div class="modal-footer"><button class="mf-cancel" onclick="susSub('main')">Volver</button><button class="mf-danger" onclick="confirmSusChange('cancel')">Sí, cancelar</button></div>
+    </div>
+    <!-- Sub-vista: cambiar nutrióloga -->
+    <div id="sus-nut" style="display:none">
+      <div class="modal-head">
+        <button class="modal-close" onclick="susSub('main')" style="margin-right:8px">‹</button>
+        <div class="modal-title">Cambiar de nutrióloga</div>
+        <button class="modal-close" onclick="closeSus()">×</button>
+      </div>
+      <div class="modal-body">
+        <div style="background:var(--off);border-radius:10px;padding:12px 14px;font-size:13px;color:var(--mid);margin-bottom:16px;line-height:1.5">El cambio aplica al inicio del próximo ciclo mensual. Hasta entonces, <strong>Valeria Montoya</strong> sigue preparando tus alimentos.</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div class="sus-opt active-nut" style="background:var(--gl);border-color:var(--g);cursor:default">
+            <div class="sus-opt-left">
+              <div style="display:flex;align-items:center;gap:10px">
+                <div style="width:40px;height:40px;border-radius:50%;background:var(--gd);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:14px;color:#fff;flex-shrink:0">VM</div>
+                <div><div class="sus-opt-title" style="color:var(--gd)">Valeria Montoya <span style="font-size:11px;background:var(--gl);color:var(--g);border:1px solid rgba(29,158,117,.3);padding:2px 8px;border-radius:100px;margin-left:6px">Actual</span></div><div class="sus-opt-desc">Nutrición clínica · UANL · ★★★★★ 4.9</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="sus-opt" onclick="selNut(this,'SG','Sofía Garza')">
+            <div class="sus-opt-left">
+              <div style="display:flex;align-items:center;gap:10px">
+                <div style="width:40px;height:40px;border-radius:50%;background:#E6F1FB;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:14px;color:#185FA5;flex-shrink:0">SG</div>
+                <div><div class="sus-opt-title">Sofía Garza</div><div class="sus-opt-desc">Nutrición deportiva · Tec de Monterrey · ★★★★★ 4.8 · 18 lugares</div></div>
+              </div>
+            </div>
+            <div class="sus-opt-arrow">›</div>
+          </div>
+          <div class="sus-opt" onclick="selNut(this,'MR','Mariana Reyes')">
+            <div class="sus-opt-left">
+              <div style="display:flex;align-items:center;gap:10px">
+                <div style="width:40px;height:40px;border-radius:50%;background:#FAEEDA;display:flex;align-items:center;justify-content:circle;font-family:'DM Serif Display',serif;font-size:14px;color:#633806;flex-shrink:0;display:flex;align-items:center;justify-content:center">MR</div>
+                <div><div class="sus-opt-title">Mariana Reyes</div><div class="sus-opt-desc">Alto en proteína · UAdeC · ★★★★★ 5.0 · Lista de espera</div></div>
+              </div>
+            </div>
+            <div class="sus-opt-arrow">›</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer"><button class="mf-cancel" onclick="susSub('main')">Cancelar</button><button class="mf-confirm" id="nut-confirm-btn" disabled style="opacity:.4" onclick="confirmSusChange('nut')">Confirmar cambio</button></div>
+    </div>
+    <!-- Sub-vista: cambiar punto de recogida -->
+    <div id="sus-punto" style="display:none">
+      <div class="modal-head">
+        <button class="modal-close" onclick="susSub('main')" style="margin-right:8px">‹</button>
+        <div class="modal-title">Cambiar punto de recogida</div>
+        <button class="modal-close" onclick="closeSus()">×</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:13px;color:var(--mid);margin-bottom:16px">Todos los puntos operan de <strong>4 a 9 PM</strong>, de lunes a viernes.</p>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div class="ob-loc sel" id="loc-1" onclick="selLoc(1)">
+            <div><div class="ob-loc-name">Escápate Café — Zona Centro</div><div class="ob-loc-desc">Blvd. V. Carranza 2405 · Col. República</div></div>
+            <span class="ob-loc-badge">Actual</span>
+          </div>
+          <div class="ob-loc" id="loc-2" onclick="selLoc(2)">
+            <div><div class="ob-loc-name">Escápate Café — Valle Oriente</div><div class="ob-loc-desc">Av. Constitución 1810 · Col. Valle Oriente</div></div>
+            <span class="ob-loc-badge">Disponible</span>
+          </div>
+          <div class="ob-loc" id="loc-3" onclick="selLoc(3)" style="opacity:.5;cursor:default">
+            <div><div class="ob-loc-name">Zona Industrial — Punto Entrega</div><div class="ob-loc-desc">Blvd. Interamericano km 4.5 · 4–7 PM</div></div>
+            <span style="font-size:11px;color:var(--light);background:var(--off);padding:2px 8px;border-radius:100px">Próximamente</span>
+          </div>
+        </div>
+        <div style="margin-top:14px;background:var(--off);border-radius:10px;padding:12px 14px;font-size:12px;color:var(--mid)">El cambio aplica desde la próxima semana. Esta semana sigues recogiendo en tu punto actual.</div>
+      </div>
+      <div class="modal-footer"><button class="mf-cancel" onclick="susSub('main')">Cancelar</button><button class="mf-confirm" id="loc-confirm-btn" onclick="confirmSusChange('punto')">Guardar cambio</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── CONFIRMACIÓN DE PAGO ── -->
+<div class="confirm-ov" id="confirm-modal" style="display:none">
+  <div class="confirm-box">
+    <div class="confirm-top">
+      <div class="confirm-check">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M6 14L11.5 19.5L22 9" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="confirm-ttl">¡Menú confirmado!</div>
+      <div class="confirm-sub">Semana del 3 al 7 de febrero</div>
+    </div>
+    <div class="confirm-body">
+      <div class="confirm-rows" id="confirm-rows"></div>
+      <div class="confirm-nut">
+        <div class="confirm-nut-av">VM</div>
+        <div><div class="confirm-nut-name">Valeria Montoya</div><div class="confirm-nut-desc">Prepara tus platillos · listo cada día de 4–9 PM</div></div>
+      </div>
+      <div class="confirm-note">Te cobraremos <strong>$650 MXN</strong> el miércoles 5 de febrero. Puedes modificar tu selección hasta antes de esa fecha.</div>
+      <button class="confirm-btn" onclick="closeConfirm()">Perfecto, gracias</button>
+      <button class="confirm-sec" onclick="closeConfirm()">Cambiar selección</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── RESEÑAS ── -->
+<div class="review-ov" id="review-modal" style="display:none" onclick="if(event.target===this)closeReview()">
+  <div class="review-box">
+    <div class="review-head">
+      <div class="modal-title">Califica tu platillo</div>
+      <button class="modal-close" onclick="closeReview()">×</button>
+    </div>
+    <div class="review-body">
+      <div class="review-dish">
+        <div class="review-dish-emoji" style="background:var(--gl)" id="rv-emoji">🍋</div>
+        <div><div class="review-dish-name" id="rv-name">Pollo al limón con quinoa</div><div class="review-dish-day">Lunes 27 ene · Valeria Montoya</div></div>
+      </div>
+      <div style="text-align:center;margin-bottom:6px;font-size:13px;color:var(--mid)">¿Cómo estuvo?</div>
+      <div class="star-row" id="star-row">
+        <span class="star" onclick="setStar(1)">★</span>
+        <span class="star" onclick="setStar(2)">★</span>
+        <span class="star" onclick="setStar(3)">★</span>
+        <span class="star" onclick="setStar(4)">★</span>
+        <span class="star" onclick="setStar(5)">★</span>
+      </div>
+      <div class="star-label" id="star-label">Toca para calificar</div>
+      <div class="review-tags" id="rv-tags" style="display:none">
+        <span class="rtag" onclick="this.classList.toggle('sel')">Muy sabroso</span>
+        <span class="rtag" onclick="this.classList.toggle('sel')">Bien porcionado</span>
+        <span class="rtag" onclick="this.classList.toggle('sel')">Fresco</span>
+        <span class="rtag" onclick="this.classList.toggle('sel')">Me llenó</span>
+        <span class="rtag" onclick="this.classList.toggle('sel')">Buena presentación</span>
+        <span class="rtag" onclick="this.classList.toggle('sel')">Lo repetiría</span>
+      </div>
+      <textarea class="review-textarea" id="rv-tags" placeholder="Comentario opcional para Valeria…" style="display:none" id="rv-comment"></textarea>
+    </div>
+    <div class="review-footer">
+      <button class="mf-cancel" onclick="closeReview()">Ahora no</button>
+      <button class="mf-confirm" id="rv-submit" disabled style="opacity:.4" onclick="submitReview()">Enviar reseña</button>
+    </div>
+  </div>
+</div>
+
+<!-- ONBOARDING -->
+<div class="ob-overlay" id="ob-overlay" style="display:none">
+  <div class="ob-modal">
+    <div class="ob-progress"><div class="ob-bar" id="ob-bar" style="width:33%"></div></div>
+    <div class="ob-body">
+
+      <div class="ob-step active" id="ob-s1">
+        <div class="ob-eyebrow">Paso 1 de 3</div>
+        <div class="ob-title">Elige tu nutrióloga</div>
+        <div class="ob-sub">Ella diseña y prepara tus alimentos cada semana. Puedes cambiar al inicio de cada mes.</div>
+        <div class="ob-nut-grid">
+          <div class="ob-nut sel" onclick="selOb(this,'nut')">
+            <div class="ob-av" style="background:var(--gl);color:var(--gd)">VM</div>
+            <div class="ob-nn">Valeria Montoya</div>
+            <div class="ob-ns">Nutrición clínica</div>
+            <div class="ob-nst">★★★★★ 4.9</div>
+            <div style="font-size:11px;color:var(--g);margin-top:4px">32 lugares</div>
+          </div>
+          <div class="ob-nut" onclick="selOb(this,'nut')">
+            <div class="ob-av" style="background:#E6F1FB;color:#185FA5">SG</div>
+            <div class="ob-nn">Sofía Garza</div>
+            <div class="ob-ns">Nutrición deportiva</div>
+            <div class="ob-nst">★★★★★ 4.8</div>
+            <div style="font-size:11px;color:var(--g);margin-top:4px">18 lugares</div>
+          </div>
+          <div class="ob-nut" onclick="selOb(this,'nut')">
+            <div class="ob-av" style="background:#FAEEDA;color:#633806">MR</div>
+            <div class="ob-nn">Mariana Reyes</div>
+            <div class="ob-ns">Alto en proteína</div>
+            <div class="ob-nst">★★★★★ 5.0</div>
+            <div style="font-size:11px;color:var(--danger);margin-top:4px">Lista de espera</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ob-step" id="ob-s2">
+        <div class="ob-eyebrow">Paso 2 de 3</div>
+        <div class="ob-title">Elige tu plan</div>
+        <div class="ob-sub">Sin contratos largos. Puedes pausar o cambiar cuando quieras.</div>
+        <div class="ob-plan-grid">
+          <div class="ob-plan" onclick="selOb(this,'plan')">
+            <div class="ob-pname">Básico</div>
+            <div class="ob-pprice">$550</div>
+            <div class="ob-pper">/semana · 1 persona</div>
+            <div class="ob-pf">5 porciones semanales</div>
+            <div class="ob-pf">Pollo, res y atún</div>
+            <div class="ob-pf">2 opciones por día</div>
+          </div>
+          <div class="ob-plan feat sel" onclick="selOb(this,'plan')">
+            <div style="font-size:10px;color:var(--gm);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em">Más popular</div>
+            <div class="ob-pname lt">Premium</div>
+            <div class="ob-pprice lt">$650</div>
+            <div class="ob-pper lt">/semana · 1 persona</div>
+            <div class="ob-pf lt">Todo el plan Básico</div>
+            <div class="ob-pf lt">Salmón 1–2x/semana</div>
+            <div class="ob-pf lt">Ingredientes premium</div>
+          </div>
+          <div class="ob-plan" onclick="selOb(this,'plan')">
+            <div class="ob-pname">Pareja</div>
+            <div class="ob-pprice">$1,200</div>
+            <div class="ob-pper">/semana · 2 personas</div>
+            <div class="ob-pf">Premium para dos</div>
+            <div class="ob-pf">Cada quien elige</div>
+            <div class="ob-pf">Ahorra $100</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ob-step" id="ob-s3">
+        <div class="ob-eyebrow">Paso 3 de 3</div>
+        <div class="ob-title">¿Dónde recoges?</div>
+        <div class="ob-sub">Pasa por tu comida de camino a casa. De 4 a 9 PM, todos los días.</div>
+        <div class="ob-loc-grid">
+          <div class="ob-loc sel" onclick="selOb(this,'loc')">
+            <div><div class="ob-loc-name">Escápate Café — Zona Centro</div><div class="ob-loc-desc">Blvd. V. Carranza 2405 · 4–9 PM</div></div>
+            <span class="ob-loc-badge">Disponible</span>
+          </div>
+          <div class="ob-loc" onclick="selOb(this,'loc')">
+            <div><div class="ob-loc-name">Escápate Café — Valle Oriente</div><div class="ob-loc-desc">Av. Constitución 1810 · 4–9 PM</div></div>
+            <span class="ob-loc-badge">Disponible</span>
+          </div>
+          <div class="ob-loc" onclick="selOb(this,'loc')">
+            <div><div class="ob-loc-name">Zona Industrial — Punto Entrega</div><div class="ob-loc-desc">Blvd. Interamericano km 4.5 · 4–7 PM</div></div>
+            <span style="font-size:11px;color:var(--light);background:var(--off);padding:2px 8px;border-radius:100px">Próximamente</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="ob-foot">
+      <button class="ob-skip" onclick="closeOnboarding()">Omitir por ahora</button>
+      <button class="ob-next" id="ob-next" onclick="nextStep()">Continuar →</button>
+    </div>
+  </div>
+</div>
+
+<!-- NOTIFICATION BELL (injected into vweek topbar via JS) -->
+
+<script>
+// Onboarding
+let obStep=1;
+function selOb(el,group){
+  el.closest('.ob-body').querySelectorAll('.ob-'+group).forEach(e=>e.classList.remove('sel'));
+  el.classList.add('sel');
+}
+function nextStep(){
+  if(obStep===3){closeOnboarding();return;}
+  obStep++;
+  document.querySelectorAll('.ob-step').forEach(s=>s.classList.remove('active'));
+  document.getElementById('ob-s'+obStep).classList.add('active');
+  document.getElementById('ob-bar').style.width=(obStep/3*100)+'%';
+  if(obStep===3)document.getElementById('ob-next').textContent='¡Comenzar!';
+}
+function closeOnboarding(){document.getElementById('ob-overlay').style.display='none';}
+// Show onboarding only on first load (simulate)
+// Comment next line to hide onboarding:
+// document.getElementById('ob-overlay').style.display='none';
+</script>
+<script>
+const MENU=[
+  {day:'Lunes',emoji:'🍋',color:'#E1F5EE',name:'Pollo al limón con quinoa y verduras asadas',gi:'Bajo–Moderado (45–50)',gil:true,ingredients:['Pechuga de pollo','Quinoa','Calabacita','Zanahoria','Pimiento morrón','Limón','Ajo','Aceite de oliva','Hierbas secas'],nutrition:{cal:470,prot:40,fat:14,carb:40,fiber:6},vitamins:['Potasio','Hierro','Zinc','Calcio','Vitamina B6','Niacina B3'],benefits:['Fuente magra de proteína para mantenimiento muscular','Ayuda a la digestión por su contenido en fibra','Aporta energía limpia y sostenida','Antioxidantes de las verduras asadas']},
+  {day:'Martes',emoji:'🐟',color:'#E6F1FB',name:'Salmón glaseado con miel y mostaza + puré de coliflor',gi:'Bajo (40–45)',gil:true,ingredients:['Salmón fresco','Miel','Mostaza Dijon','Coliflor','Brócoli','Aceite de oliva','Limón','Ajo'],nutrition:{cal:510,prot:36,fat:28,carb:28,fiber:6},vitamins:['Vitamina D','B12','Vitamina C','Folato','Calcio','Magnesio','Omega-3'],benefits:['Antiinflamatorio natural por omega-3','Apoya la salud cognitiva y cardiovascular','Estabiliza niveles de glucosa en sangre','Favorece saciedad con grasas saludables']},
+  {day:'Miércoles',emoji:'🥩',color:'#FAECE7',name:'Bowl de res salteada con quinoa y vegetales asados',gi:'Bajo–Moderado (50–53)',gil:true,ingredients:['Aguayón de res 150g','Quinoa cocida','Zanahoria','Pimiento rojo','Espinaca','Aceite de oliva','Limón','Orégano'],nutrition:{cal:490,prot:36,fat:15,carb:38,fiber:6},vitamins:['Hierro hemo','Zinc','Vitamina B12','Vitamina A','Vitamina C','Vitamina K'],benefits:['Rica en hierro — previene anemia','Proteína completa para desarrollo muscular','Bajo IG para energía estable todo el día','Antioxidantes de vegetales de colores']},
+  {day:'Jueves',emoji:'🍗',color:'#FAEEDA',name:'Pollo a la mostaza con arroz integral y verduras salteadas',gi:'Moderado (50–55)',gil:false,ingredients:['Pechuga de pollo','Mostaza Dijon','Ajo','Cebolla','Calabacita','Zanahoria','Arroz integral','Aceite de oliva'],nutrition:{cal:480,prot:40,fat:14,carb:42,fiber:5},vitamins:['Vitamina B6','Vitamina A','Vitamina C','Magnesio','Zinc','Potasio'],benefits:['Favorece la digestión y el tránsito intestinal','Apoya la salud cardiovascular','Alta saciedad por proteína + fibra','Refuerza el sistema inmune']},
+  {day:'Viernes',emoji:'🫙',color:'#EEEDFE',name:'Bowl mediterráneo de pollo con quinoa y salsa de yogurt',gi:'Bajo–Moderado (45–50)',gil:true,ingredients:['Pollo asado','Quinoa cocida','Pepino','Jitomate cherry','Cebolla morada','Aceitunas negras','Yogur natural','Limón','Orégano'],nutrition:{cal:490,prot:42,fat:15,carb:42,fiber:6},vitamins:['Vitamina B6','Niacina B3','Vitamina A','Calcio','Hierro','Magnesio','Zinc'],benefits:['Probióticos del yogurt favorecen la digestión','Mayor variedad de micronutrientes','Combinación mediterránea antiinflamatoria','Apoya la saciedad sin elevar calorías']}
+];
+
+function toggleCNotif(btn){
+  const p=document.getElementById('c-notif-panel');
+  p.classList.toggle('open');
+  document.addEventListener('click',function h(e){if(!btn.closest('.c-bell-wrap').contains(e.target)){p.classList.remove('open');document.removeEventListener('click',h);}});
+}
+function clearCNotifs(){
+  document.querySelectorAll('#c-notif-panel .np-item.unread').forEach(i=>i.classList.remove('unread'));
+  document.querySelector('.c-bell-dot').style.display='none';
+}
+function showV(v,btn){
+  ['vweek','vmenu','vhistorial','vperfil','vempty'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.style.display='none';
+  });
+  const target=document.getElementById('v'+v);
+  if(target) target.style.display='block';
+  document.querySelectorAll('.nav').forEach(n=>n.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  if(v==='historial') renderHistorial();
+}
+
+const HIST=[
+  {date:'Vie 31 ene',week:'Semana 27 ene – 31 ene',dish:'Salmón al horno',nut:'Valeria M.',plan:'Premium',status:'rec'},
+  {date:'Jue 30 ene',week:'Semana 27 ene – 31 ene',dish:'Pollo a la mostaza',nut:'Valeria M.',plan:'Premium',status:'rec'},
+  {date:'Mié 29 ene',week:'Semana 27 ene – 31 ene',dish:'Bowl de res',nut:'Valeria M.',plan:'Premium',status:'norec'},
+  {date:'Mar 28 ene',week:'Semana 27 ene – 31 ene',dish:'Salmón glaseado',nut:'Valeria M.',plan:'Premium',status:'rec'},
+  {date:'Lun 27 ene',week:'Semana 27 ene – 31 ene',dish:'Pollo al limón',nut:'Valeria M.',plan:'Premium',status:'rec'},
+  {date:'Vie 24 ene',week:'Semana 20 ene – 24 ene',dish:'Bowl mediterráneo',nut:'Valeria M.',plan:'Premium',status:'rec'},
+  {date:'Jue 23 ene',week:'Semana 20 ene – 24 ene',dish:'Tacos de atún',nut:'Valeria M.',plan:'Premium',status:'rec'},
+  {date:'Mié 22 ene',week:'Semana 20 ene – 24 ene',dish:'Pollo al limón',nut:'Valeria M.',plan:'Premium',status:'rec'},
+  {date:'Mar 21 ene',week:'Semana 20 ene – 24 ene',dish:'Salmón al horno',nut:'Valeria M.',plan:'Premium',status:'norec'},
+  {date:'Lun 20 ene',week:'Semana 20 ene – 24 ene',dish:'Bowl de res',nut:'Valeria M.',plan:'Premium',status:'rec'},
+  {date:'Vie 17 ene',week:'Semana 13 ene – 17 ene',dish:'Pollo a la mostaza',nut:'Valeria M.',plan:'Premium',status:'rec'},
+  {date:'Jue 16 ene',week:'Semana 13 ene – 17 ene',dish:'Bowl mediterráneo',nut:'Valeria M.',plan:'Premium',status:'rec'},
+  {date:'Mié 15 ene',week:'Semana 13 ene – 17 ene',dish:'Salmón glaseado',nut:'Valeria M.',plan:'Premium',status:'rec'},
+  {date:'Mar 14 ene',week:'Semana 13 ene – 17 ene',dish:'Pollo al limón',nut:'Valeria M.',plan:'Basic',status:'rec'},
+  {date:'Lun 13 ene',week:'Semana 13 ene – 17 ene',dish:'Bowl de res',nut:'Valeria M.',plan:'Basic',status:'rec'},
+];
+
+const CHART_DATA=[
+  {lbl:'Nov S1',v:3},{lbl:'Nov S2',v:4},{lbl:'Dic S1',v:5},{lbl:'Ene S1',v:5},{lbl:'Ene S2',v:4},{lbl:'Ene S3',v:5}
+];
+
+let histFilter='all';
+function filterHist(f,btn){
+  histFilter=f;
+  document.querySelectorAll('.hfil').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderHistBody();
+}
+
+function renderHistorial(){
+  // chart
+  const max=5;
+  document.getElementById('hbars').innerHTML=CHART_DATA.map(d=>`
+    <div class="hbar-wrap">
+      <div class="hbar" style="height:${Math.round(d.v/max*72)}px;background:${d.v===max?'var(--g)':'var(--gl)'};border:1px solid rgba(29,158,117,.2)"></div>
+      <div class="hbar-lbl">${d.lbl}</div>
+    </div>`).join('');
+  renderHistBody();
+}
+
+function renderHistBody(){
+  const filtered=histFilter==='all'?HIST:HIST.filter(r=>r.status===histFilter);
+  let html='';let lastWeek='';
+  filtered.forEach(r=>{
+    if(r.week!==lastWeek){
+      html+=`<div class="hweek-sep">${r.week}</div>`;
+      lastWeek=r.week;
+    }
+    html+=`<div class="htrow">
+      <div class="hdate">${r.date}</div>
+      <div style="font-weight:500">${r.dish}</div>
+      <div style="color:var(--mid)">${r.nut}</div>
+      <div><span class="hpill hplan">${r.plan}</span></div>
+      <div><span class="hpill ${r.status==='rec'?'hrec':'hnorec'}">${r.status==='rec'?'Recogido':'No recogido'}</span></div>
+    </div>`;
+  });
+  document.getElementById('hist-body').innerHTML=html;
+}
+function selOpt(btn){
+  const row=btn.closest('.drow');
+  row.querySelectorAll('.opt').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');row.classList.add('ok');
+  const sp=row.querySelector('.spend');
+  if(sp)sp.outerHTML='<span class="sok"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7L6 10.5L11.5 4" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round"/></svg>Elegido</span>';
+}
+function setWk(w,btn){
+  document.querySelectorAll('.wtab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');
+  const b=document.getElementById('wkbadge');
+  if(w===0){b.className='wbadge cur';b.textContent='Semana del 3 al 7 de febrero · Ya pagada';}
+  else if(w===1){b.className='wbadge upc';b.textContent='Semana del 10 al 14 de febrero · Elige antes del mié 5 feb';}
+  else{b.className='wbadge';b.textContent='Semana del 17 al 21 de febrero · Menú tentativo';}
+}
+function setDay(i,btn){
+  document.querySelectorAll('.dp').forEach(p=>p.classList.remove('active'));btn.classList.add('active');
+  renderDish(i);
+}
+function renderDish(i){
+  const d=MENU[i];
+  document.getElementById('ddisplay').innerHTML=`
+  <div class="dcard">
+    <div class="dvis" style="background:${d.color}">
+      <div class="demoji">${d.emoji}</div>
+      <div class="ddaybadge">${d.day}</div>
+      <div class="dtitle">${d.name}</div>
+    </div>
+    <div class="dbody">
+      <div class="gibadge ${d.gil?'gilow':'gimid'}"><div class="gidot" style="background:${d.gil?'#1D9E75':'#BA7517'}"></div>Índice glucémico ${d.gi}</div>
+      <div class="dsecs">
+        <div class="dsec">
+          <div class="dstitle">Ingredientes</div>
+          <div class="tags">${d.ingredients.map(x=>`<span class="itag">${x}</span>`).join('')}</div>
+          <div style="margin-top:12px"><div class="dstitle">Vitaminas y minerales</div>
+          <div class="tags">${d.vitamins.map(x=>`<span class="vtag">${x}</span>`).join('')}</div></div>
+        </div>
+        <div class="dsec">
+          <div class="dstitle">Información nutricional</div>
+          <div class="nrow">
+            <div class="nc"><div class="ncv">${d.nutrition.cal}</div><div class="ncl">kcal</div></div>
+            <div class="nc"><div class="ncv">${d.nutrition.prot}g</div><div class="ncl">proteína</div></div>
+            <div class="nc"><div class="ncv">${d.nutrition.fat}g</div><div class="ncl">grasas</div></div>
+            <div class="nc"><div class="ncv">${d.nutrition.carb}g</div><div class="ncl">carbos</div></div>
+            <div class="nc"><div class="ncv">${d.nutrition.fiber}g</div><div class="ncl">fibra</div></div>
+          </div>
+        </div>
+        <div class="dsec">
+          <div class="dstitle">Beneficios para la salud</div>
+          ${d.benefits.map(x=>`<div class="ben"><div class="bdot"></div>${x}</div>`).join('')}
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+// ── Estado vacío ──
+// To demo empty state: showV('empty', btn)
+
+// ── Gestión de suscripción ──
+function openSus(){document.getElementById('sus-modal').style.display='flex';susSub('main');}
+function closeSus(){document.getElementById('sus-modal').style.display='none';}
+function susSub(view){
+  ['main','plan','pause','cancel','nut','punto'].forEach(v=>{
+    const el=document.getElementById('sus-'+v);if(el)el.style.display='none';
+  });
+  const t=document.getElementById('sus-'+view);if(t)t.style.display='block';
+}
+function selPlan(el){el.closest('.plan-cards').querySelectorAll('.plan-c').forEach(c=>c.classList.remove('active'));el.classList.add('active');}
+function selNut(el,initials,name){
+  document.querySelectorAll('#sus-nut .sus-opt:not(.active-nut)').forEach(e=>e.style.borderColor='rgba(0,0,0,.08)');
+  el.style.borderColor='var(--g)';
+  const btn=document.getElementById('nut-confirm-btn');
+  btn.disabled=false;btn.style.opacity='1';
+  btn.textContent=`Cambiar a ${name}`;
+}
+function selLoc(n){
+  for(let i=1;i<=2;i++){
+    const el=document.getElementById('loc-'+i);
+    if(el)el.classList.toggle('sel',i===n);
+  }
+}
+const susMessages={
+  plan:'¡Plan actualizado! El cambio aplica desde el próximo ciclo.',
+  pause:'Suscripción pausada. Sin cobros hasta que la reactives.',
+  cancel:'Suscripción cancelada. Tu servicio continúa hasta el 9 de febrero.',
+  nut:'¡Nutrióloga actualizada! El cambio aplica al inicio del próximo mes.',
+  punto:'¡Punto de recogida actualizado! Aplica desde la próxima semana.'
+};
+function confirmSusChange(type){
+  closeSus();
+  showToast(susMessages[type]||'Cambio guardado.');
+}
+function showToast(msg){
+  let t=document.getElementById('toast');
+  if(!t){t=document.createElement('div');t.id='toast';t.style.cssText='position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:var(--dark);color:#fff;padding:12px 24px;border-radius:100px;font-size:13px;z-index:9999;transition:opacity .3s';document.body.appendChild(t);}
+  t.textContent=msg;t.style.opacity='1';
+  setTimeout(()=>t.style.opacity='0',3000);
+}
+
+// ── Confirmación de pago ──
+function openConfirm(){
+  const sel=[
+    {day:'Lunes',dish:'Pollo al limón con quinoa'},
+    {day:'Martes',dish:'Salmón con puré de coliflor'},
+    {day:'Miércoles',dish:'Pendiente'},
+    {day:'Jueves',dish:'Pendiente'},
+    {day:'Viernes',dish:'Pendiente'},
+  ];
+  document.getElementById('confirm-rows').innerHTML=sel.map((r,i)=>`
+    <div class="confirm-row">
+      <span style="color:var(--mid)">${r.day}</span>
+      <span style="${r.dish==='Pendiente'?'color:var(--light)':'font-weight:500'}">${r.dish}</span>
+    </div>`).join('')+`<div class="confirm-row"><span>Total a cobrar</span><span style="color:var(--g)">$650 MXN</span></div>`;
+  document.getElementById('confirm-modal').style.display='flex';
+}
+function closeConfirm(){document.getElementById('confirm-modal').style.display='none';}
+
+// ── Reseñas ──
+let currentStar=0;
+const starLabels=['','Muy malo','Malo','Regular','Bueno','¡Excelente!'];
+function openReview(name,emoji){
+  if(name)document.getElementById('rv-name').textContent=name;
+  if(emoji)document.getElementById('rv-emoji').textContent=emoji;
+  currentStar=0;
+  document.querySelectorAll('.star').forEach(s=>s.classList.remove('lit'));
+  document.getElementById('star-label').textContent='Toca para calificar';
+  document.getElementById('rv-tags').style.display='none';
+  document.getElementById('rv-submit').disabled=true;
+  document.getElementById('rv-submit').style.opacity='.4';
+  document.getElementById('review-modal').style.display='flex';
+}
+function closeReview(){document.getElementById('review-modal').style.display='none';}
+function setStar(n){
+  currentStar=n;
+  document.querySelectorAll('.star').forEach((s,i)=>s.classList.toggle('lit',i<n));
+  document.getElementById('star-label').textContent=starLabels[n];
+  document.getElementById('rv-tags').style.display='flex';
+  const sub=document.getElementById('rv-submit');sub.disabled=false;sub.style.opacity='1';
+}
+function submitReview(){
+  closeReview();
+  showToast('¡Gracias! Tu reseña fue enviada a Valeria.');
+}
+
+// ── Historial actualizado con calificar ──
+function renderHistBody(){
+  const filtered=histFilter==='all'?HIST:HIST.filter(r=>r.status===histFilter);
+  let html='';let lastWeek='';
+  const dishes=[{name:'Salmón al horno',emoji:'🐟'},{name:'Pollo a la mostaza',emoji:'🍗'},{name:'Bowl de res',emoji:'🥩'},{name:'Salmón glaseado',emoji:'🐟'},{name:'Pollo al limón',emoji:'🍋'}];
+  filtered.forEach((r,i)=>{
+    if(r.week!==lastWeek){html+=`<div class="hweek-sep">${r.week}</div>`;lastWeek=r.week;}
+    const d=dishes[i%5];
+    html+=`<div style="display:grid;grid-template-columns:110px 1fr 100px 90px 90px 80px;gap:12px;padding:14px 20px;border-bottom:1px solid rgba(0,0,0,.04);font-size:13px;align-items:center">
+      <div style="color:var(--mid)">${r.date}</div>
+      <div style="font-weight:500">${r.dish}</div>
+      <div style="color:var(--mid)">${r.nut}</div>
+      <div><span class="hpill hplan">${r.plan}</span></div>
+      <div><span class="hpill ${r.status==='rec'?'hrec':'hnorec'}">${r.status==='rec'?'Recogido':'No recogido'}</span></div>
+      <div>${r.status==='rec'?`<button onclick="openReview('${r.dish}','${d.emoji}')" style="font-size:11px;color:var(--g);border:1px solid rgba(29,158,117,.25);background:transparent;padding:4px 10px;border-radius:100px;cursor:pointer">Calificar</button>`:'<span style="font-size:11px;color:var(--light)">—</span>'}</div>
+    </div>`;
+  });
+  document.getElementById('hist-body').innerHTML=html;
+}
+renderHistBody();
+renderDish(2);
+</script>
+</body>
+</html>

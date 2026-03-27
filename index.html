@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NutriPalm — Tu lonche saludable</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--g:#1D9E75;--gd:#085041;--gl:#E1F5EE;--gm:#5DCAA5;--off:#F7F5F0;--dark:#1A1A18;--mid:#5F5E5A;--light:#B4B2A9}
+body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--dark);overflow-x:hidden}
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 48px;background:var(--off);border-bottom:1px solid rgba(0,0,0,.06);position:sticky;top:0;z-index:100}
+.logo{font-family:'DM Serif Display',serif;font-size:22px;color:var(--gd);text-decoration:none}
+.logo span{color:var(--g)}
+.navlinks{display:flex;gap:28px;align-items:center}
+.navlinks a{font-size:14px;color:var(--mid);text-decoration:none}
+.btnnav{background:var(--g);color:#fff;padding:9px 22px;border-radius:100px;font-size:13px;font-weight:500;border:none;cursor:pointer;text-decoration:none;display:inline-block}
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:90vh;padding:0 48px;align-items:center}
+.hleft{padding:60px 40px 60px 0}
+.eyebrow{font-size:12px;font-weight:500;letter-spacing:.12em;color:var(--g);text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:8px}
+.eyebrow::before{content:'';width:24px;height:1.5px;background:var(--g);display:inline-block}
+h1{font-family:'DM Serif Display',serif;font-size:56px;line-height:1.08;color:var(--dark);margin-bottom:24px}
+h1 em{color:var(--g);font-style:italic}
+.hsub{font-size:17px;color:var(--mid);line-height:1.7;margin-bottom:40px;max-width:440px;font-weight:300}
+.hactions{display:flex;gap:14px;flex-wrap:wrap}
+.btnp{background:var(--dark);color:#fff;padding:14px 32px;border-radius:100px;font-size:15px;font-weight:500;border:none;cursor:pointer;text-decoration:none;display:inline-block}
+.btns{background:transparent;color:var(--dark);padding:14px 24px;border-radius:100px;font-size:15px;border:1.5px solid rgba(0,0,0,.2);cursor:pointer;text-decoration:none;display:inline-block}
+.hnote{font-size:13px;color:var(--light);margin-top:20px}
+.hright{background:var(--gl);min-height:100%;display:flex;align-items:center;justify-content:center;padding:60px 40px}
+.phone{width:260px;background:#fff;border-radius:32px;border:8px solid var(--dark);overflow:hidden}
+.phonebar{background:var(--dark);height:28px;display:flex;align-items:center;justify-content:center}
+.phonedot{width:8px;height:8px;border-radius:50%;background:var(--off);opacity:.3}
+.phonescreen{padding:20px}
+.psh{font-size:11px;color:var(--g);font-weight:500;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
+.pst{font-family:'DM Serif Display',serif;font-size:18px;color:var(--dark);margin-bottom:4px}
+.pss{font-size:12px;color:var(--mid);margin-bottom:16px}
+.psl{font-size:10px;color:var(--light);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.psd{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--off);border-radius:10px;margin-bottom:6px}
+.psd.sel{background:var(--gl);border:1px solid var(--gm)}
+.psdn{font-size:11px;font-weight:500}
+.psdsh{font-size:10px;color:var(--mid);margin-top:2px}
+.psc{width:16px;height:16px;border-radius:50%;background:var(--g);display:flex;align-items:center;justify-content:center}
+.pse{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--light)}
+.psp{margin-top:14px;background:var(--dark);border-radius:10px;padding:12px;display:flex;justify-content:space-between;align-items:center}
+.pspl{font-size:10px;color:rgba(255,255,255,.5)}
+.pspv{font-size:16px;font-weight:500;color:#fff;font-family:'DM Serif Display',serif}
+.psbtn{width:100%;background:var(--g);color:#fff;border:none;border-radius:10px;padding:11px;font-size:12px;font-weight:500;margin-top:10px;cursor:pointer}
+section.how{padding:80px 48px;background:#fff}
+section.menu-sec{padding:80px 48px;background:var(--off)}
+section.plans{padding:80px 48px;background:#fff}
+section.partners{padding:80px 48px;background:var(--off)}
+section.testi{padding:80px 48px;background:var(--gd)}
+section.cta{padding:100px 48px;background:var(--off);text-align:center}
+.seye{font-size:12px;color:var(--g);text-transform:uppercase;letter-spacing:.1em;font-weight:500;margin-bottom:12px}
+.stit{font-family:'DM Serif Display',serif;font-size:38px;color:var(--dark);margin-bottom:48px;line-height:1.1}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+.step{padding:28px;background:var(--off);border-radius:16px}
+.stepn{font-family:'DM Serif Display',serif;font-size:40px;color:var(--gl);font-style:italic;margin-bottom:12px;line-height:1}
+.steptit{font-size:15px;font-weight:500;margin-bottom:8px}
+.stepdesc{font-size:13px;color:var(--mid);line-height:1.6}
+.steptag{display:inline-block;margin-top:12px;font-size:11px;color:var(--g);background:var(--gl);padding:3px 10px;border-radius:100px}
+/* menu público */
+.mtop{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px;gap:20px;flex-wrap:wrap}
+.mtopleft .seye{margin-bottom:12px}
+.mtopleft h2{font-family:'DM Serif Display',serif;font-size:38px;line-height:1.1}
+.mtopleft h2 em{color:var(--g);font-style:italic}
+.mtopr{font-size:14px;color:var(--mid);max-width:300px;line-height:1.7;font-weight:300}
+.dtabs{display:flex;gap:8px;margin-bottom:28px;flex-wrap:wrap}
+.dtab{padding:9px 20px;border-radius:100px;font-size:13px;cursor:pointer;border:1px solid rgba(0,0,0,.1);background:transparent;color:var(--mid);font-family:'DM Sans',sans-serif}
+.dtab:hover{border-color:var(--g);color:var(--g)}
+.dtab.active{background:var(--dark);color:#fff;border-color:var(--dark)}
+.dshow{display:grid;grid-template-columns:1fr 1fr;border-radius:24px;overflow:hidden;border:1px solid rgba(0,0,0,.08)}
+.dvis{position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:36px;min-height:460px}
+.dvbg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:140px;opacity:.15;user-select:none}
+.dvday{font-size:11px;color:var(--gm);text-transform:uppercase;letter-spacing:.1em;font-weight:500;margin-bottom:10px;position:relative}
+.dvname{font-family:'DM Serif Display',serif;font-size:28px;color:var(--gd);line-height:1.1;position:relative;margin-bottom:16px}
+.gipill{display:inline-flex;align-items:center;gap:5px;font-size:12px;background:rgba(255,255,255,.75);padding:5px 14px;border-radius:100px;color:var(--gd);font-weight:500;position:relative;backdrop-filter:blur(4px)}
+.gidot{width:7px;height:7px;border-radius:50%}
+.gilow2{background:var(--g)}
+.gimid2{background:#BA7517}
+.dinfo{padding:32px;display:flex;flex-direction:column;gap:16px;background:#fff}
+.ib{padding:14px;background:var(--off);border-radius:14px}
+.ibt{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--light);font-weight:500;margin-bottom:10px}
+.tagcloud{display:flex;flex-wrap:wrap;gap:5px}
+.itag{font-size:11px;color:var(--gd);background:var(--gl);padding:2px 9px;border-radius:100px}
+.vtag{font-size:11px;color:#534AB7;background:#EEEDFE;padding:2px 9px;border-radius:100px}
+.nrow{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.nc{text-align:center;background:#fff;border-radius:8px;padding:8px 4px}
+.ncv{font-size:15px;font-weight:500}
+.ncl{font-size:10px;color:var(--light);margin-top:2px}
+.ben{display:flex;gap:8px;font-size:13px;color:var(--mid);padding:5px 0;border-bottom:1px solid rgba(0,0,0,.04)}
+.ben:last-child{border-bottom:none}
+.bdot{width:5px;height:5px;border-radius:50%;background:var(--g);flex-shrink:0;margin-top:5px}
+.ctastrip{background:var(--dark);padding:28px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.ctasl{font-family:'DM Serif Display',serif;font-size:22px;color:#fff}
+.ctasl span{color:var(--gm);font-style:italic}
+.ctabtn{background:var(--g);color:#fff;border:none;padding:12px 28px;border-radius:100px;font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;display:inline-block}
+/* plans */
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pcard{background:var(--off);border-radius:20px;padding:28px;border:1px solid rgba(0,0,0,.06)}
+.pcard.feat{background:var(--dark);border-color:var(--dark)}
+.pbadge{font-size:11px;font-weight:500;color:var(--g);background:var(--gl);padding:3px 12px;border-radius:100px;display:inline-block;margin-bottom:16px}
+.pbadge.dk{background:rgba(255,255,255,.1);color:var(--gm)}
+.pname{font-family:'DM Serif Display',serif;font-size:22px;margin-bottom:4px}
+.pname.lt{color:#fff}
+.pprice{font-size:36px;font-weight:500;line-height:1;margin-bottom:4px}
+.pprice.lt{color:#fff}
+.pper{font-size:13px;color:var(--mid);margin-bottom:20px}
+.pper.lt{color:rgba(255,255,255,.5)}
+.pf{font-size:13px;color:var(--mid);padding:8px 0;border-bottom:1px solid rgba(0,0,0,.06);display:flex;gap:8px}
+.pf.lt{color:rgba(255,255,255,.7);border-bottom-color:rgba(255,255,255,.1)}
+.pf::before{content:'—';color:var(--gm);flex-shrink:0}
+.pcta{width:100%;margin-top:20px;padding:13px;border-radius:100px;font-size:14px;font-weight:500;border:none;cursor:pointer;text-decoration:none;display:block;text-align:center}
+.pcta.ltbtn{background:var(--g);color:#fff}
+.pcta.dkbtn{background:#fff;color:var(--dark)}
+/* partners */
+.pgrid2{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.pcard2{border:1px solid rgba(0,0,0,.08);border-radius:16px;padding:24px;cursor:pointer;transition:border-color .2s;text-decoration:none;display:block;color:inherit}
+.pcard2:hover{border-color:var(--g)}
+.picon{width:40px;height:40px;background:var(--gl);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.picon svg{width:20px;height:20px}
+.ptit{font-size:15px;font-weight:500;margin-bottom:6px}
+.pdesc{font-size:13px;color:var(--mid);line-height:1.6}
+.plink{font-size:12px;color:var(--g);margin-top:10px;display:block;font-weight:500}
+/* nutriologas */
+section.nutriologas{padding:80px 48px;background:#fff}
+.nutgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.nutcard{border:1px solid rgba(0,0,0,.08);border-radius:20px;overflow:hidden;cursor:pointer;transition:box-shadow .2s,border-color .2s}
+.nutcard:hover{border-color:var(--gm);box-shadow:0 8px 32px rgba(29,158,117,.1)}
+.nutcard-top{padding:28px 24px 20px;display:flex;align-items:flex-start;gap:16px}
+.nut-avatar{width:60px;height:60px;border-radius:50%;background:var(--gl);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:20px;color:var(--gd);flex-shrink:0;border:2px solid var(--gm)}
+.nut-meta{flex:1}
+.nut-name{font-family:'DM Serif Display',serif;font-size:18px;color:var(--dark);margin-bottom:2px}
+.nut-title{font-size:12px;color:var(--mid);margin-bottom:8px}
+.nut-stars{color:#BA7517;font-size:13px;margin-right:4px}
+.nut-rating{font-size:12px;color:var(--mid)}
+.nutcard-body{padding:0 24px 20px}
+.nut-bio{font-size:13px;color:var(--mid);line-height:1.6;margin-bottom:14px}
+.nut-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px}
+.nut-tag{font-size:11px;color:var(--gd);background:var(--gl);padding:2px 9px;border-radius:100px}
+.nut-methods{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:16px}
+.nut-method{font-size:11px;color:var(--mid);background:var(--off);padding:4px 9px;border-radius:6px;display:flex;align-items:center;gap:5px}
+.nut-method::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gm);flex-shrink:0}
+.nutcard-foot{padding:14px 24px;border-top:1px solid rgba(0,0,0,.06);display:flex;justify-content:space-between;align-items:center}
+.nut-cupo{font-size:12px;color:var(--mid)}
+.nut-cupo span{color:var(--g);font-weight:500}
+.nut-btn{font-size:12px;font-weight:500;color:var(--g);background:var(--gl);border:none;padding:6px 16px;border-radius:100px;cursor:pointer}
+/* testi */
+.testit{font-family:'DM Serif Display',serif;font-size:38px;color:#fff;margin-bottom:48px;font-style:italic}
+.testgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.testcard{background:rgba(255,255,255,.08);border-radius:16px;padding:24px;border:1px solid rgba(255,255,255,.1)}
+.testtxt{font-size:14px;color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:16px;font-style:italic}
+.testauth{font-size:13px;font-weight:500;color:#fff}
+.testrole{font-size:12px;color:rgba(255,255,255,.4)}
+/* cta */
+.ctatit{font-family:'DM Serif Display',serif;font-size:52px;margin-bottom:20px;line-height:1.1}
+.ctatit em{color:var(--g);font-style:italic}
+.ctasub{font-size:16px;color:var(--mid);margin-bottom:40px;font-weight:300}
+.ctaacts{display:flex;gap:14px;justify-content:center}
+footer{padding:40px 48px;background:var(--dark);display:flex;justify-content:space-between;align-items:center}
+.flogo{font-family:'DM Serif Display',serif;font-size:18px;color:#fff}
+.flogo span{color:var(--gm)}
+.flinks{display:flex;gap:20px}
+.flinks a{font-size:13px;color:rgba(255,255,255,.4);text-decoration:none}
+.ftxt{font-size:13px;color:rgba(255,255,255,.3)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">Nutri<span>Palm</span></a>
+  <div class="navlinks">
+    <a href="#how">Cómo funciona</a>
+    <a href="#menu">Menú semanal</a>
+    <a href="#plans">Planes</a>
+    <a href="corporativo.html">Empresas</a>
+    <a href="#nutriologas">Tus nutriólogas</a>
+    <a href="cliente.html" class="btnnav">Suscribirme</a>
+  </div>
+</nav>
+
+<section style="display:grid;grid-template-columns:1fr 1fr;min-height:90vh;padding:0 48px;align-items:center">
+  <div style="padding:60px 40px 60px 0">
+    <div class="eyebrow">Saltillo, Coahuila</div>
+    <h1>Tu lonche<br><em>saludable</em>,<br>listo mañana.</h1>
+    <p class="hsub">Elige tu menú el miércoles. Recoge de camino a casa. Te vas a dormir con la lonchera lista — sin cocinar, sin improvisar.</p>
+    <div class="hactions">
+      <a href="cliente.html" class="btnp">Comenzar suscripción</a>
+      <a href="#how" class="btns">Ver cómo funciona</a>
+    </div>
+    <p class="hnote">Desde $550/semana · Diseñado por nutrióloga · Sin contratos largos</p>
+  </div>
+  <div class="hright">
+    <div class="phone">
+      <div class="phonebar"><div class="phonedot"></div></div>
+      <div class="phonescreen">
+        <div class="psh">Semana del 3–7 Feb</div>
+        <div class="pst">Tu menú</div>
+        <div class="pss">Elige antes del miércoles 8 PM</div>
+        <div class="psl">Esta semana</div>
+        <div class="psd sel"><div><div class="psdn">Lunes</div><div class="psdsh">Pollo al limón con quinoa</div></div><div class="psc"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4L3.5 6L6.5 2" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div></div>
+        <div class="psd sel"><div><div class="psdn">Martes</div><div class="psdsh">Salmón con puré de coliflor</div></div><div class="psc"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4L3.5 6L6.5 2" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div></div>
+        <div class="psd"><div><div class="psdn">Miércoles</div><div class="psdsh">Bowl de res con quinoa</div></div><div class="pse"></div></div>
+        <div class="psd"><div><div class="psdn">Jueves</div><div class="psdsh">Pollo a la mostaza</div></div><div class="pse"></div></div>
+        <div class="psd"><div><div class="psdn">Viernes</div><div class="psdsh">Bowl mediterráneo</div></div><div class="pse"></div></div>
+        <div class="psp"><div><div class="pspl">Plan Premium</div><div class="pspv">$650</div></div><div style="font-size:11px;color:rgba(255,255,255,.4)">esta semana</div></div>
+        <button class="psbtn">Confirmar selección</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="seye">Así funciona</div>
+  <div class="stit">Sin complicaciones.<br>Sin sorpresas.</div>
+  <div class="steps">
+    <div class="step"><div class="stepn">01</div><div class="steptit">Elige los miércoles</div><div class="stepdesc">Cada semana elige 2 opciones por día antes de las 8 PM. Una decisión para toda la semana.</div><span class="steptag">1 decisión/semana</span></div>
+    <div class="step"><div class="stepn">02</div><div class="steptit">Lo prepara una nutrióloga</div><div class="stepdesc">Menús diseñados por una profesional certificada. Comida real, balanceada, sin rellenos.</div><span class="steptag">Profesional aliada</span></div>
+    <div class="step"><div class="stepn">03</div><div class="steptit">Recoge en la tarde</div><div class="stepdesc">De 4 a 9 PM en Escápate Café. Tu comida etiquetada con tu nombre en el refrigerador.</div><span class="steptag">4–9 PM diario</span></div>
+    <div class="step"><div class="stepn">04</div><div class="steptit">Lonchera lista</div><div class="stepdesc">Guarda en tu lonchera esa noche. Al día siguiente al trabajo, calientas y comes.</div><span class="steptag">Listo para mañana</span></div>
+  </div>
+</section>
+
+<section class="menu-sec" id="menu">
+  <div class="mtop">
+    <div class="mtopleft">
+      <div class="seye">Menú de esta semana</div>
+      <h2>Cada platillo,<br><em>cuidadosamente</em><br>diseñado.</h2>
+    </div>
+    <div class="mtopr">Nuestra nutrióloga diseña cada platillo pensando en tus objetivos. Ingredientes reales, macros balanceados, índice glucémico bajo. Así se ve lo que comerías esta semana.</div>
+  </div>
+  <div class="dtabs">
+    <button class="dtab active" onclick="showDish(0,this)">Lunes</button>
+    <button class="dtab" onclick="showDish(1,this)">Martes</button>
+    <button class="dtab" onclick="showDish(2,this)">Miércoles</button>
+    <button class="dtab" onclick="showDish(3,this)">Jueves</button>
+    <button class="dtab" onclick="showDish(4,this)">Viernes</button>
+  </div>
+  <div class="dshow" id="dshow"></div>
+</section>
+
+<div class="ctastrip">
+  <div class="ctasl">¿Te antojó? <span>Suscríbete esta semana.</span></div>
+  <div style="display:flex;gap:12px;align-items:center">
+    <div style="font-size:13px;color:rgba(255,255,255,.4)">Desde $550/semana</div>
+    <a href="cliente.html" class="ctabtn">Quiero suscribirme</a>
+  </div>
+</div>
+
+<section class="plans" id="plans">
+  <div class="seye">Planes</div>
+  <div class="stit">Elige el tuyo.</div>
+  <div class="pgrid">
+    <div class="pcard"><div class="pbadge">Básico</div><div class="pname" style="font-family:'DM Serif Display',serif">Plan Básico</div><div class="pprice">$550</div><div class="pper">por semana · 1 persona</div><div class="pf">5 porciones semanales</div><div class="pf">Pollo, res y atún</div><div class="pf">2 opciones por día</div><div class="pf">Contenedor hermético incluido</div><a href="cliente.html" class="pcta ltbtn">Elegir Básico</a></div>
+    <div class="pcard feat"><div class="pbadge dk">Más popular</div><div class="pname lt" style="font-family:'DM Serif Display',serif">Plan Premium</div><div class="pprice lt">$650</div><div class="pper lt">por semana · 1 persona</div><div class="pf lt">Todo lo del plan Básico</div><div class="pf lt">Salmón 1–2 veces/semana</div><div class="pf lt">Mayor variedad de proteínas</div><div class="pf lt">Ingredientes premium</div><a href="cliente.html" class="pcta dkbtn">Elegir Premium</a></div>
+    <div class="pcard"><div class="pbadge">Pareja</div><div class="pname" style="font-family:'DM Serif Display',serif">Plan Pareja</div><div class="pprice">$1,200</div><div class="pper">por semana · 2 personas</div><div class="pf">Plan Premium para dos</div><div class="pf">Cada quien elige su menú</div><div class="pf">Ahorra $100 vs 2 Premium</div><div class="pf">Acceso anticipado a Kifud</div><a href="cliente.html" class="pcta ltbtn">Elegir Pareja</a></div>
+  </div>
+</section>
+
+<section class="partners">
+  <div class="seye">Socios estratégicos</div>
+  <div class="stit">NutriPalm llega<br>a donde estás.</div>
+  <div class="pgrid2">
+    <a href="corporativo.html" class="pcard2"><div class="picon"><svg viewBox="0 0 20 20" fill="none"><rect x="2" y="6" width="16" height="11" rx="2" stroke="#1D9E75" stroke-width="1.5"/><path d="M6 6V5a4 4 0 018 0v1" stroke="#1D9E75" stroke-width="1.5"/><circle cx="10" cy="12" r="1.5" fill="#1D9E75"/></svg></div><div class="ptit">Empresas industriales</div><div class="pdesc">Magna, Chrysler, John Deere y más. NutriPalm como beneficio de empleado.</div><span class="plink">Ver propuesta empresarial →</span></a>
+    <a href="corporativo.html" class="pcard2"><div class="picon"><svg viewBox="0 0 20 20" fill="none"><path d="M10 2v16M2 10h16" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round"/><rect x="3" y="3" width="14" height="14" rx="3" stroke="#1D9E75" stroke-width="1.5"/></svg></div><div class="ptit">Hospitales y clínicas</div><div class="pdesc">Médicos con horarios exigentes. Comida saludable lista cuando salen del turno.</div><span class="plink">Ver propuesta para clínicas →</span></a>
+    <a href="gimnasios.html" class="pcard2"><div class="picon"><svg viewBox="0 0 20 20" fill="none"><path d="M3 10h2m10 0h2M7 10h6M5 7l-2 3 2 3M15 7l2 3-2 3" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="ptit">Gimnasios y fitness</div><div class="pdesc">Tus miembros ya invierten en su salud. NutriPalm completa el círculo.</div><span class="plink">Ver programa de aliados →</span></a>
+  </div>
+</section>
+
+<section class="nutriologas" id="nutriologas">
+  <div class="seye">Quienes preparan tu comida</div>
+  <div class="stit">Tus nutriólogas.</div>
+  <div class="nutgrid">
+
+    <div class="nutcard">
+      <div class="nutcard-top">
+        <div class="nut-avatar">VM</div>
+        <div class="nut-meta">
+          <div class="nut-name">Valeria Montoya</div>
+          <div class="nut-title">Lic. Nutrición · UANL · 6 años exp.</div>
+          <div><span class="nut-stars">★★★★★</span><span class="nut-rating">4.9 · 38 reseñas</span></div>
+        </div>
+      </div>
+      <div class="nutcard-body">
+        <div class="nut-bio">Especialista en nutrición clínica y deportiva. Creo que comer sano no debería ser complicado — cocino con comida real que de verdad te sabe rico.</div>
+        <div class="nut-tags">
+          <span class="nut-tag">Nutrición clínica</span>
+          <span class="nut-tag">Pérdida de peso</span>
+          <span class="nut-tag">Cocina mediterránea</span>
+        </div>
+        <div class="nut-methods">
+          <div class="nut-method">Al vapor</div>
+          <div class="nut-method">Al horno</div>
+          <div class="nut-method">Aceite de oliva</div>
+          <div class="nut-method">Sin glutamato</div>
+        </div>
+      </div>
+      <div class="nutcard-foot">
+        <div class="nut-cupo">Disponibilidad: <span>32 lugares</span></div>
+        <a href="cliente.html"><button class="nut-btn">Suscribirme</button></a>
+      </div>
+    </div>
+
+    <div class="nutcard">
+      <div class="nutcard-top">
+        <div class="nut-avatar" style="background:#E6F1FB;color:#185FA5;border-color:#85B7EB">SG</div>
+        <div class="nut-meta">
+          <div class="nut-name">Sofía Garza</div>
+          <div class="nut-title">Lic. Nutrición · Tec de Monterrey · 4 años exp.</div>
+          <div><span class="nut-stars">★★★★★</span><span class="nut-rating">4.8 · 24 reseñas</span></div>
+        </div>
+      </div>
+      <div class="nutcard-body">
+        <div class="nut-bio">Me apasiona la cocina funcional y los superalimentos. Cada platillo que preparo está diseñado para darte energía real y sostenida a lo largo del día.</div>
+        <div class="nut-tags">
+          <span class="nut-tag">Nutrición deportiva</span>
+          <span class="nut-tag">Control de glucosa</span>
+          <span class="nut-tag">Cocina asiática</span>
+        </div>
+        <div class="nut-methods">
+          <div class="nut-method">Salteado ligero</div>
+          <div class="nut-method">Al horno</div>
+          <div class="nut-method">Sin fritutas</div>
+          <div class="nut-method">Bajo sodio</div>
+        </div>
+      </div>
+      <div class="nutcard-foot">
+        <div class="nut-cupo">Disponibilidad: <span>18 lugares</span></div>
+        <a href="cliente.html"><button class="nut-btn">Suscribirme</button></a>
+      </div>
+    </div>
+
+    <div class="nutcard">
+      <div class="nutcard-top">
+        <div class="nut-avatar" style="background:#FAEEDA;color:#633806;border-color:#EF9F27">MR</div>
+        <div class="nut-meta">
+          <div class="nut-name">Mariana Reyes</div>
+          <div class="nut-title">Lic. Nutrición · UAdeC · 8 años exp.</div>
+          <div><span class="nut-stars">★★★★★</span><span class="nut-rating">5.0 · 51 reseñas</span></div>
+        </div>
+      </div>
+      <div class="nutcard-body">
+        <div class="nut-bio">Con 8 años de experiencia clínica, me especializo en platillos de alto valor proteico. Perfecta si tienes metas de composición corporal o entrenamiento intenso.</div>
+        <div class="nut-tags">
+          <span class="nut-tag">Alto en proteína</span>
+          <span class="nut-tag">Masa muscular</span>
+          <span class="nut-tag">Cocina mexicana sana</span>
+        </div>
+        <div class="nut-methods">
+          <div class="nut-method">Proteína animal</div>
+          <div class="nut-method">Al vapor</div>
+          <div class="nut-method">Superalimentos</div>
+          <div class="nut-method">Prep. diaria</div>
+        </div>
+      </div>
+      <div class="nutcard-foot">
+        <div class="nut-cupo">Disponibilidad: <span>Lista de espera</span></div>
+        <a href="cliente.html"><button class="nut-btn" style="background:var(--off);color:var(--mid)">Unirse a lista</button></a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="testi">
+  <div class="testit">"Lo que dicen<br>nuestros suscriptores."</div>
+  <div class="testgrid">
+    <div class="testcard"><div class="testtxt">"Llevaba años comiendo mal entre semana. Ahora llego a casa y mi lonchera ya está lista."</div><div class="testauth">Carlos R.</div><div class="testrole">Ingeniero · Zona industrial Saltillo</div></div>
+    <div class="testcard"><div class="testtxt">"El salmón del martes es mi favorito. No esperaba encontrar algo así tan accesible en Saltillo."</div><div class="testauth">Andrea M.</div><div class="testrole">Coordinadora · Plan Premium</div></div>
+    <div class="testcard"><div class="testtxt">"Contratamos para 20 personas de nuestro equipo. La respuesta fue increíble. Lo renovamos el primer mes."</div><div class="testauth">Ing. Roberto V.</div><div class="testrole">RRHH · Empresa manufacturera</div></div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2 class="ctatit">Empieza esta<br><em>semana.</em></h2>
+  <p class="ctasub">Sin contratos largos. Sin compromisos. Solo buena comida, lista cuando la necesitas.</p>
+  <div class="ctaacts">
+    <a href="cliente.html" class="btnp">Suscribirme ahora</a>
+    <a href="corporativo.html" class="btns">Soy empresa →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="flogo">Nutri<span>Palm</span></div>
+  <div class="flinks"><a href="#">Términos y condiciones</a><a href="#">Aviso de privacidad</a><a href="#">Contacto</a></div>
+  <div class="ftxt">Saltillo, Coahuila · 2025</div>
+</footer>
+
+<script>
+const M=[
+  {day:'Lunes',emoji:'🍋',color:'#E1F5EE',name:'Pollo al limón con quinoa y verduras asadas',gi:'Bajo–Moderado (45–50)',gil:true,ingredients:['Pechuga de pollo','Quinoa','Calabacita','Zanahoria','Pimiento morrón','Limón','Ajo','Aceite de oliva'],nutrition:[{v:'470',l:'kcal'},{v:'40g',l:'proteína'},{v:'14g',l:'grasas'},{v:'40g',l:'carbos'},{v:'6g',l:'fibra'}],vitamins:['Potasio','Hierro','Zinc','Calcio','Vitamina B6','Niacina B3'],benefits:['Fuente magra de proteína para mantenimiento muscular','Ayuda a la digestión por su contenido en fibra','Aporta energía limpia y sostenida sin picos de glucosa']},
+  {day:'Martes',emoji:'🐟',color:'#E6F1FB',name:'Salmón glaseado con miel y mostaza + puré de coliflor',gi:'Bajo (40–45)',gil:true,ingredients:['Salmón fresco','Miel','Mostaza Dijon','Coliflor','Brócoli','Aceite de oliva','Limón','Ajo'],nutrition:[{v:'510',l:'kcal'},{v:'36g',l:'proteína'},{v:'28g',l:'grasas'},{v:'28g',l:'carbos'},{v:'6g',l:'fibra'}],vitamins:['Vitamina D','B12','Vitamina C','Folato','Calcio','Magnesio','Omega-3'],benefits:['Antiinflamatorio natural por omega-3','Apoya la salud cognitiva y cardiovascular','Estabiliza niveles de glucosa en sangre']},
+  {day:'Miércoles',emoji:'🥩',color:'#FAECE7',name:'Bowl de res salteada con quinoa y vegetales asados',gi:'Bajo–Moderado (50–53)',gil:true,ingredients:['Aguayón de res 150g','Quinoa cocida','Zanahoria','Pimiento rojo','Espinaca','Aceite de oliva','Orégano'],nutrition:[{v:'490',l:'kcal'},{v:'36g',l:'proteína'},{v:'15g',l:'grasas'},{v:'38g',l:'carbos'},{v:'6g',l:'fibra'}],vitamins:['Hierro hemo','Zinc','Vitamina B12','Vitamina A','Vitamina C','Vitamina K'],benefits:['Rica en hierro — previene anemia','Proteína completa para desarrollo muscular','Bajo IG para energía estable todo el día']},
+  {day:'Jueves',emoji:'🍗',color:'#FAEEDA',name:'Pollo a la mostaza con arroz integral y verduras salteadas',gi:'Moderado (50–55)',gil:false,ingredients:['Pechuga de pollo','Mostaza Dijon','Ajo','Cebolla','Calabacita','Zanahoria','Arroz integral','Aceite de oliva'],nutrition:[{v:'480',l:'kcal'},{v:'40g',l:'proteína'},{v:'14g',l:'grasas'},{v:'42g',l:'carbos'},{v:'5g',l:'fibra'}],vitamins:['Vitamina B6','Vitamina A','Vitamina C','Magnesio','Zinc','Potasio'],benefits:['Favorece la digestión y el tránsito intestinal','Apoya la salud cardiovascular','Alta saciedad por proteína + fibra del arroz integral']},
+  {day:'Viernes',emoji:'🫙',color:'#EEEDFE',name:'Bowl mediterráneo de pollo con quinoa y salsa de yogurt',gi:'Bajo–Moderado (45–50)',gil:true,ingredients:['Pollo asado','Quinoa cocida','Pepino','Jitomate cherry','Cebolla morada','Aceitunas negras','Yogur natural','Limón'],nutrition:[{v:'490',l:'kcal'},{v:'42g',l:'proteína'},{v:'15g',l:'grasas'},{v:'42g',l:'carbos'},{v:'6g',l:'fibra'}],vitamins:['Vitamina B6','Niacina B3','Vitamina A','Calcio','Hierro','Magnesio','Zinc'],benefits:['Probióticos del yogurt favorecen la digestión','Mayor variedad de micronutrientes','Combinación mediterránea antiinflamatoria']}
+];
+function showDish(i,btn){
+  document.querySelectorAll('.dtab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  const d=M[i];
+  document.getElementById('dshow').innerHTML=`
+    <div class="dvis" style="background:${d.color}">
+      <div class="dvbg">${d.emoji}</div>
+      <div class="dvday">${d.day}</div>
+      <div class="dvname">${d.name}</div>
+      <div class="gipill"><div class="gidot ${d.gil?'gilow2':'gimid2'}"></div>Índice glucémico ${d.gi}</div>
+    </div>
+    <div class="dinfo">
+      <div class="ib"><div class="ibt">Ingredientes</div><div class="tagcloud">${d.ingredients.map(x=>`<span class="itag">${x}</span>`).join('')}</div></div>
+      <div class="ib"><div class="ibt">Información nutricional</div><div class="nrow">${d.nutrition.map(n=>`<div class="nc"><div class="ncv">${n.v}</div><div class="ncl">${n.l}</div></div>`).join('')}</div></div>
+      <div class="ib"><div class="ibt">Vitaminas y minerales</div><div class="tagcloud">${d.vitamins.map(x=>`<span class="vtag">${x}</span>`).join('')}</div></div>
+      <div class="ib"><div class="ibt">Beneficios para la salud</div>${d.benefits.map(x=>`<div class="ben"><div class="bdot"></div>${x}</div>`).join('')}</div>
+    </div>`;
+}
+showDish(0,document.querySelector('.dtab.active'));
+</script>
+</body>
+</html>
