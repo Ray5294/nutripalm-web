@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registro · NutriPalm</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --g:#1D9E75;--gd:#085041;--gl:#E1F5EE;--gm:#5DCAA5;
+  --off:#F7F5F0;--dark:#1A1A18;--mid:#5F5E5A;--light:#B4B2A9;
+  --border:rgba(0,0,0,.07);--white:#fff;--cream:#F3F1EC;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--dark);min-height:100vh;display:grid;grid-template-columns:360px 1fr}
+
+/* ══ PANEL IZQUIERDO ══ */
+.left{background:var(--gd);display:flex;flex-direction:column;padding:40px 44px;position:sticky;top:0;height:100vh;overflow-y:auto}
+.left-logo{font-family:'DM Serif Display',serif;font-size:24px;color:#fff;text-decoration:none;margin-bottom:52px;display:block}
+.left-logo span{color:var(--gm)}
+.progress-steps{display:flex;flex-direction:column;gap:0;margin-bottom:52px}
+.pstep{display:flex;align-items:flex-start;gap:14px;padding:14px 0;position:relative}
+.pstep:not(:last-child)::after{content:'';position:absolute;left:15px;top:46px;width:1px;height:calc(100% - 18px);background:rgba(255,255,255,.1)}
+.pstep-num{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0;transition:.25s;position:relative;z-index:1}
+.pstep.done .pstep-num{background:var(--gm);color:#fff}
+.pstep.active .pstep-num{background:#fff;color:var(--gd);box-shadow:0 0 0 4px rgba(255,255,255,.15)}
+.pstep.pending .pstep-num{background:rgba(255,255,255,.08);color:rgba(255,255,255,.2)}
+.pstep-body{padding-top:4px}
+.pstep-title{font-size:14px;font-weight:500;transition:.25s}
+.pstep.done .pstep-title{color:rgba(255,255,255,.4)}
+.pstep.active .pstep-title{color:#fff}
+.pstep.pending .pstep-title{color:rgba(255,255,255,.2)}
+.pstep-sub{font-size:12px;margin-top:2px;font-weight:300}
+.pstep.done .pstep-sub,.pstep.pending .pstep-sub{color:rgba(255,255,255,.2)}
+.pstep.active .pstep-sub{color:rgba(255,255,255,.45)}
+.left-bottom{margin-top:auto}
+.left-quote{font-family:'DM Serif Display',serif;font-size:19px;font-style:italic;color:rgba(255,255,255,.5);line-height:1.55;margin-bottom:22px}
+.left-quote em{color:var(--gm);font-style:normal}
+.left-trust{display:flex;flex-direction:column;gap:8px}
+.lt-item{display:flex;align-items:center;gap:10px;font-size:12.5px;color:rgba(255,255,255,.32)}
+.lt-dot{width:5px;height:5px;border-radius:50%;background:var(--gm);flex-shrink:0}
+
+/* ══ PANEL DERECHO ══ */
+.right{display:flex;flex-direction:column;min-height:100vh}
+.right-nav{display:flex;justify-content:space-between;align-items:center;padding:18px 52px;border-bottom:1px solid var(--border);background:rgba(247,245,240,.95);position:sticky;top:0;z-index:50;backdrop-filter:blur(8px)}
+.rn-back{font-size:13.5px;color:var(--mid);text-decoration:none;display:flex;align-items:center;gap:6px}
+.rn-back:hover{color:var(--dark)}
+.rn-step{font-size:12px;color:var(--light)}
+
+.right-body{flex:1;padding:52px}
+.right-body.narrow{max-width:540px}
+.right-body.wide{max-width:100%;padding:40px 52px}
+
+.step-eyebrow{font-size:11px;color:var(--g);text-transform:uppercase;letter-spacing:.13em;font-weight:500;margin-bottom:12px}
+.step-title{font-family:'DM Serif Display',serif;font-size:38px;color:var(--dark);line-height:1.1;margin-bottom:8px}
+.step-title em{color:var(--g);font-style:italic}
+.step-sub{font-size:15px;color:var(--mid);line-height:1.7;font-weight:300;margin-bottom:36px}
+
+/* ── CAMPOS ── */
+.field{margin-bottom:20px}
+.field label{display:block;font-size:11px;font-weight:500;color:var(--mid);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.field input,.field select{width:100%;padding:14px 16px;border:1.5px solid var(--border);border-radius:10px;font-size:15px;font-family:'DM Sans',sans-serif;color:var(--dark);background:var(--white);outline:none;transition:.15s}
+.field input:focus,.field select:focus{border-color:var(--g);box-shadow:0 0 0 3px rgba(29,158,117,.08)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field-hint{font-size:12px;color:var(--light);margin-top:6px}
+
+/* ── PESTAÑAS NUTRIÓLOGAS ── */
+.nutri-tabs{display:flex;gap:10px;margin-bottom:28px;flex-wrap:wrap}
+.ntab{display:flex;align-items:center;gap:10px;padding:12px 20px;border-radius:100px;border:1.5px solid var(--border);background:var(--white);cursor:pointer;transition:.2s;font-family:'DM Sans',sans-serif}
+.ntab:hover{border-color:rgba(29,158,117,.3);background:var(--gl)}
+.ntab.active{border-color:var(--g);background:var(--gl);box-shadow:0 0 0 1px var(--g)}
+.ntab-av{width:34px;height:34px;border-radius:50%;background:var(--cream);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:13px;color:var(--gd);font-style:italic;flex-shrink:0;transition:.2s}
+.ntab.active .ntab-av{background:rgba(29,158,117,.2)}
+.ntab-name{font-size:13.5px;font-weight:600;color:var(--dark)}
+.ntab-spec{font-size:11px;color:var(--mid);font-weight:300}
+.ntab-dot{width:7px;height:7px;border-radius:50%;background:var(--border);margin-left:4px;transition:.2s;flex-shrink:0}
+.ntab.active .ntab-dot{background:var(--g)}
+
+/* ── PANELS ── */
+.nutri-panel{display:none}
+.nutri-panel.active{display:block;animation:fadeIn .25s ease both}
+
+/* ── CARD NUTRIÓLOGA ── */
+.nutri-card-header{background:var(--white);border:1.5px solid var(--border);border-radius:16px;padding:20px 24px;margin-bottom:20px;display:flex;align-items:center;gap:18px}
+.nutri-card-header.selected{border-color:var(--g);background:var(--gl)}
+.nc-av{width:52px;height:52px;border-radius:50%;background:var(--gl);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:20px;color:var(--gd);font-style:italic;flex-shrink:0}
+.nutri-card-header.selected .nc-av{background:rgba(29,158,117,.2)}
+.nc-body{flex:1}
+.nc-name{font-size:17px;font-weight:600;color:var(--dark);margin-bottom:3px}
+.nc-spec{font-size:13px;color:var(--mid);font-weight:300;margin-bottom:8px}
+.nc-tags{display:flex;gap:6px;flex-wrap:wrap}
+.nc-tag{font-size:11px;background:var(--cream);color:var(--mid);padding:3px 10px;border-radius:100px;font-weight:500}
+.nutri-card-header.selected .nc-tag{background:rgba(255,255,255,.7)}
+.nc-right{text-align:right;flex-shrink:0}
+.nc-rating{font-size:14px;font-weight:600;color:var(--g);margin-bottom:8px}
+.nc-sel-btn{font-size:12px;padding:8px 18px;border-radius:100px;border:1.5px solid var(--g);color:var(--g);background:transparent;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:600;transition:.15s;white-space:nowrap}
+.nutri-card-header.selected .nc-sel-btn{background:var(--g);color:#fff;border-color:var(--g)}
+
+/* ── MENÚ ── */
+.menu-section-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.menu-section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.menu-nota{background:var(--gl);border:1px solid rgba(29,158,117,.2);border-radius:10px;padding:10px 16px;font-size:13px;color:var(--gd);margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.menu-progress{display:flex;align-items:center;gap:8px;margin-bottom:20px}
+.mp-label{font-size:12px;color:var(--mid);font-weight:500}
+.mp-dias{display:flex;gap:4px}
+.mp-dia{width:30px;height:6px;border-radius:100px;background:var(--border);transition:.25s}
+.mp-dia.ok{background:var(--g)}
+.menu-dias{display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
+.menu-dia{background:var(--white);border:1.5px solid var(--border);border-radius:12px;overflow:hidden}
+.md-head{padding:10px 16px;background:var(--cream);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.md-dia{font-size:11px;font-weight:600;color:var(--mid);text-transform:uppercase;letter-spacing:.06em}
+.md-estado{font-size:11px}
+.md-estado.elegido{color:var(--g);font-weight:600}
+.md-estado.pendiente{color:var(--light)}
+.md-opciones{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px}
+.md-opcion{padding:14px;border-radius:10px;border:1.5px solid var(--border);background:var(--off);cursor:pointer;transition:.15s;text-align:left;width:100%;position:relative}
+.md-opcion:hover{border-color:rgba(29,158,117,.3);background:var(--gl)}
+.md-opcion.sel{border-color:var(--g);background:var(--gl)}
+.md-opcion-check{position:absolute;top:10px;right:10px;width:18px;height:18px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;transition:.15s}
+.md-opcion.sel .md-opcion-check{background:var(--g);border-color:var(--g)}
+.md-opcion-check-inner{width:7px;height:7px;border-radius:50%;background:#fff;opacity:0;transition:.15s}
+.md-opcion.sel .md-opcion-check-inner{opacity:1}
+.md-opcion-name{font-size:13.5px;font-weight:500;color:var(--dark);margin-bottom:5px;line-height:1.35;padding-right:26px}
+.md-opcion-meta{display:flex;gap:8px}
+.md-cal{font-size:11px;color:var(--light)}
+.md-prot{font-size:11px;color:var(--g);font-weight:600}
+.menu-auto-nota{font-size:12.5px;color:var(--light);line-height:1.65;margin-bottom:32px}
+
+/* ── CTA PASO 2 ── */
+.step2-cta{padding-top:28px;border-top:1px solid var(--border);max-width:480px;display:flex;flex-direction:column;gap:10px}
+
+/* ── ÉXITO ── */
+.success-wrap{text-align:center;padding:80px 52px}
+.success-icon{font-size:64px;margin-bottom:24px}
+.success-title{font-family:'DM Serif Display',serif;font-size:44px;color:var(--dark);margin-bottom:14px;line-height:1.08}
+.success-title em{color:var(--g);font-style:italic}
+.success-sub{font-size:16px;color:var(--mid);line-height:1.75;font-weight:300;max-width:460px;margin:0 auto 40px}
+.success-steps{display:flex;flex-direction:column;gap:12px;max-width:420px;margin:0 auto 40px;text-align:left}
+.ss-item{display:flex;align-items:flex-start;gap:14px;padding:16px;background:var(--white);border-radius:12px;border:1px solid var(--border)}
+.ss-num{width:28px;height:28px;border-radius:50%;background:var(--g);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#fff;flex-shrink:0;margin-top:1px}
+.ss-title{font-size:14px;font-weight:600;color:var(--dark);margin-bottom:3px}
+.ss-sub{font-size:12.5px;color:var(--mid)}
+
+/* ── BOTONES ── */
+.btn-primary{background:var(--g);color:#fff;border:none;padding:15px 36px;border-radius:100px;font-size:15px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;width:100%;transition:.15s}
+.btn-primary:hover{background:var(--gd)}
+.btn-ghost{background:transparent;color:var(--mid);border:1.5px solid var(--border);padding:15px 28px;border-radius:100px;font-size:15px;cursor:pointer;font-family:'DM Sans',sans-serif;width:100%;transition:.15s}
+.btn-ghost:hover{border-color:var(--g);color:var(--g)}
+
+.step{display:none}
+.step.active{display:block;animation:fadeIn .3s ease both}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+#toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:var(--dark);color:#fff;padding:12px 24px;border-radius:100px;font-size:13px;z-index:9999;opacity:0;transition:opacity .3s;white-space:nowrap;pointer-events:none}
+</style>
+</head>
+<body>
+
+<!-- ══ PANEL IZQUIERDO ══ -->
+<div class="left">
+  <a href="nutripalm-index.html" class="left-logo">Nutri<span>Palm</span></a>
+  <div class="progress-steps">
+    <div class="pstep active" data-step="1">
+      <div class="pstep-num">1</div>
+      <div class="pstep-body">
+        <div class="pstep-title">Datos personales</div>
+        <div class="pstep-sub">Nombre, WhatsApp y correo</div>
+      </div>
+    </div>
+    <div class="pstep pending" data-step="2">
+      <div class="pstep-num">2</div>
+      <div class="pstep-body">
+        <div class="pstep-title">Elige tu menú</div>
+        <div class="pstep-sub">Nutrióloga y platillos de la semana</div>
+      </div>
+    </div>
+  </div>
+  <div class="left-bottom">
+    <div class="left-quote">"Elige el miércoles.<br>Recoge cada tarde.<br><em>Come bien mañana.</em>"</div>
+    <div class="left-trust">
+      <div class="lt-item"><div class="lt-dot"></div>Menú nuevo cada semana</div>
+      <div class="lt-item"><div class="lt-dot"></div>Cocinado el mismo día de entrega</div>
+      <div class="lt-item"><div class="lt-dot"></div>Recogida 4–9 PM · Escápate Café</div>
+      <div class="lt-item"><div class="lt-dot"></div>Cambia de nutrióloga cuando quieras</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PANEL DERECHO ══ -->
+<div class="right">
+  <div class="right-nav">
+    <a href="nutripalm-index.html" class="rn-back">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M10 3L5 8l5 5"/></svg>
+      Volver a NutriPalm
+    </a>
+    <div class="rn-step" id="rn-step">Paso 1 de 2</div>
+  </div>
+
+  <!-- ══ PASO 1 ══ -->
+  <div class="step active" id="step-1">
+    <div class="right-body narrow">
+      <div class="step-eyebrow">Paso 1 de 2</div>
+      <h1 class="step-title">Cuéntanos <em>quién eres.</em></h1>
+      <p class="step-sub">Solo lo necesario para crear tu cuenta. Exploras el menú primero y decides contratar cuando quieras.</p>
+      <div class="field-row">
+        <div class="field"><label>Nombre</label><input type="text" placeholder="Tu nombre" id="f-nombre"></div>
+        <div class="field"><label>Apellido</label><input type="text" placeholder="Tu apellido" id="f-apellido"></div>
+      </div>
+      <div class="field">
+        <label>WhatsApp</label>
+        <input type="tel" placeholder="844 000 0000" id="f-whatsapp">
+        <div class="field-hint">Te avisamos aquí cuando tu comida está lista y cuando publiquemos el menú del miércoles.</div>
+      </div>
+      <div class="field"><label>Correo electrónico</label><input type="email" placeholder="tu@correo.com" id="f-email"></div>
+      <div class="field">
+        <label>¿Cómo nos encontraste? <span style="font-weight:300;text-transform:none;letter-spacing:0">(opcional)</span></label>
+        <select>
+          <option value="">Seleccionar</option>
+          <option>Recomendación de un amigo</option>
+          <option>Instagram / Facebook</option>
+          <option>Gimnasio o estudio fitness</option>
+          <option>Empresa donde trabajo</option>
+          <option>Hospital o clínica</option>
+          <option>Pasé por Escápate Café</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <button class="btn-primary" onclick="goStep(2)">Ver menú de la semana →</button>
+    </div>
+  </div>
+
+  <!-- ══ PASO 2 ══ -->
+  <div class="step" id="step-2">
+    <div class="right-body wide">
+      <div class="step-eyebrow">Paso 2 de 2</div>
+      <h1 class="step-title">Elige tu <em>nutrióloga y menú.</em></h1>
+      <p class="step-sub">Cada nutrióloga diseña su propio menú. Explora las tres opciones y elige la que más te convenza — puedes cambiar cuando quieras desde tu portal.</p>
+
+      <!-- PESTAÑAS -->
+      <div class="nutri-tabs">
+        <button class="ntab active" onclick="switchNutri(0,this)">
+          <div class="ntab-av">VR</div>
+          <div><div class="ntab-name">Nut. Valeria Ríos</div><div class="ntab-spec">Deportiva · Alta proteína</div></div>
+          <div class="ntab-dot"></div>
+        </button>
+        <button class="ntab" onclick="switchNutri(1,this)">
+          <div class="ntab-av">AT</div>
+          <div><div class="ntab-name">Nut. Ana Torres</div><div class="ntab-spec">Mediterráneo · Bajo IG</div></div>
+          <div class="ntab-dot"></div>
+        </button>
+        <button class="ntab" onclick="switchNutri(2,this)">
+          <div class="ntab-av">LM</div>
+          <div><div class="ntab-name">Nut. Laura Mendoza</div><div class="ntab-spec">Familiar · Alta fibra</div></div>
+          <div class="ntab-dot"></div>
+        </button>
+      </div>
+
+      <!-- ── PANEL 0 — VALERIA ── -->
+      <div class="nutri-panel active" id="panel-0">
+        <div class="nutri-card-header" id="header-0">
+          <div class="nc-av">VR</div>
+          <div class="nc-body">
+            <div class="nc-name">Nut. Valeria Ríos</div>
+            <div class="nc-spec">Especialidad en nutrición deportiva y pérdida de peso</div>
+            <div class="nc-tags"><span class="nc-tag">Alta proteína</span><span class="nc-tag">Bowls energéticos</span><span class="nc-tag">Sin gluten (op.)</span></div>
+          </div>
+          <div class="nc-right">
+            <div class="nc-rating">⭐ 4.9</div>
+            <button class="nc-sel-btn" onclick="selectNutri(0,'Valeria Ríos',this)">Elegir esta nutrióloga</button>
+          </div>
+        </div>
+        <div class="menu-section-label">Menú de la semana · 31 mar – 4 abr</div>
+        <div class="menu-nota"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#085041" stroke-width="1.3" stroke-linecap="round"><circle cx="7" cy="7" r="5.5"/><path d="M7 4.5v3l1.5 1.5"/></svg>Elige 1 platillo por día · corte <strong>miércoles 8 PM</strong></div>
+        <div class="menu-progress"><div class="mp-label">Tu selección:</div><div class="mp-dias" id="prog-0"><div class="mp-dia ok"></div><div class="mp-dia"></div><div class="mp-dia"></div><div class="mp-dia"></div><div class="mp-dia"></div></div></div>
+        <div class="menu-dias" data-nutri="0">
+          <div class="menu-dia"><div class="md-head"><div class="md-dia">Lunes</div><div class="md-estado elegido" id="estado-0-0">✓ Elegido</div></div><div class="md-opciones"><button class="md-opcion sel" onclick="selDia(this,0,0)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Pollo al limón con quinoa y espinaca</div><div class="md-opcion-meta"><span class="md-cal">380 kcal</span><span class="md-prot">34g prot</span></div></button><button class="md-opcion" onclick="selDia(this,0,0)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Bowl mediterráneo de garbanzo y pollo</div><div class="md-opcion-meta"><span class="md-cal">410 kcal</span><span class="md-prot">30g prot</span></div></button></div></div>
+          <div class="menu-dia"><div class="md-head"><div class="md-dia">Martes</div><div class="md-estado pendiente" id="estado-0-1">Pendiente</div></div><div class="md-opciones"><button class="md-opcion" onclick="selDia(this,0,1)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Salmón glaseado con puré de coliflor</div><div class="md-opcion-meta"><span class="md-cal">420 kcal</span><span class="md-prot">36g prot</span></div></button><button class="md-opcion" onclick="selDia(this,0,1)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Pollo a la mostaza con verduras al vapor</div><div class="md-opcion-meta"><span class="md-cal">360 kcal</span><span class="md-prot">32g prot</span></div></button></div></div>
+          <div class="menu-dia"><div class="md-head"><div class="md-dia">Miércoles</div><div class="md-estado pendiente" id="estado-0-2">Pendiente</div></div><div class="md-opciones"><button class="md-opcion" onclick="selDia(this,0,2)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Bowl de res con quinoa y verduras</div><div class="md-opcion-meta"><span class="md-cal">400 kcal</span><span class="md-prot">32g prot</span></div></button><button class="md-opcion" onclick="selDia(this,0,2)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Ensalada tibia de lentejas con atún</div><div class="md-opcion-meta"><span class="md-cal">370 kcal</span><span class="md-prot">28g prot</span></div></button></div></div>
+          <div class="menu-dia"><div class="md-head"><div class="md-dia">Jueves</div><div class="md-estado pendiente" id="estado-0-3">Pendiente</div></div><div class="md-opciones"><button class="md-opcion" onclick="selDia(this,0,3)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Pollo a la mostaza con brócoli al vapor</div><div class="md-opcion-meta"><span class="md-cal">360 kcal</span><span class="md-prot">32g prot</span></div></button><button class="md-opcion" onclick="selDia(this,0,3)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Bowl mediterráneo de pollo con pasta</div><div class="md-opcion-meta"><span class="md-cal">420 kcal</span><span class="md-prot">30g prot</span></div></button></div></div>
+          <div class="menu-dia"><div class="md-head"><div class="md-dia">Viernes</div><div class="md-estado pendiente" id="estado-0-4">Pendiente</div></div><div class="md-opciones"><button class="md-opcion" onclick="selDia(this,0,4)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Salmón al horno con camote y ejotes</div><div class="md-opcion-meta"><span class="md-cal">430 kcal</span><span class="md-prot">36g prot</span></div></button><button class="md-opcion" onclick="selDia(this,0,4)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Pollo al limón con quinoa y ejotes</div><div class="md-opcion-meta"><span class="md-cal">380 kcal</span><span class="md-prot">33g prot</span></div></button></div></div>
+        </div>
+        <div class="menu-auto-nota">Si no completas tu selección antes del <strong>miércoles 8 PM</strong>, se asigna automáticamente la primera opción de cada día.</div>
+      </div>
+
+      <!-- ── PANEL 1 — ANA ── -->
+      <div class="nutri-panel" id="panel-1">
+        <div class="nutri-card-header" id="header-1">
+          <div class="nc-av">AT</div>
+          <div class="nc-body">
+            <div class="nc-name">Nut. Ana Torres</div>
+            <div class="nc-spec">Nutrición balanceada con enfoque mediterráneo y bajo índice glucémico</div>
+            <div class="nc-tags"><span class="nc-tag">Mediterráneo</span><span class="nc-tag">Bajo IG</span><span class="nc-tag">Anti-inflamatorio</span></div>
+          </div>
+          <div class="nc-right">
+            <div class="nc-rating">⭐ 4.8</div>
+            <button class="nc-sel-btn" onclick="selectNutri(1,'Ana Torres',this)">Elegir esta nutrióloga</button>
+          </div>
+        </div>
+        <div class="menu-section-label">Menú de la semana · 31 mar – 4 abr</div>
+        <div class="menu-nota"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#085041" stroke-width="1.3" stroke-linecap="round"><circle cx="7" cy="7" r="5.5"/><path d="M7 4.5v3l1.5 1.5"/></svg>Elige 1 platillo por día · corte <strong>miércoles 8 PM</strong></div>
+        <div class="menu-progress"><div class="mp-label">Tu selección:</div><div class="mp-dias" id="prog-1"><div class="mp-dia"></div><div class="mp-dia"></div><div class="mp-dia"></div><div class="mp-dia"></div><div class="mp-dia"></div></div></div>
+        <div class="menu-dias" data-nutri="1">
+          <div class="menu-dia"><div class="md-head"><div class="md-dia">Lunes</div><div class="md-estado pendiente" id="estado-1-0">Pendiente</div></div><div class="md-opciones"><button class="md-opcion" onclick="selDia(this,1,0)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Ensalada mediterránea de pollo y aceitunas</div><div class="md-opcion-meta"><span class="md-cal">350 kcal</span><span class="md-prot">28g prot</span></div></button><button class="md-opcion" onclick="selDia(this,1,0)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Pechuga al horno con berenjenas y tomate</div><div class="md-opcion-meta"><span class="md-cal">340 kcal</span><span class="md-prot">32g prot</span></div></button></div></div>
+          <div class="menu-dia"><div class="md-head"><div class="md-dia">Martes</div><div class="md-estado pendiente" id="estado-1-1">Pendiente</div></div><div class="md-opciones"><button class="md-opcion" onclick="selDia(this,1,1)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Salmón con quinoa y espárragos al vapor</div><div class="md-opcion-meta"><span class="md-cal">410 kcal</span><span class="md-prot">36g prot</span></div></button><button class="md-opcion" onclick="selDia(this,1,1)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Hummus de garbanzo con falafel al horno</div><div class="md-opcion-meta"><span class="md-cal">390 kcal</span><span class="md-prot">18g prot</span></div></button></div></div>
+          <div class="menu-dia"><div class="md-head"><div class="md-dia">Miércoles</div><div class="md-estado pendiente" id="estado-1-2">Pendiente</div></div><div class="md-opciones"><button class="md-opcion" onclick="selDia(this,1,2)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Bowl griego de res con tzatziki ligero</div><div class="md-opcion-meta"><span class="md-cal">400 kcal</span><span class="md-prot">30g prot</span></div></button><button class="md-opcion" onclick="selDia(this,1,2)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Pasta integral con atún y alcaparras</div><div class="md-opcion-meta"><span class="md-cal">380 kcal</span><span class="md-prot">26g prot</span></div></button></div></div>
+          <div class="menu-dia"><div class="md-head"><div class="md-dia">Jueves</div><div class="md-estado pendiente" id="estado-1-3">Pendiente</div></div><div class="md-opciones"><button class="md-opcion" onclick="selDia(this,1,3)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Pollo con cúrcuma, garbanzo y espinaca</div><div class="md-opcion-meta"><span class="md-cal">370 kcal</span><span class="md-prot">32g prot</span></div></button><button class="md-opcion" onclick="selDia(this,1,3)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Atún sellado con verduras al vapor y limón</div><div class="md-opcion-meta"><span class="md-cal">330 kcal</span><span class="md-prot">34g prot</span></div></button></div></div>
+          <div class="menu-dia"><div class="md-head"><div class="md-dia">Viernes</div><div class="md-estado pendiente" id="estado-1-4">Pendiente</div></div><div class="md-opciones"><button class="md-opcion" onclick="selDia(this,1,4)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Bowl de lentejas con verduras asadas</div><div class="md-opcion-meta"><span class="md-cal">360 kcal</span><span class="md-prot">22g prot</span></div></button><button class="md-opcion" onclick="selDia(this,1,4)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Salmón mediterráneo con puré de betabel</div><div class="md-opcion-meta"><span class="md-cal">420 kcal</span><span class="md-prot">35g prot</span></div></button></div></div>
+        </div>
+        <div class="menu-auto-nota">Si no completas tu selección antes del <strong>miércoles 8 PM</strong>, se asigna automáticamente la primera opción de cada día.</div>
+      </div>
+
+      <!-- ── PANEL 2 — LAURA ── -->
+      <div class="nutri-panel" id="panel-2">
+        <div class="nutri-card-header" id="header-2">
+          <div class="nc-av">LM</div>
+          <div class="nc-body">
+            <div class="nc-name">Nut. Laura Mendoza</div>
+            <div class="nc-spec">Nutrición familiar con platillos reconfortantes, alta fibra y verduras creativas</div>
+            <div class="nc-tags"><span class="nc-tag">Alta fibra</span><span class="nc-tag">Reconfortante</span><span class="nc-tag">Verduras creativas</span></div>
+          </div>
+          <div class="nc-right">
+            <div class="nc-rating">⭐ 4.7</div>
+            <button class="nc-sel-btn" onclick="selectNutri(2,'Laura Mendoza',this)">Elegir esta nutrióloga</button>
+          </div>
+        </div>
+        <div class="menu-section-label">Menú de la semana · 31 mar – 4 abr</div>
+        <div class="menu-nota"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#085041" stroke-width="1.3" stroke-linecap="round"><circle cx="7" cy="7" r="5.5"/><path d="M7 4.5v3l1.5 1.5"/></svg>Elige 1 platillo por día · corte <strong>miércoles 8 PM</strong></div>
+        <div class="menu-progress"><div class="mp-label">Tu selección:</div><div class="mp-dias" id="prog-2"><div class="mp-dia"></div><div class="mp-dia"></div><div class="mp-dia"></div><div class="mp-dia"></div><div class="mp-dia"></div></div></div>
+        <div class="menu-dias" data-nutri="2">
+          <div class="menu-dia"><div class="md-head"><div class="md-dia">Lunes</div><div class="md-estado pendiente" id="estado-2-0">Pendiente</div></div><div class="md-opciones"><button class="md-opcion" onclick="selDia(this,2,0)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Crema de zanahoria con pollo desmenuzado</div><div class="md-opcion-meta"><span class="md-cal">340 kcal</span><span class="md-prot">28g prot</span></div></button><button class="md-opcion" onclick="selDia(this,2,0)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Arroz con pollo y chícharos al vapor</div><div class="md-opcion-meta"><span class="md-cal">380 kcal</span><span class="md-prot">30g prot</span></div></button></div></div>
+          <div class="menu-dia"><div class="md-head"><div class="md-dia">Martes</div><div class="md-estado pendiente" id="estado-2-1">Pendiente</div></div><div class="md-opciones"><button class="md-opcion" onclick="selDia(this,2,1)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Albóndigas de res en salsa de jitomate</div><div class="md-opcion-meta"><span class="md-cal">400 kcal</span><span class="md-prot">30g prot</span></div></button><button class="md-opcion" onclick="selDia(this,2,1)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Pechuga rellena de espinaca y queso panela</div><div class="md-opcion-meta"><span class="md-cal">360 kcal</span><span class="md-prot">34g prot</span></div></button></div></div>
+          <div class="menu-dia"><div class="md-head"><div class="md-dia">Miércoles</div><div class="md-estado pendiente" id="estado-2-2">Pendiente</div></div><div class="md-opciones"><button class="md-opcion" onclick="selDia(this,2,2)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Sopa de verduras con pasta integral y pollo</div><div class="md-opcion-meta"><span class="md-cal">350 kcal</span><span class="md-prot">26g prot</span></div></button><button class="md-opcion" onclick="selDia(this,2,2)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Atún al horno con coliflor gratinada light</div><div class="md-opcion-meta"><span class="md-cal">330 kcal</span><span class="md-prot">30g prot</span></div></button></div></div>
+          <div class="menu-dia"><div class="md-head"><div class="md-dia">Jueves</div><div class="md-estado pendiente" id="estado-2-3">Pendiente</div></div><div class="md-opciones"><button class="md-opcion" onclick="selDia(this,2,3)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Estofado de res con camote y zanahorias</div><div class="md-opcion-meta"><span class="md-cal">410 kcal</span><span class="md-prot">28g prot</span></div></button><button class="md-opcion" onclick="selDia(this,2,3)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Pollo con salsa de pimiento rojo y arroz</div><div class="md-opcion-meta"><span class="md-cal">370 kcal</span><span class="md-prot">32g prot</span></div></button></div></div>
+          <div class="menu-dia"><div class="md-head"><div class="md-dia">Viernes</div><div class="md-estado pendiente" id="estado-2-4">Pendiente</div></div><div class="md-opciones"><button class="md-opcion" onclick="selDia(this,2,4)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Chilaquiles verdes con pechuga y crema light</div><div class="md-opcion-meta"><span class="md-cal">390 kcal</span><span class="md-prot">28g prot</span></div></button><button class="md-opcion" onclick="selDia(this,2,4)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Res a la mexicana con frijoles y arroz integral</div><div class="md-opcion-meta"><span class="md-cal">420 kcal</span><span class="md-prot">30g prot</span></div></button></div></div>
+        </div>
+        <div class="menu-auto-nota">Si no completas tu selección antes del <strong>miércoles 8 PM</strong>, se asigna automáticamente la primera opción de cada día.</div>
+      </div>
+
+      <!-- CTA -->
+      <div class="step2-cta">
+        <button class="btn-primary" onclick="goStep(3)">Crear mi cuenta →</button>
+        <button class="btn-ghost" onclick="goStep(1)">← Regresar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ ÉXITO ══ -->
+  <div class="step" id="step-3">
+    <div class="success-wrap">
+      <div class="success-icon">🎉</div>
+      <h1 class="success-title">¡Ya tienes<br>tu <em>cuenta!</em></h1>
+      <p class="success-sub">Tu menú está guardado. Cuando estés listo para contratar, entra a tu portal y activa tu suscripción en un clic.</p>
+      <div class="success-steps">
+        <div class="ss-item">
+          <div class="ss-num">1</div>
+          <div><div class="ss-title">Revisa tu portal</div><div class="ss-sub">Ve tu menú guardado, el precio de tu suscripción y los detalles de recogida en Escápate Café.</div></div>
+        </div>
+        <div class="ss-item">
+          <div class="ss-num">2</div>
+          <div><div class="ss-title">Activa tu suscripción cuando quieras</div><div class="ss-sub">En tu portal verás el botón "Contratar". Pagas y tu primera semana empieza el lunes siguiente.</div></div>
+        </div>
+        <div class="ss-item">
+          <div class="ss-num">3</div>
+          <div><div class="ss-title">Tu comida lista cada tarde</div><div class="ss-sub">Aviso por WhatsApp cuando tu contenedor está en Escápate Café. Lunes a viernes, 4–9 PM.</div></div>
+        </div>
+      </div>
+      <button class="btn-primary" style="max-width:380px;margin:0 auto;display:block" onclick="showToast('Abriendo tu portal...')">Ir a mi portal →</button>
+      <div style="text-align:center;margin-top:14px"><a href="nutripalm-index.html" style="font-size:13.5px;color:var(--mid);text-decoration:none">Volver al inicio</a></div>
+    </div>
+  </div>
+
+</div><!-- /right -->
+<div id="toast"></div>
+
+<script>
+function goStep(n) {
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  document.getElementById('step-' + n).classList.add('active');
+  document.querySelectorAll('.pstep').forEach(p => {
+    const s = parseInt(p.dataset.step);
+    p.classList.remove('active','done','pending');
+    if (s < n) { p.classList.add('done'); p.querySelector('.pstep-num').textContent = '✓'; }
+    else if (s === n) { p.classList.add('active'); p.querySelector('.pstep-num').textContent = s; }
+    else { p.classList.add('pending'); p.querySelector('.pstep-num').textContent = s; }
+  });
+  const rn = document.getElementById('rn-step');
+  rn.textContent = n === 1 ? 'Paso 1 de 2' : n === 2 ? 'Paso 2 de 2' : '¡Cuenta creada!';
+  window.scrollTo(0,0);
+}
+
+function switchNutri(idx, btn) {
+  document.querySelectorAll('.ntab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.nutri-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + idx).classList.add('active');
+}
+
+function selectNutri(idx, name, btn) {
+  document.querySelectorAll('.nutri-card-header').forEach(h => h.classList.remove('selected'));
+  document.querySelectorAll('.nc-sel-btn').forEach(b => b.textContent = 'Elegir esta nutrióloga');
+  document.getElementById('header-' + idx).classList.add('selected');
+  btn.textContent = '✓ Seleccionada';
+  document.querySelectorAll('.ntab')[idx].click();
+  showToast('Nut. ' + name + ' seleccionada ✓');
+}
+
+function selDia(btn, nutriIdx, diaIdx) {
+  btn.closest('.md-opciones').querySelectorAll('.md-opcion').forEach(o => o.classList.remove('sel'));
+  btn.classList.add('sel');
+  const est = document.getElementById('estado-' + nutriIdx + '-' + diaIdx);
+  if (est) { est.textContent = '✓ Elegido'; est.className = 'md-estado elegido'; }
+  updateProgress(nutriIdx);
+}
+
+function updateProgress(idx) {
+  const dias = document.querySelectorAll('[data-nutri="' + idx + '"] .menu-dia');
+  const bars = document.querySelectorAll('#prog-' + idx + ' .mp-dia');
+  dias.forEach((d, i) => { if (bars[i]) bars[i].classList.toggle('ok', !!d.querySelector('.md-opcion.sel')); });
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.style.opacity = 1;
+  setTimeout(() => t.style.opacity = 0, 2400);
+}
+
+updateProgress(0);
+</script>
+</body>
+</html>
