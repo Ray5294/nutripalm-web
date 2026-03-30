@@ -65,47 +65,33 @@ body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--dark);mi
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .field-hint{font-size:12px;color:var(--light);margin-top:6px}
 
-/* ── PESTAÑAS NUTRIÓLOGAS ── */
+/* ── PESTAÑAS NUTRIÓLOGAS — solo nombre + circulo + dot ── */
 .nutri-tabs{display:flex;gap:10px;margin-bottom:28px;flex-wrap:wrap}
-.ntab{display:flex;align-items:center;gap:10px;padding:12px 20px;border-radius:100px;border:1.5px solid var(--border);background:var(--white);cursor:pointer;transition:.2s;font-family:'DM Sans',sans-serif}
+.ntab{display:flex;align-items:center;gap:10px;padding:10px 18px;border-radius:100px;border:1.5px solid var(--border);background:var(--white);cursor:pointer;transition:.2s;font-family:'DM Sans',sans-serif}
 .ntab:hover{border-color:rgba(29,158,117,.3);background:var(--gl)}
 .ntab.active{border-color:var(--g);background:var(--gl);box-shadow:0 0 0 1px var(--g)}
-.ntab-av{width:34px;height:34px;border-radius:50%;background:var(--cream);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:13px;color:var(--gd);font-style:italic;flex-shrink:0;transition:.2s}
+.ntab-av{width:32px;height:32px;border-radius:50%;background:var(--cream);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:12px;color:var(--gd);font-style:italic;flex-shrink:0;transition:.2s}
 .ntab.active .ntab-av{background:rgba(29,158,117,.2)}
 .ntab-name{font-size:13.5px;font-weight:600;color:var(--dark)}
-.ntab-spec{font-size:11px;color:var(--mid);font-weight:300}
-.ntab-dot{width:7px;height:7px;border-radius:50%;background:var(--border);margin-left:4px;transition:.2s;flex-shrink:0}
+.ntab-dot{width:7px;height:7px;border-radius:50%;background:var(--border);margin-left:2px;transition:.2s;flex-shrink:0}
 .ntab.active .ntab-dot{background:var(--g)}
 
 /* ── PANELS ── */
 .nutri-panel{display:none}
 .nutri-panel.active{display:block;animation:fadeIn .25s ease both}
 
-/* ── CARD NUTRIÓLOGA ── */
-.nutri-card-header{background:var(--white);border:1.5px solid var(--border);border-radius:16px;padding:20px 24px;margin-bottom:20px;display:flex;align-items:center;gap:18px}
-.nutri-card-header.selected{border-color:var(--g);background:var(--gl)}
+/* ── CARD NUTRIÓLOGA — simplificada, sin tags ni botón ── */
+.nutri-card-header{background:var(--white);border:1.5px solid var(--border);border-radius:16px;padding:20px 24px;margin-bottom:24px;display:flex;align-items:center;gap:18px;transition:.25s}
+.nutri-card-header.selected{border-color:var(--g);background:var(--gl);box-shadow:0 0 0 1px var(--g)}
 .nc-av{width:52px;height:52px;border-radius:50%;background:var(--gl);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:20px;color:var(--gd);font-style:italic;flex-shrink:0}
 .nutri-card-header.selected .nc-av{background:rgba(29,158,117,.2)}
 .nc-body{flex:1}
-.nc-name{font-size:17px;font-weight:600;color:var(--dark);margin-bottom:3px}
-.nc-spec{font-size:13px;color:var(--mid);font-weight:300;margin-bottom:8px}
-.nc-tags{display:flex;gap:6px;flex-wrap:wrap}
-.nc-tag{font-size:11px;background:var(--cream);color:var(--mid);padding:3px 10px;border-radius:100px;font-weight:500}
-.nutri-card-header.selected .nc-tag{background:rgba(255,255,255,.7)}
-.nc-right{text-align:right;flex-shrink:0}
-.nc-rating{font-size:14px;font-weight:600;color:var(--g);margin-bottom:8px}
-.nc-sel-btn{font-size:12px;padding:8px 18px;border-radius:100px;border:1.5px solid var(--g);color:var(--g);background:transparent;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:600;transition:.15s;white-space:nowrap}
-.nutri-card-header.selected .nc-sel-btn{background:var(--g);color:#fff;border-color:var(--g)}
+.nc-name{font-size:17px;font-weight:600;color:var(--dark);margin-bottom:4px}
+.nc-spec{font-size:13px;color:var(--mid);font-weight:300;line-height:1.5}
+.nc-rating{font-size:14px;font-weight:600;color:var(--g);flex-shrink:0;display:flex;align-items:center;gap:4px}
+.nc-rating svg{flex-shrink:0}
 
 /* ── MENÚ ── */
-.menu-section-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);margin-bottom:14px;display:flex;align-items:center;gap:10px}
-.menu-section-label::after{content:'';flex:1;height:1px;background:var(--border)}
-.menu-nota{background:var(--gl);border:1px solid rgba(29,158,117,.2);border-radius:10px;padding:10px 16px;font-size:13px;color:var(--gd);margin-bottom:18px;display:flex;align-items:center;gap:8px}
-.menu-progress{display:flex;align-items:center;gap:8px;margin-bottom:20px}
-.mp-label{font-size:12px;color:var(--mid);font-weight:500}
-.mp-dias{display:flex;gap:4px}
-.mp-dia{width:30px;height:6px;border-radius:100px;background:var(--border);transition:.25s}
-.mp-dia.ok{background:var(--g)}
 .menu-dias{display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
 .menu-dia{background:var(--white);border:1.5px solid var(--border);border-radius:12px;overflow:hidden}
 .md-head{padding:10px 16px;background:var(--cream);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
@@ -122,10 +108,12 @@ body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--dark);mi
 .md-opcion-check-inner{width:7px;height:7px;border-radius:50%;background:#fff;opacity:0;transition:.15s}
 .md-opcion.sel .md-opcion-check-inner{opacity:1}
 .md-opcion-name{font-size:13.5px;font-weight:500;color:var(--dark);margin-bottom:5px;line-height:1.35;padding-right:26px}
-.md-opcion-meta{display:flex;gap:8px}
+.md-opcion-meta{display:flex;gap:8px;margin-bottom:6px}
 .md-cal{font-size:11px;color:var(--light)}
 .md-prot{font-size:11px;color:var(--g);font-weight:600}
-.menu-auto-nota{font-size:12.5px;color:var(--light);line-height:1.65;margin-bottom:32px}
+/* Beneficio de salud por platillo */
+.md-benefit{font-size:11px;color:var(--gd);background:rgba(29,158,117,.08);border-radius:6px;padding:3px 8px;display:inline-flex;align-items:center;gap:4px;line-height:1.4;margin-top:2px}
+.md-benefit::before{content:'✦';font-size:9px;color:var(--gm)}
 
 /* ── CTA PASO 2 ── */
 .step2-cta{padding-top:28px;border-top:1px solid var(--border);max-width:480px;display:flex;flex-direction:column;gap:10px}
@@ -236,50 +224,127 @@ body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--dark);mi
       <h1 class="step-title">Elige tu <em>nutrióloga y menú.</em></h1>
       <p class="step-sub">Cada nutrióloga diseña su propio menú. Explora las tres opciones y elige la que más te convenza — puedes cambiar cuando quieras desde tu portal.</p>
 
-      <!-- PESTAÑAS -->
+      <!-- PESTAÑAS — solo avatar, nombre y dot -->
       <div class="nutri-tabs">
         <button class="ntab active" onclick="switchNutri(0,this)">
           <div class="ntab-av">VR</div>
-          <div><div class="ntab-name">Nut. Valeria Ríos</div><div class="ntab-spec">Deportiva · Alta proteína</div></div>
+          <div class="ntab-name">Nut. Valeria Ríos</div>
           <div class="ntab-dot"></div>
         </button>
         <button class="ntab" onclick="switchNutri(1,this)">
           <div class="ntab-av">AT</div>
-          <div><div class="ntab-name">Nut. Ana Torres</div><div class="ntab-spec">Mediterráneo · Bajo IG</div></div>
+          <div class="ntab-name">Nut. Ana Torres</div>
           <div class="ntab-dot"></div>
         </button>
         <button class="ntab" onclick="switchNutri(2,this)">
           <div class="ntab-av">LM</div>
-          <div><div class="ntab-name">Nut. Laura Mendoza</div><div class="ntab-spec">Familiar · Alta fibra</div></div>
+          <div class="ntab-name">Nut. Laura Mendoza</div>
           <div class="ntab-dot"></div>
         </button>
       </div>
 
       <!-- ── PANEL 0 — VALERIA ── -->
       <div class="nutri-panel active" id="panel-0">
+        <!-- Card: circulo + nombre + descripción + rating. Sin tags, sin botón -->
         <div class="nutri-card-header" id="header-0">
           <div class="nc-av">VR</div>
           <div class="nc-body">
             <div class="nc-name">Nut. Valeria Ríos</div>
             <div class="nc-spec">Especialidad en nutrición deportiva y pérdida de peso</div>
-            <div class="nc-tags"><span class="nc-tag">Alta proteína</span><span class="nc-tag">Bowls energéticos</span><span class="nc-tag">Sin gluten (op.)</span></div>
           </div>
-          <div class="nc-right">
-            <div class="nc-rating">⭐ 4.9</div>
-            <button class="nc-sel-btn" onclick="selectNutri(0,'Valeria Ríos',this)">Elegir esta nutrióloga</button>
+          <div class="nc-rating">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="#F5A623"><path d="M7 1l1.8 3.6L13 5.3l-3 2.9.7 4.1L7 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg>
+            4.9
           </div>
         </div>
-        <div class="menu-section-label">Menú de la semana · 31 mar – 4 abr</div>
-        <div class="menu-nota"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#085041" stroke-width="1.3" stroke-linecap="round"><circle cx="7" cy="7" r="5.5"/><path d="M7 4.5v3l1.5 1.5"/></svg>Elige 1 platillo por día · corte <strong>miércoles 8 PM</strong></div>
-        <div class="menu-progress"><div class="mp-label">Tu selección:</div><div class="mp-dias" id="prog-0"><div class="mp-dia ok"></div><div class="mp-dia"></div><div class="mp-dia"></div><div class="mp-dia"></div><div class="mp-dia"></div></div></div>
+
         <div class="menu-dias" data-nutri="0">
-          <div class="menu-dia"><div class="md-head"><div class="md-dia">Lunes</div><div class="md-estado elegido" id="estado-0-0">✓ Elegido</div></div><div class="md-opciones"><button class="md-opcion sel" onclick="selDia(this,0,0)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Pollo al limón con quinoa y espinaca</div><div class="md-opcion-meta"><span class="md-cal">380 kcal</span><span class="md-prot">34g prot</span></div></button><button class="md-opcion" onclick="selDia(this,0,0)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Bowl mediterráneo de garbanzo y pollo</div><div class="md-opcion-meta"><span class="md-cal">410 kcal</span><span class="md-prot">30g prot</span></div></button></div></div>
-          <div class="menu-dia"><div class="md-head"><div class="md-dia">Martes</div><div class="md-estado pendiente" id="estado-0-1">Pendiente</div></div><div class="md-opciones"><button class="md-opcion" onclick="selDia(this,0,1)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Salmón glaseado con puré de coliflor</div><div class="md-opcion-meta"><span class="md-cal">420 kcal</span><span class="md-prot">36g prot</span></div></button><button class="md-opcion" onclick="selDia(this,0,1)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Pollo a la mostaza con verduras al vapor</div><div class="md-opcion-meta"><span class="md-cal">360 kcal</span><span class="md-prot">32g prot</span></div></button></div></div>
-          <div class="menu-dia"><div class="md-head"><div class="md-dia">Miércoles</div><div class="md-estado pendiente" id="estado-0-2">Pendiente</div></div><div class="md-opciones"><button class="md-opcion" onclick="selDia(this,0,2)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Bowl de res con quinoa y verduras</div><div class="md-opcion-meta"><span class="md-cal">400 kcal</span><span class="md-prot">32g prot</span></div></button><button class="md-opcion" onclick="selDia(this,0,2)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Ensalada tibia de lentejas con atún</div><div class="md-opcion-meta"><span class="md-cal">370 kcal</span><span class="md-prot">28g prot</span></div></button></div></div>
-          <div class="menu-dia"><div class="md-head"><div class="md-dia">Jueves</div><div class="md-estado pendiente" id="estado-0-3">Pendiente</div></div><div class="md-opciones"><button class="md-opcion" onclick="selDia(this,0,3)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Pollo a la mostaza con brócoli al vapor</div><div class="md-opcion-meta"><span class="md-cal">360 kcal</span><span class="md-prot">32g prot</span></div></button><button class="md-opcion" onclick="selDia(this,0,3)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Bowl mediterráneo de pollo con pasta</div><div class="md-opcion-meta"><span class="md-cal">420 kcal</span><span class="md-prot">30g prot</span></div></button></div></div>
-          <div class="menu-dia"><div class="md-head"><div class="md-dia">Viernes</div><div class="md-estado pendiente" id="estado-0-4">Pendiente</div></div><div class="md-opciones"><button class="md-opcion" onclick="selDia(this,0,4)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Salmón al horno con camote y ejotes</div><div class="md-opcion-meta"><span class="md-cal">430 kcal</span><span class="md-prot">36g prot</span></div></button><button class="md-opcion" onclick="selDia(this,0,4)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Pollo al limón con quinoa y ejotes</div><div class="md-opcion-meta"><span class="md-cal">380 kcal</span><span class="md-prot">33g prot</span></div></button></div></div>
+          <div class="menu-dia">
+            <div class="md-head"><div class="md-dia">Lunes</div><div class="md-estado elegido" id="estado-0-0">✓ Elegido</div></div>
+            <div class="md-opciones">
+              <button class="md-opcion sel" onclick="selDia(this,0,0)">
+                <div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div>
+                <div class="md-opcion-name">Pollo al limón con quinoa y espinaca</div>
+                <div class="md-opcion-meta"><span class="md-cal">380 kcal</span><span class="md-prot">34g prot</span></div>
+                <div class="md-benefit">Proteína completa que apoya músculo y saciedad</div>
+              </button>
+              <button class="md-opcion" onclick="selDia(this,0,0)">
+                <div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div>
+                <div class="md-opcion-name">Bowl mediterráneo de garbanzo y pollo</div>
+                <div class="md-opcion-meta"><span class="md-cal">410 kcal</span><span class="md-prot">30g prot</span></div>
+                <div class="md-benefit">Fibra y proteína vegetal para energía sostenida</div>
+              </button>
+            </div>
+          </div>
+          <div class="menu-dia">
+            <div class="md-head"><div class="md-dia">Martes</div><div class="md-estado pendiente" id="estado-0-1">Pendiente</div></div>
+            <div class="md-opciones">
+              <button class="md-opcion" onclick="selDia(this,0,1)">
+                <div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div>
+                <div class="md-opcion-name">Salmón glaseado con puré de coliflor</div>
+                <div class="md-opcion-meta"><span class="md-cal">420 kcal</span><span class="md-prot">36g prot</span></div>
+                <div class="md-benefit">Omega-3 antiinflamatorio y bajo en carbohidratos</div>
+              </button>
+              <button class="md-opcion" onclick="selDia(this,0,1)">
+                <div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div>
+                <div class="md-opcion-name">Pollo a la mostaza con verduras al vapor</div>
+                <div class="md-opcion-meta"><span class="md-cal">360 kcal</span><span class="md-prot">32g prot</span></div>
+                <div class="md-benefit">Alto en proteína magra y bajo en grasas saturadas</div>
+              </button>
+            </div>
+          </div>
+          <div class="menu-dia">
+            <div class="md-head"><div class="md-dia">Miércoles</div><div class="md-estado pendiente" id="estado-0-2">Pendiente</div></div>
+            <div class="md-opciones">
+              <button class="md-opcion" onclick="selDia(this,0,2)">
+                <div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div>
+                <div class="md-opcion-name">Bowl de res con quinoa y verduras</div>
+                <div class="md-opcion-meta"><span class="md-cal">400 kcal</span><span class="md-prot">32g prot</span></div>
+                <div class="md-benefit">Hierro biodisponible y aminoácidos esenciales</div>
+              </button>
+              <button class="md-opcion" onclick="selDia(this,0,2)">
+                <div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div>
+                <div class="md-opcion-name">Ensalada tibia de lentejas con atún</div>
+                <div class="md-opcion-meta"><span class="md-cal">370 kcal</span><span class="md-prot">28g prot</span></div>
+                <div class="md-benefit">Doble fuente de proteína con índice glucémico bajo</div>
+              </button>
+            </div>
+          </div>
+          <div class="menu-dia">
+            <div class="md-head"><div class="md-dia">Jueves</div><div class="md-estado pendiente" id="estado-0-3">Pendiente</div></div>
+            <div class="md-opciones">
+              <button class="md-opcion" onclick="selDia(this,0,3)">
+                <div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div>
+                <div class="md-opcion-name">Pollo a la mostaza con brócoli al vapor</div>
+                <div class="md-opcion-meta"><span class="md-cal">360 kcal</span><span class="md-prot">32g prot</span></div>
+                <div class="md-benefit">Vitamina C del brócoli potencia absorción de proteína</div>
+              </button>
+              <button class="md-opcion" onclick="selDia(this,0,3)">
+                <div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div>
+                <div class="md-opcion-name">Bowl mediterráneo de pollo con pasta</div>
+                <div class="md-opcion-meta"><span class="md-cal">420 kcal</span><span class="md-prot">30g prot</span></div>
+                <div class="md-benefit">Carbohidratos complejos para recuperación muscular</div>
+              </button>
+            </div>
+          </div>
+          <div class="menu-dia">
+            <div class="md-head"><div class="md-dia">Viernes</div><div class="md-estado pendiente" id="estado-0-4">Pendiente</div></div>
+            <div class="md-opciones">
+              <button class="md-opcion" onclick="selDia(this,0,4)">
+                <div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div>
+                <div class="md-opcion-name">Salmón al horno con camote y ejotes</div>
+                <div class="md-opcion-meta"><span class="md-cal">430 kcal</span><span class="md-prot">36g prot</span></div>
+                <div class="md-benefit">Omega-3 + betacarotenos para piel y sistema inmune</div>
+              </button>
+              <button class="md-opcion" onclick="selDia(this,0,4)">
+                <div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div>
+                <div class="md-opcion-name">Pollo al limón con quinoa y ejotes</div>
+                <div class="md-opcion-meta"><span class="md-cal">380 kcal</span><span class="md-prot">33g prot</span></div>
+                <div class="md-benefit">Proteína completa y fibra para cerrar la semana fuerte</div>
+              </button>
+            </div>
+          </div>
         </div>
-        <div class="menu-auto-nota">Si no completas tu selección antes del <strong>miércoles 8 PM</strong>, se asigna automáticamente la primera opción de cada día.</div>
       </div>
 
       <!-- ── PANEL 1 — ANA ── -->
@@ -289,24 +354,100 @@ body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--dark);mi
           <div class="nc-body">
             <div class="nc-name">Nut. Ana Torres</div>
             <div class="nc-spec">Nutrición balanceada con enfoque mediterráneo y bajo índice glucémico</div>
-            <div class="nc-tags"><span class="nc-tag">Mediterráneo</span><span class="nc-tag">Bajo IG</span><span class="nc-tag">Anti-inflamatorio</span></div>
           </div>
-          <div class="nc-right">
-            <div class="nc-rating">⭐ 4.8</div>
-            <button class="nc-sel-btn" onclick="selectNutri(1,'Ana Torres',this)">Elegir esta nutrióloga</button>
+          <div class="nc-rating">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="#F5A623"><path d="M7 1l1.8 3.6L13 5.3l-3 2.9.7 4.1L7 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg>
+            4.8
           </div>
         </div>
-        <div class="menu-section-label">Menú de la semana · 31 mar – 4 abr</div>
-        <div class="menu-nota"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#085041" stroke-width="1.3" stroke-linecap="round"><circle cx="7" cy="7" r="5.5"/><path d="M7 4.5v3l1.5 1.5"/></svg>Elige 1 platillo por día · corte <strong>miércoles 8 PM</strong></div>
-        <div class="menu-progress"><div class="mp-label">Tu selección:</div><div class="mp-dias" id="prog-1"><div class="mp-dia"></div><div class="mp-dia"></div><div class="mp-dia"></div><div class="mp-dia"></div><div class="mp-dia"></div></div></div>
+
         <div class="menu-dias" data-nutri="1">
-          <div class="menu-dia"><div class="md-head"><div class="md-dia">Lunes</div><div class="md-estado pendiente" id="estado-1-0">Pendiente</div></div><div class="md-opciones"><button class="md-opcion" onclick="selDia(this,1,0)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Ensalada mediterránea de pollo y aceitunas</div><div class="md-opcion-meta"><span class="md-cal">350 kcal</span><span class="md-prot">28g prot</span></div></button><button class="md-opcion" onclick="selDia(this,1,0)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Pechuga al horno con berenjenas y tomate</div><div class="md-opcion-meta"><span class="md-cal">340 kcal</span><span class="md-prot">32g prot</span></div></button></div></div>
-          <div class="menu-dia"><div class="md-head"><div class="md-dia">Martes</div><div class="md-estado pendiente" id="estado-1-1">Pendiente</div></div><div class="md-opciones"><button class="md-opcion" onclick="selDia(this,1,1)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Salmón con quinoa y espárragos al vapor</div><div class="md-opcion-meta"><span class="md-cal">410 kcal</span><span class="md-prot">36g prot</span></div></button><button class="md-opcion" onclick="selDia(this,1,1)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Hummus de garbanzo con falafel al horno</div><div class="md-opcion-meta"><span class="md-cal">390 kcal</span><span class="md-prot">18g prot</span></div></button></div></div>
-          <div class="menu-dia"><div class="md-head"><div class="md-dia">Miércoles</div><div class="md-estado pendiente" id="estado-1-2">Pendiente</div></div><div class="md-opciones"><button class="md-opcion" onclick="selDia(this,1,2)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Bowl griego de res con tzatziki ligero</div><div class="md-opcion-meta"><span class="md-cal">400 kcal</span><span class="md-prot">30g prot</span></div></button><button class="md-opcion" onclick="selDia(this,1,2)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Pasta integral con atún y alcaparras</div><div class="md-opcion-meta"><span class="md-cal">380 kcal</span><span class="md-prot">26g prot</span></div></button></div></div>
-          <div class="menu-dia"><div class="md-head"><div class="md-dia">Jueves</div><div class="md-estado pendiente" id="estado-1-3">Pendiente</div></div><div class="md-opciones"><button class="md-opcion" onclick="selDia(this,1,3)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Pollo con cúrcuma, garbanzo y espinaca</div><div class="md-opcion-meta"><span class="md-cal">370 kcal</span><span class="md-prot">32g prot</span></div></button><button class="md-opcion" onclick="selDia(this,1,3)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Atún sellado con verduras al vapor y limón</div><div class="md-opcion-meta"><span class="md-cal">330 kcal</span><span class="md-prot">34g prot</span></div></button></div></div>
-          <div class="menu-dia"><div class="md-head"><div class="md-dia">Viernes</div><div class="md-estado pendiente" id="estado-1-4">Pendiente</div></div><div class="md-opciones"><button class="md-opcion" onclick="selDia(this,1,4)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Bowl de lentejas con verduras asadas</div><div class="md-opcion-meta"><span class="md-cal">360 kcal</span><span class="md-prot">22g prot</span></div></button><button class="md-opcion" onclick="selDia(this,1,4)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Salmón mediterráneo con puré de betabel</div><div class="md-opcion-meta"><span class="md-cal">420 kcal</span><span class="md-prot">35g prot</span></div></button></div></div>
+          <div class="menu-dia">
+            <div class="md-head"><div class="md-dia">Lunes</div><div class="md-estado pendiente" id="estado-1-0">Pendiente</div></div>
+            <div class="md-opciones">
+              <button class="md-opcion" onclick="selDia(this,1,0)">
+                <div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div>
+                <div class="md-opcion-name">Ensalada mediterránea de pollo y aceitunas</div>
+                <div class="md-opcion-meta"><span class="md-cal">350 kcal</span><span class="md-prot">28g prot</span></div>
+                <div class="md-benefit">Grasas monoinsaturadas que cuidan el corazón</div>
+              </button>
+              <button class="md-opcion" onclick="selDia(this,1,0)">
+                <div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div>
+                <div class="md-opcion-name">Pechuga al horno con berenjenas y tomate</div>
+                <div class="md-opcion-meta"><span class="md-cal">340 kcal</span><span class="md-prot">32g prot</span></div>
+                <div class="md-benefit">Licopeno del tomate con efecto antioxidante</div>
+              </button>
+            </div>
+          </div>
+          <div class="menu-dia">
+            <div class="md-head"><div class="md-dia">Martes</div><div class="md-estado pendiente" id="estado-1-1">Pendiente</div></div>
+            <div class="md-opciones">
+              <button class="md-opcion" onclick="selDia(this,1,1)">
+                <div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div>
+                <div class="md-opcion-name">Salmón con quinoa y espárragos al vapor</div>
+                <div class="md-opcion-meta"><span class="md-cal">410 kcal</span><span class="md-prot">36g prot</span></div>
+                <div class="md-benefit">Omega-3 + folato para cerebro y sistema nervioso</div>
+              </button>
+              <button class="md-opcion" onclick="selDia(this,1,1)">
+                <div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div>
+                <div class="md-opcion-name">Hummus de garbanzo con falafel al horno</div>
+                <div class="md-opcion-meta"><span class="md-cal">390 kcal</span><span class="md-prot">18g prot</span></div>
+                <div class="md-benefit">Proteína vegetal y fibra con índice glucémico bajo</div>
+              </button>
+            </div>
+          </div>
+          <div class="menu-dia">
+            <div class="md-head"><div class="md-dia">Miércoles</div><div class="md-estado pendiente" id="estado-1-2">Pendiente</div></div>
+            <div class="md-opciones">
+              <button class="md-opcion" onclick="selDia(this,1,2)">
+                <div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div>
+                <div class="md-opcion-name">Bowl griego de res con tzatziki ligero</div>
+                <div class="md-opcion-meta"><span class="md-cal">400 kcal</span><span class="md-prot">30g prot</span></div>
+                <div class="md-benefit">Probióticos del yogur para microbiota intestinal</div>
+              </button>
+              <button class="md-opcion" onclick="selDia(this,1,2)">
+                <div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div>
+                <div class="md-opcion-name">Pasta integral con atún y alcaparras</div>
+                <div class="md-opcion-meta"><span class="md-cal">380 kcal</span><span class="md-prot">26g prot</span></div>
+                <div class="md-benefit">Fibra de grano entero y omega-3 antiinflamatorio</div>
+              </button>
+            </div>
+          </div>
+          <div class="menu-dia">
+            <div class="md-head"><div class="md-dia">Jueves</div><div class="md-estado pendiente" id="estado-1-3">Pendiente</div></div>
+            <div class="md-opciones">
+              <button class="md-opcion" onclick="selDia(this,1,3)">
+                <div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div>
+                <div class="md-opcion-name">Pollo con cúrcuma, garbanzo y espinaca</div>
+                <div class="md-opcion-meta"><span class="md-cal">370 kcal</span><span class="md-prot">32g prot</span></div>
+                <div class="md-benefit">Curcumina potente antiinflamatorio natural</div>
+              </button>
+              <button class="md-opcion" onclick="selDia(this,1,3)">
+                <div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div>
+                <div class="md-opcion-name">Atún sellado con verduras al vapor y limón</div>
+                <div class="md-opcion-meta"><span class="md-cal">330 kcal</span><span class="md-prot">34g prot</span></div>
+                <div class="md-benefit">Muy bajo en calorías y alto en proteína magra</div>
+              </button>
+            </div>
+          </div>
+          <div class="menu-dia">
+            <div class="md-head"><div class="md-dia">Viernes</div><div class="md-estado pendiente" id="estado-1-4">Pendiente</div></div>
+            <div class="md-opciones">
+              <button class="md-opcion" onclick="selDia(this,1,4)">
+                <div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div>
+                <div class="md-opcion-name">Bowl de lentejas con verduras asadas</div>
+                <div class="md-opcion-meta"><span class="md-cal">360 kcal</span><span class="md-prot">22g prot</span></div>
+                <div class="md-benefit">Hierro vegetal y fibra soluble para colesterol</div>
+              </button>
+              <button class="md-opcion" onclick="selDia(this,1,4)">
+                <div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div>
+                <div class="md-opcion-name">Salmón mediterráneo con puré de betabel</div>
+                <div class="md-opcion-meta"><span class="md-cal">420 kcal</span><span class="md-prot">35g prot</span></div>
+                <div class="md-benefit">Nitratos del betabel mejoran flujo sanguíneo</div>
+              </button>
+            </div>
+          </div>
         </div>
-        <div class="menu-auto-nota">Si no completas tu selección antes del <strong>miércoles 8 PM</strong>, se asigna automáticamente la primera opción de cada día.</div>
       </div>
 
       <!-- ── PANEL 2 — LAURA ── -->
@@ -316,24 +457,100 @@ body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--dark);mi
           <div class="nc-body">
             <div class="nc-name">Nut. Laura Mendoza</div>
             <div class="nc-spec">Nutrición familiar con platillos reconfortantes, alta fibra y verduras creativas</div>
-            <div class="nc-tags"><span class="nc-tag">Alta fibra</span><span class="nc-tag">Reconfortante</span><span class="nc-tag">Verduras creativas</span></div>
           </div>
-          <div class="nc-right">
-            <div class="nc-rating">⭐ 4.7</div>
-            <button class="nc-sel-btn" onclick="selectNutri(2,'Laura Mendoza',this)">Elegir esta nutrióloga</button>
+          <div class="nc-rating">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="#F5A623"><path d="M7 1l1.8 3.6L13 5.3l-3 2.9.7 4.1L7 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg>
+            4.7
           </div>
         </div>
-        <div class="menu-section-label">Menú de la semana · 31 mar – 4 abr</div>
-        <div class="menu-nota"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#085041" stroke-width="1.3" stroke-linecap="round"><circle cx="7" cy="7" r="5.5"/><path d="M7 4.5v3l1.5 1.5"/></svg>Elige 1 platillo por día · corte <strong>miércoles 8 PM</strong></div>
-        <div class="menu-progress"><div class="mp-label">Tu selección:</div><div class="mp-dias" id="prog-2"><div class="mp-dia"></div><div class="mp-dia"></div><div class="mp-dia"></div><div class="mp-dia"></div><div class="mp-dia"></div></div></div>
+
         <div class="menu-dias" data-nutri="2">
-          <div class="menu-dia"><div class="md-head"><div class="md-dia">Lunes</div><div class="md-estado pendiente" id="estado-2-0">Pendiente</div></div><div class="md-opciones"><button class="md-opcion" onclick="selDia(this,2,0)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Crema de zanahoria con pollo desmenuzado</div><div class="md-opcion-meta"><span class="md-cal">340 kcal</span><span class="md-prot">28g prot</span></div></button><button class="md-opcion" onclick="selDia(this,2,0)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Arroz con pollo y chícharos al vapor</div><div class="md-opcion-meta"><span class="md-cal">380 kcal</span><span class="md-prot">30g prot</span></div></button></div></div>
-          <div class="menu-dia"><div class="md-head"><div class="md-dia">Martes</div><div class="md-estado pendiente" id="estado-2-1">Pendiente</div></div><div class="md-opciones"><button class="md-opcion" onclick="selDia(this,2,1)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Albóndigas de res en salsa de jitomate</div><div class="md-opcion-meta"><span class="md-cal">400 kcal</span><span class="md-prot">30g prot</span></div></button><button class="md-opcion" onclick="selDia(this,2,1)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Pechuga rellena de espinaca y queso panela</div><div class="md-opcion-meta"><span class="md-cal">360 kcal</span><span class="md-prot">34g prot</span></div></button></div></div>
-          <div class="menu-dia"><div class="md-head"><div class="md-dia">Miércoles</div><div class="md-estado pendiente" id="estado-2-2">Pendiente</div></div><div class="md-opciones"><button class="md-opcion" onclick="selDia(this,2,2)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Sopa de verduras con pasta integral y pollo</div><div class="md-opcion-meta"><span class="md-cal">350 kcal</span><span class="md-prot">26g prot</span></div></button><button class="md-opcion" onclick="selDia(this,2,2)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Atún al horno con coliflor gratinada light</div><div class="md-opcion-meta"><span class="md-cal">330 kcal</span><span class="md-prot">30g prot</span></div></button></div></div>
-          <div class="menu-dia"><div class="md-head"><div class="md-dia">Jueves</div><div class="md-estado pendiente" id="estado-2-3">Pendiente</div></div><div class="md-opciones"><button class="md-opcion" onclick="selDia(this,2,3)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Estofado de res con camote y zanahorias</div><div class="md-opcion-meta"><span class="md-cal">410 kcal</span><span class="md-prot">28g prot</span></div></button><button class="md-opcion" onclick="selDia(this,2,3)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Pollo con salsa de pimiento rojo y arroz</div><div class="md-opcion-meta"><span class="md-cal">370 kcal</span><span class="md-prot">32g prot</span></div></button></div></div>
-          <div class="menu-dia"><div class="md-head"><div class="md-dia">Viernes</div><div class="md-estado pendiente" id="estado-2-4">Pendiente</div></div><div class="md-opciones"><button class="md-opcion" onclick="selDia(this,2,4)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Chilaquiles verdes con pechuga y crema light</div><div class="md-opcion-meta"><span class="md-cal">390 kcal</span><span class="md-prot">28g prot</span></div></button><button class="md-opcion" onclick="selDia(this,2,4)"><div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div><div class="md-opcion-name">Res a la mexicana con frijoles y arroz integral</div><div class="md-opcion-meta"><span class="md-cal">420 kcal</span><span class="md-prot">30g prot</span></div></button></div></div>
+          <div class="menu-dia">
+            <div class="md-head"><div class="md-dia">Lunes</div><div class="md-estado pendiente" id="estado-2-0">Pendiente</div></div>
+            <div class="md-opciones">
+              <button class="md-opcion" onclick="selDia(this,2,0)">
+                <div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div>
+                <div class="md-opcion-name">Crema de zanahoria con pollo desmenuzado</div>
+                <div class="md-opcion-meta"><span class="md-cal">340 kcal</span><span class="md-prot">28g prot</span></div>
+                <div class="md-benefit">Betacaroteno protege la visión y el sistema inmune</div>
+              </button>
+              <button class="md-opcion" onclick="selDia(this,2,0)">
+                <div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div>
+                <div class="md-opcion-name">Arroz con pollo y chícharos al vapor</div>
+                <div class="md-opcion-meta"><span class="md-cal">380 kcal</span><span class="md-prot">30g prot</span></div>
+                <div class="md-benefit">Combinación clásica con energía balanceada y fácil de digerir</div>
+              </button>
+            </div>
+          </div>
+          <div class="menu-dia">
+            <div class="md-head"><div class="md-dia">Martes</div><div class="md-estado pendiente" id="estado-2-1">Pendiente</div></div>
+            <div class="md-opciones">
+              <button class="md-opcion" onclick="selDia(this,2,1)">
+                <div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div>
+                <div class="md-opcion-name">Albóndigas de res en salsa de jitomate</div>
+                <div class="md-opcion-meta"><span class="md-cal">400 kcal</span><span class="md-prot">30g prot</span></div>
+                <div class="md-benefit">Licopeno del jitomate y hierro de la res</div>
+              </button>
+              <button class="md-opcion" onclick="selDia(this,2,1)">
+                <div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div>
+                <div class="md-opcion-name">Pechuga rellena de espinaca y queso panela</div>
+                <div class="md-opcion-meta"><span class="md-cal">360 kcal</span><span class="md-prot">34g prot</span></div>
+                <div class="md-benefit">Calcio y hierro en una combinación alta en proteína</div>
+              </button>
+            </div>
+          </div>
+          <div class="menu-dia">
+            <div class="md-head"><div class="md-dia">Miércoles</div><div class="md-estado pendiente" id="estado-2-2">Pendiente</div></div>
+            <div class="md-opciones">
+              <button class="md-opcion" onclick="selDia(this,2,2)">
+                <div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div>
+                <div class="md-opcion-name">Sopa de verduras con pasta integral y pollo</div>
+                <div class="md-opcion-meta"><span class="md-cal">350 kcal</span><span class="md-prot">26g prot</span></div>
+                <div class="md-benefit">Rica en fibra y micronutrientes para el día más ocupado</div>
+              </button>
+              <button class="md-opcion" onclick="selDia(this,2,2)">
+                <div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div>
+                <div class="md-opcion-name">Atún al horno con coliflor gratinada light</div>
+                <div class="md-opcion-meta"><span class="md-cal">330 kcal</span><span class="md-prot">30g prot</span></div>
+                <div class="md-benefit">Glucosinolatos de la coliflor con efecto protector</div>
+              </button>
+            </div>
+          </div>
+          <div class="menu-dia">
+            <div class="md-head"><div class="md-dia">Jueves</div><div class="md-estado pendiente" id="estado-2-3">Pendiente</div></div>
+            <div class="md-opciones">
+              <button class="md-opcion" onclick="selDia(this,2,3)">
+                <div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div>
+                <div class="md-opcion-name">Estofado de res con camote y zanahorias</div>
+                <div class="md-opcion-meta"><span class="md-cal">410 kcal</span><span class="md-prot">28g prot</span></div>
+                <div class="md-benefit">Reconfortante, alto en fibra y rico en vitamina A</div>
+              </button>
+              <button class="md-opcion" onclick="selDia(this,2,3)">
+                <div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div>
+                <div class="md-opcion-name">Pollo con salsa de pimiento rojo y arroz</div>
+                <div class="md-opcion-meta"><span class="md-cal">370 kcal</span><span class="md-prot">32g prot</span></div>
+                <div class="md-benefit">Vitamina C del pimiento potencia absorción de hierro</div>
+              </button>
+            </div>
+          </div>
+          <div class="menu-dia">
+            <div class="md-head"><div class="md-dia">Viernes</div><div class="md-estado pendiente" id="estado-2-4">Pendiente</div></div>
+            <div class="md-opciones">
+              <button class="md-opcion" onclick="selDia(this,2,4)">
+                <div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div>
+                <div class="md-opcion-name">Chilaquiles verdes con pechuga y crema light</div>
+                <div class="md-opcion-meta"><span class="md-cal">390 kcal</span><span class="md-prot">28g prot</span></div>
+                <div class="md-benefit">Probióticos del chile verde fermentado y proteína magra</div>
+              </button>
+              <button class="md-opcion" onclick="selDia(this,2,4)">
+                <div class="md-opcion-check"><div class="md-opcion-check-inner"></div></div>
+                <div class="md-opcion-name">Res a la mexicana con frijoles y arroz integral</div>
+                <div class="md-opcion-meta"><span class="md-cal">420 kcal</span><span class="md-prot">30g prot</span></div>
+                <div class="md-benefit">Proteína completa: frijoles + res con fibra de grano entero</div>
+              </button>
+            </div>
+          </div>
         </div>
-        <div class="menu-auto-nota">Si no completas tu selección antes del <strong>miércoles 8 PM</strong>, se asigna automáticamente la primera opción de cada día.</div>
       </div>
 
       <!-- CTA -->
@@ -395,27 +612,11 @@ function switchNutri(idx, btn) {
   document.getElementById('panel-' + idx).classList.add('active');
 }
 
-function selectNutri(idx, name, btn) {
-  document.querySelectorAll('.nutri-card-header').forEach(h => h.classList.remove('selected'));
-  document.querySelectorAll('.nc-sel-btn').forEach(b => b.textContent = 'Elegir esta nutrióloga');
-  document.getElementById('header-' + idx).classList.add('selected');
-  btn.textContent = '✓ Seleccionada';
-  document.querySelectorAll('.ntab')[idx].click();
-  showToast('Nut. ' + name + ' seleccionada ✓');
-}
-
 function selDia(btn, nutriIdx, diaIdx) {
   btn.closest('.md-opciones').querySelectorAll('.md-opcion').forEach(o => o.classList.remove('sel'));
   btn.classList.add('sel');
   const est = document.getElementById('estado-' + nutriIdx + '-' + diaIdx);
   if (est) { est.textContent = '✓ Elegido'; est.className = 'md-estado elegido'; }
-  updateProgress(nutriIdx);
-}
-
-function updateProgress(idx) {
-  const dias = document.querySelectorAll('[data-nutri="' + idx + '"] .menu-dia');
-  const bars = document.querySelectorAll('#prog-' + idx + ' .mp-dia');
-  dias.forEach((d, i) => { if (bars[i]) bars[i].classList.toggle('ok', !!d.querySelector('.md-opcion.sel')); });
 }
 
 function showToast(msg) {
@@ -423,8 +624,6 @@ function showToast(msg) {
   t.textContent = msg; t.style.opacity = 1;
   setTimeout(() => t.style.opacity = 0, 2400);
 }
-
-updateProgress(0);
 </script>
 </body>
 </html>
