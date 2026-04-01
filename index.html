@@ -28,10 +28,43 @@ h1 em{color:var(--g);font-style:italic}
 .btns{background:transparent;color:var(--dark);padding:14px 24px;border-radius:100px;font-size:15px;border:1.5px solid rgba(0,0,0,.2);cursor:pointer;text-decoration:none;display:inline-block}
 .hnote{font-size:13px;color:var(--light);margin-top:20px}
 .hright{background:var(--gl);min-height:100%;display:flex;align-items:center;justify-content:center;padding:60px 40px}
-.phone{width:260px;background:#fff;border-radius:32px;border:8px solid var(--dark);overflow:hidden}
-.phonebar{background:var(--dark);height:28px;display:flex;align-items:center;justify-content:center}
+.phone{width:300px;background:#fff;border-radius:40px;border:8px solid var(--dark);overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.18)}
+.phonebar{background:var(--dark);height:32px;display:flex;align-items:center;justify-content:center}
 .phonedot{width:8px;height:8px;border-radius:50%;background:var(--off);opacity:.3}
-.phonescreen{padding:20px}
+.phonescreen{padding:24px}
+
+/* ── RESPONSIVE MOBILE ── */
+@media(max-width:768px){
+  nav{padding:16px 20px}
+  section[style*="grid-template-columns:1fr 1fr"]{display:flex!important;flex-direction:column!important;min-height:auto!important;padding:0!important}
+  section[style*="grid-template-columns:1fr 1fr"] > div:first-child{padding:40px 20px 32px!important}
+  h1{font-size:38px!important}
+  .hsub{font-size:15px!important}
+  .hright{padding:32px 20px 48px!important;min-height:auto!important}
+  .phone{width:260px}
+  section.how{padding:48px 20px}
+  .steps{grid-template-columns:1fr!important;gap:16px}
+  section.menu-sec{padding:48px 20px}
+  .mtop{flex-direction:column;align-items:flex-start}
+  .mtopleft h2{font-size:28px}
+  .dshow{grid-template-columns:1fr!important;border-radius:16px}
+  .dvis{min-height:240px!important;padding:24px!important}
+  .dvname{font-size:20px!important}
+  .dinfo{padding:20px!important}
+  .nrow{grid-template-columns:repeat(5,1fr);gap:4px}
+  .ctastrip{padding:20px;flex-direction:column;align-items:flex-start;gap:12px}
+  section.plans{padding:48px 20px}
+  .pgrid{grid-template-columns:1fr!important}
+  section#registro{padding:48px 20px!important}
+  section#registro > div{max-width:100%!important}
+  section#registro div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}
+  section[style*="background:var(--dark)"]{padding:48px 20px!important}
+  section[style*="background:var(--dark)"] > div{grid-template-columns:1fr!important;gap:40px!important}
+  section[style*="background:var(--dark)"] > div > div:first-child{position:static!important}
+  footer{flex-direction:column;gap:16px;padding:32px 20px;text-align:center}
+  .flinks{flex-wrap:wrap;justify-content:center;gap:12px}
+  .stit{font-size:28px!important;margin-bottom:32px!important}
+}
 .psh{font-size:11px;color:var(--g);font-weight:500;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
 .pst{font-family:'DM Serif Display',serif;font-size:18px;color:var(--dark);margin-bottom:4px}
 .pss{font-size:12px;color:var(--mid);margin-bottom:16px}
@@ -171,7 +204,7 @@ footer{padding:40px 48px;background:var(--dark);display:flex;justify-content:spa
 <nav>
   <a class="logo" href="index.html">Nutri<span>Palm</span></a>
   <div class="navlinks">
-    <a href="registro.html" class="btnnav">Registrarme</a>
+    <a href="#registro" class="btnnav" style="color:#fff">Registrarme</a>
   </div>
 </nav>
 
@@ -189,17 +222,30 @@ footer{padding:40px 48px;background:var(--dark);display:flex;justify-content:spa
     <div class="phone">
       <div class="phonebar"><div class="phonedot"></div></div>
       <div class="phonescreen">
-        <div class="psh">Semana del 3–7 Feb</div>
-        <div class="pst">Tu menú</div>
-        <div class="pss">Elige antes del miércoles 8 PM</div>
-        <div class="psl">Esta semana</div>
-        <div class="psd sel"><div><div class="psdn">Lunes</div><div class="psdsh">Pollo al limón con quinoa</div></div><div class="psc"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4L3.5 6L6.5 2" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div></div>
-        <div class="psd sel"><div><div class="psdn">Martes</div><div class="psdsh">Salmón con puré de coliflor</div></div><div class="psc"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4L3.5 6L6.5 2" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div></div>
-        <div class="psd"><div><div class="psdn">Miércoles</div><div class="psdsh">Bowl de res con quinoa</div></div><div class="pse"></div></div>
-        <div class="psd"><div><div class="psdn">Jueves</div><div class="psdsh">Pollo a la mostaza</div></div><div class="pse"></div></div>
-        <div class="psd"><div><div class="psdn">Viernes</div><div class="psdsh">Bowl mediterráneo</div></div><div class="pse"></div></div>
-        <div class="psp"><div><div class="pspl">Plan Premium</div><div class="pspv">$650</div></div><div style="font-size:11px;color:rgba(255,255,255,.4)">esta semana</div></div>
-        <button class="psbtn">Confirmar selección</button>
+        <div class="psh">Comida saludable</div>
+        <div class="pst">Tu comida para la próxima semana.</div>
+        <div style="display:flex;flex-direction:column;gap:7px;margin-top:14px">
+          <div style="display:flex;align-items:center;gap:10px;background:var(--gl);border-radius:10px;padding:9px 11px">
+            <div style="font-size:22px;line-height:1">🍋</div>
+            <div><div style="font-size:10px;color:var(--gd);font-weight:600;text-transform:uppercase;letter-spacing:.06em">Lunes</div><div style="font-size:11px;color:var(--gd);margin-top:1px">Pollo al limón con quinoa</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;background:var(--gl);border-radius:10px;padding:9px 11px">
+            <div style="font-size:22px;line-height:1">🐟</div>
+            <div><div style="font-size:10px;color:var(--gd);font-weight:600;text-transform:uppercase;letter-spacing:.06em">Martes</div><div style="font-size:11px;color:var(--gd);margin-top:1px">Salmón con puré de coliflor</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;background:var(--off);border-radius:10px;padding:9px 11px">
+            <div style="font-size:22px;line-height:1">🥩</div>
+            <div><div style="font-size:10px;color:var(--mid);font-weight:600;text-transform:uppercase;letter-spacing:.06em">Miércoles</div><div style="font-size:11px;color:var(--mid);margin-top:1px">Bowl de res con quinoa</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;background:var(--off);border-radius:10px;padding:9px 11px">
+            <div style="font-size:22px;line-height:1">🍗</div>
+            <div><div style="font-size:10px;color:var(--mid);font-weight:600;text-transform:uppercase;letter-spacing:.06em">Jueves</div><div style="font-size:11px;color:var(--mid);margin-top:1px">Pollo a la mostaza</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;background:var(--off);border-radius:10px;padding:9px 11px">
+            <div style="font-size:22px;line-height:1">🫙</div>
+            <div><div style="font-size:10px;color:var(--mid);font-weight:600;text-transform:uppercase;letter-spacing:.06em">Viernes</div><div style="font-size:11px;color:var(--mid);margin-top:1px">Bowl mediterráneo</div></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -237,13 +283,13 @@ footer{padding:40px 48px;background:var(--dark);display:flex;justify-content:spa
   <div class="ctasl">¿Te antojó? <span>Regístrate esta semana.</span></div>
   <div style="display:flex;gap:12px;align-items:center">
     <div style="font-size:13px;color:rgba(255,255,255,.4)">Desde $550/semana</div>
-    <a href="registro.html" class="ctabtn">Registrarme</a>
+    <a href="#registro" class="ctabtn">Registrarme</a>
   </div>
 </div>
 
 <section class="plans" id="planes">
   <div class="seye">Nutriólogas disponibles</div>
-  <div class="stit">Cada una,<br>su propio <em style="color:var(--g);font-style:italic">menú y precio.</em></div>
+  <div class="stit">Elige la nutrióloga<br>que cocina para ti.</div>
   <p style="font-size:15px;color:var(--mid);line-height:1.7;max-width:580px;margin-bottom:56px;font-weight:300">Estas son las nutriólogas activas en la plataforma. Compara sus menús, estilo de cocina y precio — y elige la que más se alinee con lo que buscas.</p>
 
   <div class="pgrid">
@@ -270,7 +316,7 @@ footer{padding:40px 48px;background:var(--dark);display:flex;justify-content:spa
       <div class="pf">Técnica: al vapor y al horno</div>
       <div class="pf">Sin glutamato monosódico</div>
       <div class="pf">Índice glucémico bajo–moderado</div>
-      <a href="#registro" class="pcta ltbtn">Elegir a Valeria</a>
+      <a href="#registro" onclick="selNut('valeria')" class="pcta ltbtn">Elegir a Valeria</a>
     </div>
 
     <!-- Nutrióloga 2: Sofía Garza -->
@@ -295,7 +341,7 @@ footer{padding:40px 48px;background:var(--dark);display:flex;justify-content:spa
       <div class="pf">Técnica: salteado ligero y horno</div>
       <div class="pf">Superalimentos en cada platillo</div>
       <div class="pf">Enfoque en control de glucosa</div>
-      <a href="#registro" class="pcta ltbtn">Elegir a Sofía</a>
+      <a href="#registro" onclick="selNut('sofia')" class="pcta ltbtn">Elegir a Sofía</a>
     </div>
 
     <!-- Nutrióloga 3: Mariana Reyes -->
@@ -320,7 +366,7 @@ footer{padding:40px 48px;background:var(--dark);display:flex;justify-content:spa
       <div class="pf">Porciones más grandes (+150g proteína)</div>
       <div class="pf">Ideal para entrenamiento intenso</div>
       <div class="pf" style="color:var(--g);font-weight:500">Lista de espera — cupo lleno</div>
-      <a href="#registro" class="pcta ltbtn" style="background:var(--off);color:var(--mid)">Unirse a lista de espera</a>
+      <a href="#registro" onclick="selNut('mariana')" class="pcta ltbtn" style="background:var(--off);color:var(--mid)">Unirse a lista de espera</a>
     </div>
 
   </div>
@@ -359,10 +405,10 @@ footer{padding:40px 48px;background:var(--dark);display:flex;justify-content:spa
     <div style="margin-bottom:16px">
       <label style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--gd);display:block;margin-bottom:8px">Nutrióloga seleccionada</label>
       <select id="sel-nut" style="width:100%;background:#fff;border:1.5px solid rgba(8,80,65,.2);border-radius:12px;padding:14px 16px;font-size:15px;color:var(--dark);font-family:'DM Sans',sans-serif;outline:none;-webkit-appearance:none;appearance:none;cursor:pointer" onfocus="this.style.borderColor='var(--g)'" onblur="this.style.borderColor='rgba(8,80,65,.2)'">
-        <option value="">Ya decido después — muéstrame el menú</option>
-        <option value="valeria">Valeria Montoya · Cocina mediterránea · $520/sem</option>
-        <option value="sofia">Sofía Garza · Cocina funcional · $590/sem</option>
-        <option value="mariana">Mariana Reyes · Alto en proteína · $640/sem (lista de espera)</option>
+        <option value="">Decidiré después</option>
+        <option value="valeria">Valeria Montoya · Cocina mediterránea</option>
+        <option value="sofia">Sofía Garza · Cocina funcional</option>
+        <option value="mariana">Mariana Reyes · Alto en proteína (lista de espera)</option>
       </select>
       <p style="font-size:12px;color:var(--gd);opacity:.6;margin-top:8px">Puedes cambiar de nutrióloga en cualquier momento desde tu cuenta, sin cancelar.</p>
     </div>
@@ -381,7 +427,7 @@ footer{padding:40px 48px;background:var(--dark);display:flex;justify-content:spa
     </div>
 
     <button onclick="submitReg(this)" style="width:100%;background:var(--gd);color:#fff;border:none;border-radius:100px;padding:16px;font-size:16px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:opacity .2s" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
-      Ver menú de la semana →
+      Registrarme →
     </button>
     <p style="font-size:12px;color:var(--gd);opacity:.5;text-align:center;margin-top:16px">Sin contratos. Sin cobros sorpresa. Cancela cuando quieras.</p>
   </div>
@@ -394,8 +440,8 @@ footer{padding:40px 48px;background:var(--dark);display:flex;justify-content:spa
   <div style="display:grid;grid-template-columns:1fr 1.6fr;gap:80px;align-items:start">
     <div style="position:sticky;top:120px">
       <div style="font-size:12px;color:var(--gm);text-transform:uppercase;letter-spacing:.1em;font-weight:500;margin-bottom:16px">Preguntas frecuentes</div>
-      <h2 style="font-family:'DM Serif Display',serif;font-size:44px;color:#fff;line-height:1.05;margin-bottom:16px">Todo lo que<br><em style="color:var(--gm)">quieres<br>saber.</em></h2>
-      <p style="font-size:14px;color:rgba(255,255,255,.4);line-height:1.7;margin-bottom:32px">Si tu pregunta no está aquí, te respondemos por WhatsApp.</p>
+      <h2 style="font-family:'DM Serif Display',serif;font-size:44px;color:#fff;line-height:1.05;margin-bottom:16px">Tus dudas,<br><em style="color:var(--gm)">resueltas.</em></h2>
+      <p style="font-size:14px;color:rgba(255,255,255,.4);line-height:1.7;margin-bottom:32px">Si tu pregunta no está aquí, regístrate y te contactaremos para darte más información y resolver tus dudas.</p>
       <a href="#registro" style="display:inline-flex;align-items:center;gap:8px;background:var(--g);color:#fff;padding:12px 24px;border-radius:100px;font-size:14px;font-weight:500;text-decoration:none">Registrarme ahora →</a>
     </div>
     <div id="faq-list">
@@ -458,6 +504,10 @@ function toggleFaq(i,btn){
   }
 }
 
+function selNut(val){
+  const sel=document.getElementById('sel-nut');
+  if(sel) sel.value=val;
+}
 function submitReg(btn){
   btn.textContent='¡Listo! Te contactamos pronto 🎉';
   btn.style.background='var(--gm)';
