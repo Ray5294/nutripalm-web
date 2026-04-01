@@ -56,7 +56,7 @@ section.cta{padding:100px 48px;background:var(--off);text-align:center}
 .stit{font-family:'DM Serif Display',serif;font-size:38px;color:var(--dark);margin-bottom:48px;line-height:1.1}
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
 .step{padding:28px;background:var(--off);border-radius:16px}
-.stepn{font-family:'DM Serif Display',serif;font-size:40px;color:var(--gl);font-style:italic;margin-bottom:12px;line-height:1}
+.stepn{font-family:'DM Serif Display',serif;font-size:40px;color:var(--gm);font-style:italic;margin-bottom:12px;line-height:1}
 .steptit{font-size:15px;font-weight:500;margin-bottom:8px}
 .stepdesc{font-size:13px;color:var(--mid);line-height:1.6}
 .steptag{display:inline-block;margin-top:12px;font-size:11px;color:var(--g);background:var(--gl);padding:3px 10px;border-radius:100px}
@@ -171,25 +171,19 @@ footer{padding:40px 48px;background:var(--dark);display:flex;justify-content:spa
 <nav>
   <a class="logo" href="index.html">Nutri<span>Palm</span></a>
   <div class="navlinks">
-    <a href="#how">Cómo funciona</a>
-    <a href="#menu">Menú semanal</a>
-    <a href="#plans">Planes</a>
-    <a href="corporativo.html">Empresas</a>
-    <a href="#nutriologas">Tus nutriólogas</a>
-    <a href="cliente.html" class="btnnav">Suscribirme</a>
+    <a href="registro.html" class="btnnav">Registrarme</a>
   </div>
 </nav>
 
 <section style="display:grid;grid-template-columns:1fr 1fr;min-height:90vh;padding:0 48px;align-items:center">
   <div style="padding:60px 40px 60px 0">
-    <div class="eyebrow">Saltillo, Coahuila</div>
+    <div class="eyebrow">Comida saludable</div>
     <h1>Tu lonche<br><em>saludable</em>,<br>listo mañana.</h1>
-    <p class="hsub">Elige tu menú el miércoles. Recoge de camino a casa. Te vas a dormir con la lonchera lista — sin cocinar, sin improvisar.</p>
+    <p class="hsub">Elige tu menú el miércoles. Recoge de camino a casa tu comida del día siguiente. Te vas a dormir con la lonchera lista — sin cocinar, sin improvisar.</p>
     <div class="hactions">
-      <a href="cliente.html" class="btnp">Comenzar suscripción</a>
-      <a href="#how" class="btns">Ver cómo funciona</a>
+      <a href="#registro" class="btnp">Registrarme</a>
     </div>
-    <p class="hnote">Desde $550/semana · Diseñado por nutrióloga · Sin contratos largos</p>
+    <p class="hnote">Desde $550/semana · Diseñado por nutrióloga certificada · Sin contratos largos</p>
   </div>
   <div class="hright">
     <div class="phone">
@@ -213,12 +207,11 @@ footer{padding:40px 48px;background:var(--dark);display:flex;justify-content:spa
 
 <section class="how" id="how">
   <div class="seye">Así funciona</div>
-  <div class="stit">Sin complicaciones.<br>Sin sorpresas.</div>
-  <div class="steps">
-    <div class="step"><div class="stepn">01</div><div class="steptit">Elige los miércoles</div><div class="stepdesc">Cada semana elige 2 opciones por día antes de las 8 PM. Una decisión para toda la semana.</div><span class="steptag">1 decisión/semana</span></div>
-    <div class="step"><div class="stepn">02</div><div class="steptit">Lo prepara una nutrióloga</div><div class="stepdesc">Menús diseñados por una profesional certificada. Comida real, balanceada, sin rellenos.</div><span class="steptag">Profesional aliada</span></div>
-    <div class="step"><div class="stepn">03</div><div class="steptit">Recoge en la tarde</div><div class="stepdesc">De 4 a 9 PM en Escápate Café. Tu comida etiquetada con tu nombre en el refrigerador.</div><span class="steptag">4–9 PM diario</span></div>
-    <div class="step"><div class="stepn">04</div><div class="steptit">Lonchera lista</div><div class="stepdesc">Guarda en tu lonchera esa noche. Al día siguiente al trabajo, calientas y comes.</div><span class="steptag">Listo para mañana</span></div>
+  <div class="stit">Decide qué quieres<br>comer cada semana.</div>
+  <div class="steps" style="grid-template-columns:repeat(3,1fr)">
+    <div class="step"><div class="stepn">01</div><div class="steptit">Elige tus platillos los miércoles</div><div class="stepdesc">Cada semana elige tu menú completo antes de las 8 PM. Una sola decisión que te cubre toda la semana.</div><span class="steptag">1 decisión/semana</span></div>
+    <div class="step"><div class="stepn">02</div><div class="steptit">Recoge tu comida del día siguiente</div><div class="stepdesc">De 4 a 9 PM en tu cafetería asignada. Tu comida etiquetada con tu nombre en el refrigerador, lista para llevar.</div><span class="steptag">4–9 PM diario</span></div>
+    <div class="step"><div class="stepn">03</div><div class="steptit">Come rico y saludable en el trabajo</div><div class="stepdesc">Guarda en tu lonchera esa noche. Al día siguiente lo calientas en el trabajo y comes sin improvisación.</div><span class="steptag">Listo para mañana</span></div>
   </div>
 </section>
 
@@ -228,7 +221,7 @@ footer{padding:40px 48px;background:var(--dark);display:flex;justify-content:spa
       <div class="seye">Menú de esta semana</div>
       <h2>Cada platillo,<br><em>cuidadosamente</em><br>diseñado.</h2>
     </div>
-    <div class="mtopr">Nuestra nutrióloga diseña cada platillo pensando en tus objetivos. Ingredientes reales, macros balanceados, índice glucémico bajo. Así se ve lo que comerías esta semana.</div>
+    <div class="mtopr">Cada platillo es diseñado por la nutrióloga que elijas. Ingredientes reales, macros balanceados, índice glucémico bajo. Así se ve lo que comerías esta semana.</div>
   </div>
   <div class="dtabs">
     <button class="dtab active" onclick="showDish(0,this)">Lunes</button>
@@ -241,150 +234,180 @@ footer{padding:40px 48px;background:var(--dark);display:flex;justify-content:spa
 </section>
 
 <div class="ctastrip">
-  <div class="ctasl">¿Te antojó? <span>Suscríbete esta semana.</span></div>
+  <div class="ctasl">¿Te antojó? <span>Regístrate esta semana.</span></div>
   <div style="display:flex;gap:12px;align-items:center">
     <div style="font-size:13px;color:rgba(255,255,255,.4)">Desde $550/semana</div>
-    <a href="cliente.html" class="ctabtn">Quiero suscribirme</a>
+    <a href="registro.html" class="ctabtn">Registrarme</a>
   </div>
 </div>
 
-<section class="plans" id="plans">
-  <div class="seye">Planes</div>
-  <div class="stit">Elige el tuyo.</div>
+<section class="plans" id="planes">
+  <div class="seye">Nutriólogas disponibles</div>
+  <div class="stit">Cada una,<br>su propio <em style="color:var(--g);font-style:italic">menú y precio.</em></div>
+  <p style="font-size:15px;color:var(--mid);line-height:1.7;max-width:580px;margin-bottom:56px;font-weight:300">Estas son las nutriólogas activas en la plataforma. Compara sus menús, estilo de cocina y precio — y elige la que más se alinee con lo que buscas.</p>
+
   <div class="pgrid">
-    <div class="pcard"><div class="pbadge">Básico</div><div class="pname" style="font-family:'DM Serif Display',serif">Plan Básico</div><div class="pprice">$550</div><div class="pper">por semana · 1 persona</div><div class="pf">5 porciones semanales</div><div class="pf">Pollo, res y atún</div><div class="pf">2 opciones por día</div><div class="pf">Contenedor hermético incluido</div><a href="cliente.html" class="pcta ltbtn">Elegir Básico</a></div>
-    <div class="pcard feat"><div class="pbadge dk">Más popular</div><div class="pname lt" style="font-family:'DM Serif Display',serif">Plan Premium</div><div class="pprice lt">$650</div><div class="pper lt">por semana · 1 persona</div><div class="pf lt">Todo lo del plan Básico</div><div class="pf lt">Salmón 1–2 veces/semana</div><div class="pf lt">Mayor variedad de proteínas</div><div class="pf lt">Ingredientes premium</div><a href="cliente.html" class="pcta dkbtn">Elegir Premium</a></div>
-    <div class="pcard"><div class="pbadge">Pareja</div><div class="pname" style="font-family:'DM Serif Display',serif">Plan Pareja</div><div class="pprice">$1,200</div><div class="pper">por semana · 2 personas</div><div class="pf">Plan Premium para dos</div><div class="pf">Cada quien elige su menú</div><div class="pf">Ahorra $100 vs 2 Premium</div><div class="pf">Acceso anticipado a Kifud</div><a href="cliente.html" class="pcta ltbtn">Elegir Pareja</a></div>
-  </div>
-</section>
 
-<section class="partners">
-  <div class="seye">Socios estratégicos</div>
-  <div class="stit">NutriPalm llega<br>a donde estás.</div>
-  <div class="pgrid2">
-    <a href="corporativo.html" class="pcard2"><div class="picon"><svg viewBox="0 0 20 20" fill="none"><rect x="2" y="6" width="16" height="11" rx="2" stroke="#1D9E75" stroke-width="1.5"/><path d="M6 6V5a4 4 0 018 0v1" stroke="#1D9E75" stroke-width="1.5"/><circle cx="10" cy="12" r="1.5" fill="#1D9E75"/></svg></div><div class="ptit">Empresas industriales</div><div class="pdesc">Magna, Chrysler, John Deere y más. NutriPalm como beneficio de empleado.</div><span class="plink">Ver propuesta empresarial →</span></a>
-    <a href="corporativo.html" class="pcard2"><div class="picon"><svg viewBox="0 0 20 20" fill="none"><path d="M10 2v16M2 10h16" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round"/><rect x="3" y="3" width="14" height="14" rx="3" stroke="#1D9E75" stroke-width="1.5"/></svg></div><div class="ptit">Hospitales y clínicas</div><div class="pdesc">Médicos con horarios exigentes. Comida saludable lista cuando salen del turno.</div><span class="plink">Ver propuesta para clínicas →</span></a>
-    <a href="gimnasios.html" class="pcard2"><div class="picon"><svg viewBox="0 0 20 20" fill="none"><path d="M3 10h2m10 0h2M7 10h6M5 7l-2 3 2 3M15 7l2 3-2 3" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="ptit">Gimnasios y fitness</div><div class="pdesc">Tus miembros ya invierten en su salud. NutriPalm completa el círculo.</div><span class="plink">Ver programa de aliados →</span></a>
-  </div>
-</section>
-
-<section class="nutriologas" id="nutriologas">
-  <div class="seye">Quienes preparan tu comida</div>
-  <div class="stit">Tus nutriólogas.</div>
-  <div class="nutgrid">
-
-    <div class="nutcard">
-      <div class="nutcard-top">
-        <div class="nut-avatar">VM</div>
-        <div class="nut-meta">
-          <div class="nut-name">Valeria Montoya</div>
-          <div class="nut-title">Lic. Nutrición · UANL · 6 años exp.</div>
-          <div><span class="nut-stars">★★★★★</span><span class="nut-rating">4.9 · 38 reseñas</span></div>
+    <!-- Nutrióloga 1: Valeria Montoya -->
+    <div class="pcard">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px">
+        <div style="width:52px;height:52px;border-radius:50%;background:var(--gl);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:18px;color:var(--gd);border:2px solid var(--gm);flex-shrink:0">VM</div>
+        <div>
+          <div style="font-family:'DM Serif Display',serif;font-size:17px">Valeria Montoya</div>
+          <div style="font-size:11px;color:var(--mid)">Lic. Nutrición · UANL · 6 años exp.</div>
+          <div style="font-size:11px;color:#BA7517;margin-top:2px">★★★★★ <span style="color:var(--mid)">4.9</span></div>
         </div>
       </div>
-      <div class="nutcard-body">
-        <div class="nut-bio">Especialista en nutrición clínica y deportiva. Creo que comer sano no debería ser complicado — cocino con comida real que de verdad te sabe rico.</div>
-        <div class="nut-tags">
-          <span class="nut-tag">Nutrición clínica</span>
-          <span class="nut-tag">Pérdida de peso</span>
-          <span class="nut-tag">Cocina mediterránea</span>
-        </div>
-        <div class="nut-methods">
-          <div class="nut-method">Al vapor</div>
-          <div class="nut-method">Al horno</div>
-          <div class="nut-method">Aceite de oliva</div>
-          <div class="nut-method">Sin glutamato</div>
-        </div>
+      <div class="pbadge">Cocina mediterránea</div>
+      <div class="pprice">$520</div>
+      <div class="pper">por semana · 5 porciones</div>
+      <div style="background:var(--gl);border-radius:10px;padding:12px 14px;margin-bottom:16px">
+        <div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--gd);font-weight:500;margin-bottom:5px">🌟 Mi plato estrella</div>
+        <div style="font-size:13px;color:var(--gd);font-weight:500">Salmón glaseado con puré de coliflor</div>
+        <div style="font-size:11px;color:var(--mid);margin-top:2px">Al horno · Aceite de oliva · Sin glutamato</div>
       </div>
-      <div class="nutcard-foot">
-        <div class="nut-cupo">Disponibilidad: <span>32 lugares</span></div>
-        <a href="cliente.html"><button class="nut-btn">Suscribirme</button></a>
-      </div>
+      <div class="pf">Proteínas: pollo, res, atún</div>
+      <div class="pf">Técnica: al vapor y al horno</div>
+      <div class="pf">Sin glutamato monosódico</div>
+      <div class="pf">Índice glucémico bajo–moderado</div>
+      <a href="#registro" class="pcta ltbtn">Elegir a Valeria</a>
     </div>
 
-    <div class="nutcard">
-      <div class="nutcard-top">
-        <div class="nut-avatar" style="background:#E6F1FB;color:#185FA5;border-color:#85B7EB">SG</div>
-        <div class="nut-meta">
-          <div class="nut-name">Sofía Garza</div>
-          <div class="nut-title">Lic. Nutrición · Tec de Monterrey · 4 años exp.</div>
-          <div><span class="nut-stars">★★★★★</span><span class="nut-rating">4.8 · 24 reseñas</span></div>
+    <!-- Nutrióloga 2: Sofía Garza -->
+    <div class="pcard">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px">
+        <div style="width:52px;height:52px;border-radius:50%;background:#E6F1FB;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:18px;color:#185FA5;border:2px solid #85B7EB;flex-shrink:0">SG</div>
+        <div>
+          <div style="font-family:'DM Serif Display',serif;font-size:17px">Sofía Garza</div>
+          <div style="font-size:11px;color:var(--mid)">Lic. Nutrición · Tec · 4 años exp.</div>
+          <div style="font-size:11px;color:#BA7517;margin-top:2px">★★★★★ <span style="color:var(--mid)">4.8</span></div>
         </div>
       </div>
-      <div class="nutcard-body">
-        <div class="nut-bio">Me apasiona la cocina funcional y los superalimentos. Cada platillo que preparo está diseñado para darte energía real y sostenida a lo largo del día.</div>
-        <div class="nut-tags">
-          <span class="nut-tag">Nutrición deportiva</span>
-          <span class="nut-tag">Control de glucosa</span>
-          <span class="nut-tag">Cocina asiática</span>
-        </div>
-        <div class="nut-methods">
-          <div class="nut-method">Salteado ligero</div>
-          <div class="nut-method">Al horno</div>
-          <div class="nut-method">Sin fritutas</div>
-          <div class="nut-method">Bajo sodio</div>
-        </div>
+      <div class="pbadge" style="background:#E6F1FB;color:#185FA5">Cocina funcional</div>
+      <div class="pprice">$590</div>
+      <div class="pper">por semana · 5 porciones</div>
+      <div style="background:#E6F1FB;border-radius:10px;padding:12px 14px;margin-bottom:16px">
+        <div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#185FA5;font-weight:500;margin-bottom:5px">🌟 Mi plato estrella</div>
+        <div style="font-size:13px;color:#185FA5;font-weight:500">Bowl asiático de pollo con quinoa negra</div>
+        <div style="font-size:11px;color:var(--mid);margin-top:2px">Salteado ligero · Bajo sodio · Superalimentos</div>
       </div>
-      <div class="nutcard-foot">
-        <div class="nut-cupo">Disponibilidad: <span>18 lugares</span></div>
-        <a href="cliente.html"><button class="nut-btn">Suscribirme</button></a>
-      </div>
+      <div class="pf">Proteínas: pollo, salmón, huevo</div>
+      <div class="pf">Técnica: salteado ligero y horno</div>
+      <div class="pf">Superalimentos en cada platillo</div>
+      <div class="pf">Enfoque en control de glucosa</div>
+      <a href="#registro" class="pcta ltbtn">Elegir a Sofía</a>
     </div>
 
-    <div class="nutcard">
-      <div class="nutcard-top">
-        <div class="nut-avatar" style="background:#FAEEDA;color:#633806;border-color:#EF9F27">MR</div>
-        <div class="nut-meta">
-          <div class="nut-name">Mariana Reyes</div>
-          <div class="nut-title">Lic. Nutrición · UAdeC · 8 años exp.</div>
-          <div><span class="nut-stars">★★★★★</span><span class="nut-rating">5.0 · 51 reseñas</span></div>
+    <!-- Nutrióloga 3: Mariana Reyes -->
+    <div class="pcard">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px">
+        <div style="width:52px;height:52px;border-radius:50%;background:#FAEEDA;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:18px;color:#633806;border:2px solid #EF9F27;flex-shrink:0">MR</div>
+        <div>
+          <div style="font-family:'DM Serif Display',serif;font-size:17px">Mariana Reyes</div>
+          <div style="font-size:11px;color:var(--mid)">Lic. Nutrición · UAdeC · 8 años exp.</div>
+          <div style="font-size:11px;color:#BA7517;margin-top:2px">★★★★★ <span style="color:var(--mid)">5.0</span></div>
         </div>
       </div>
-      <div class="nutcard-body">
-        <div class="nut-bio">Con 8 años de experiencia clínica, me especializo en platillos de alto valor proteico. Perfecta si tienes metas de composición corporal o entrenamiento intenso.</div>
-        <div class="nut-tags">
-          <span class="nut-tag">Alto en proteína</span>
-          <span class="nut-tag">Masa muscular</span>
-          <span class="nut-tag">Cocina mexicana sana</span>
-        </div>
-        <div class="nut-methods">
-          <div class="nut-method">Proteína animal</div>
-          <div class="nut-method">Al vapor</div>
-          <div class="nut-method">Superalimentos</div>
-          <div class="nut-method">Prep. diaria</div>
-        </div>
+      <div class="pbadge" style="background:#FAEEDA;color:#633806">Alto en proteína</div>
+      <div class="pprice">$640</div>
+      <div class="pper">por semana · 5 porciones</div>
+      <div style="background:#FAEEDA;border-radius:10px;padding:12px 14px;margin-bottom:16px">
+        <div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#633806;font-weight:500;margin-bottom:5px">🌟 Mi plato estrella</div>
+        <div style="font-size:13px;color:#633806;font-weight:500">Bowl de res con arroz negro y aguacate</div>
+        <div style="font-size:11px;color:var(--mid);margin-top:2px">Al vapor · Alta proteína · Porciones generosas</div>
       </div>
-      <div class="nutcard-foot">
-        <div class="nut-cupo">Disponibilidad: <span>Lista de espera</span></div>
-        <a href="cliente.html"><button class="nut-btn" style="background:var(--off);color:var(--mid)">Unirse a lista</button></a>
-      </div>
+      <div class="pf">Proteínas: res, pollo, salmón, huevo</div>
+      <div class="pf">Porciones más grandes (+150g proteína)</div>
+      <div class="pf">Ideal para entrenamiento intenso</div>
+      <div class="pf" style="color:var(--g);font-weight:500">Lista de espera — cupo lleno</div>
+      <a href="#registro" class="pcta ltbtn" style="background:var(--off);color:var(--mid)">Unirse a lista de espera</a>
     </div>
 
   </div>
+  <p style="font-size:12px;color:var(--light);margin-top:24px;text-align:center">Los menús y precios son definidos por cada nutrióloga independiente. NutriPalm actúa como plataforma intermediaria.</p>
 </section>
 
-<section class="testi">
-  <div class="testit">"Lo que dicen<br>nuestros suscriptores."</div>
-  <div class="testgrid">
-    <div class="testcard"><div class="testtxt">"Llevaba años comiendo mal entre semana. Ahora llego a casa y mi lonchera ya está lista."</div><div class="testauth">Carlos R.</div><div class="testrole">Ingeniero · Zona industrial Saltillo</div></div>
-    <div class="testcard"><div class="testtxt">"El salmón del martes es mi favorito. No esperaba encontrar algo así tan accesible en Saltillo."</div><div class="testauth">Andrea M.</div><div class="testrole">Coordinadora · Plan Premium</div></div>
-    <div class="testcard"><div class="testtxt">"Contratamos para 20 personas de nuestro equipo. La respuesta fue increíble. Lo renovamos el primer mes."</div><div class="testauth">Ing. Roberto V.</div><div class="testrole">RRHH · Empresa manufacturera</div></div>
+<!-- FORMULARIO DE REGISTRO -->
+<section id="registro" style="padding:80px 48px;background:var(--gl)">
+  <div style="max-width:560px;margin:0 auto">
+    <div style="font-size:12px;color:var(--gd);text-transform:uppercase;letter-spacing:.1em;font-weight:500;margin-bottom:12px">Empieza hoy</div>
+    <h2 style="font-family:'DM Serif Display',serif;font-size:38px;color:var(--gd);line-height:1.1;margin-bottom:12px">Regístrate.<br><em style="color:var(--g)">Es gratis y rápido.</em></h2>
+    <p style="font-size:15px;color:var(--mid);line-height:1.7;margin-bottom:40px;font-weight:300">Déjanos tus datos y te contactamos por WhatsApp para confirmar tu primera semana y asignarte tu cafetería más cercana.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+      <div>
+        <label style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--gd);display:block;margin-bottom:8px">Nombre</label>
+        <input type="text" placeholder="Tu nombre" style="width:100%;background:#fff;border:1.5px solid rgba(8,80,65,.2);border-radius:12px;padding:14px 16px;font-size:15px;color:var(--dark);font-family:'DM Sans',sans-serif;outline:none" onfocus="this.style.borderColor='var(--g)'" onblur="this.style.borderColor='rgba(8,80,65,.2)'">
+      </div>
+      <div>
+        <label style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--gd);display:block;margin-bottom:8px">Apellido</label>
+        <input type="text" placeholder="Tu apellido" style="width:100%;background:#fff;border:1.5px solid rgba(8,80,65,.2);border-radius:12px;padding:14px 16px;font-size:15px;color:var(--dark);font-family:'DM Sans',sans-serif;outline:none" onfocus="this.style.borderColor='var(--g)'" onblur="this.style.borderColor='rgba(8,80,65,.2)'">
+      </div>
+    </div>
+
+    <div style="margin-bottom:16px">
+      <label style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--gd);display:block;margin-bottom:8px">WhatsApp</label>
+      <input type="tel" placeholder="844 000 0000" style="width:100%;background:#fff;border:1.5px solid rgba(8,80,65,.2);border-radius:12px;padding:14px 16px;font-size:15px;color:var(--dark);font-family:'DM Sans',sans-serif;outline:none" onfocus="this.style.borderColor='var(--g)'" onblur="this.style.borderColor='rgba(8,80,65,.2)'">
+      <p style="font-size:12px;color:var(--gd);opacity:.6;margin-top:8px">Te avisamos aquí cuando tu comida esté lista y cuando publiquemos el menú del miércoles.</p>
+    </div>
+
+    <div style="margin-bottom:16px">
+      <label style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--gd);display:block;margin-bottom:8px">Correo electrónico</label>
+      <input type="email" placeholder="tu@correo.com" style="width:100%;background:#fff;border:1.5px solid rgba(8,80,65,.2);border-radius:12px;padding:14px 16px;font-size:15px;color:var(--dark);font-family:'DM Sans',sans-serif;outline:none" onfocus="this.style.borderColor='var(--g)'" onblur="this.style.borderColor='rgba(8,80,65,.2)'">
+    </div>
+
+    <div style="margin-bottom:16px">
+      <label style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--gd);display:block;margin-bottom:8px">Nutrióloga seleccionada</label>
+      <select id="sel-nut" style="width:100%;background:#fff;border:1.5px solid rgba(8,80,65,.2);border-radius:12px;padding:14px 16px;font-size:15px;color:var(--dark);font-family:'DM Sans',sans-serif;outline:none;-webkit-appearance:none;appearance:none;cursor:pointer" onfocus="this.style.borderColor='var(--g)'" onblur="this.style.borderColor='rgba(8,80,65,.2)'">
+        <option value="">Ya decido después — muéstrame el menú</option>
+        <option value="valeria">Valeria Montoya · Cocina mediterránea · $520/sem</option>
+        <option value="sofia">Sofía Garza · Cocina funcional · $590/sem</option>
+        <option value="mariana">Mariana Reyes · Alto en proteína · $640/sem (lista de espera)</option>
+      </select>
+      <p style="font-size:12px;color:var(--gd);opacity:.6;margin-top:8px">Puedes cambiar de nutrióloga en cualquier momento desde tu cuenta, sin cancelar.</p>
+    </div>
+
+    <div style="margin-bottom:32px">
+      <label style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--gd);display:block;margin-bottom:8px">¿Cómo nos encontraste? <span style="text-transform:none;letter-spacing:0;opacity:.5">(opcional)</span></label>
+      <select style="width:100%;background:#fff;border:1.5px solid rgba(8,80,65,.2);border-radius:12px;padding:14px 16px;font-size:15px;color:var(--dark);font-family:'DM Sans',sans-serif;outline:none;-webkit-appearance:none;appearance:none;cursor:pointer" onfocus="this.style.borderColor='var(--g)'" onblur="this.style.borderColor='rgba(8,80,65,.2)'">
+        <option value="">Seleccionar</option>
+        <option value="instagram">Instagram</option>
+        <option value="facebook">Facebook</option>
+        <option value="recomendacion">Recomendación de un amigo</option>
+        <option value="google">Google</option>
+        <option value="cafeteria">Lo vi en la cafetería</option>
+        <option value="otro">Otro</option>
+      </select>
+    </div>
+
+    <button onclick="submitReg(this)" style="width:100%;background:var(--gd);color:#fff;border:none;border-radius:100px;padding:16px;font-size:16px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:opacity .2s" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+      Ver menú de la semana →
+    </button>
+    <p style="font-size:12px;color:var(--gd);opacity:.5;text-align:center;margin-top:16px">Sin contratos. Sin cobros sorpresa. Cancela cuando quieras.</p>
   </div>
 </section>
 
-<section class="cta">
-  <h2 class="ctatit">Empieza esta<br><em>semana.</em></h2>
-  <p class="ctasub">Sin contratos largos. Sin compromisos. Solo buena comida, lista cuando la necesitas.</p>
-  <div class="ctaacts">
-    <a href="cliente.html" class="btnp">Suscribirme ahora</a>
-    <a href="corporativo.html" class="btns">Soy empresa →</a>
+
+
+<!-- FAQ -->
+<section style="padding:80px 48px;background:var(--dark)">
+  <div style="display:grid;grid-template-columns:1fr 1.6fr;gap:80px;align-items:start">
+    <div style="position:sticky;top:120px">
+      <div style="font-size:12px;color:var(--gm);text-transform:uppercase;letter-spacing:.1em;font-weight:500;margin-bottom:16px">Preguntas frecuentes</div>
+      <h2 style="font-family:'DM Serif Display',serif;font-size:44px;color:#fff;line-height:1.05;margin-bottom:16px">Todo lo que<br><em style="color:var(--gm)">quieres<br>saber.</em></h2>
+      <p style="font-size:14px;color:rgba(255,255,255,.4);line-height:1.7;margin-bottom:32px">Si tu pregunta no está aquí, te respondemos por WhatsApp.</p>
+      <a href="#registro" style="display:inline-flex;align-items:center;gap:8px;background:var(--g);color:#fff;padding:12px 24px;border-radius:100px;font-size:14px;font-weight:500;text-decoration:none">Registrarme ahora →</a>
+    </div>
+    <div id="faq-list">
+      <!-- items insertados por JS -->
+    </div>
   </div>
 </section>
 
 <footer>
   <div class="flogo">Nutri<span>Palm</span></div>
   <div class="flinks"><a href="#">Términos y condiciones</a><a href="#">Aviso de privacidad</a><a href="#">Contacto</a></div>
-  <div class="ftxt">Saltillo, Coahuila · 2025</div>
+  <div class="ftxt">NutriPalm · 2025</div>
 </footer>
 
 <script>
@@ -395,6 +418,51 @@ const M=[
   {day:'Jueves',emoji:'🍗',color:'#FAEEDA',name:'Pollo a la mostaza con arroz integral y verduras salteadas',gi:'Moderado (50–55)',gil:false,ingredients:['Pechuga de pollo','Mostaza Dijon','Ajo','Cebolla','Calabacita','Zanahoria','Arroz integral','Aceite de oliva'],nutrition:[{v:'480',l:'kcal'},{v:'40g',l:'proteína'},{v:'14g',l:'grasas'},{v:'42g',l:'carbos'},{v:'5g',l:'fibra'}],vitamins:['Vitamina B6','Vitamina A','Vitamina C','Magnesio','Zinc','Potasio'],benefits:['Favorece la digestión y el tránsito intestinal','Apoya la salud cardiovascular','Alta saciedad por proteína + fibra del arroz integral']},
   {day:'Viernes',emoji:'🫙',color:'#EEEDFE',name:'Bowl mediterráneo de pollo con quinoa y salsa de yogurt',gi:'Bajo–Moderado (45–50)',gil:true,ingredients:['Pollo asado','Quinoa cocida','Pepino','Jitomate cherry','Cebolla morada','Aceitunas negras','Yogur natural','Limón'],nutrition:[{v:'490',l:'kcal'},{v:'42g',l:'proteína'},{v:'15g',l:'grasas'},{v:'42g',l:'carbos'},{v:'6g',l:'fibra'}],vitamins:['Vitamina B6','Niacina B3','Vitamina A','Calcio','Hierro','Magnesio','Zinc'],benefits:['Probióticos del yogurt favorecen la digestión','Mayor variedad de micronutrientes','Combinación mediterránea antiinflamatoria']}
 ];
+// ── FAQ ──
+const FAQS=[
+  {q:'¿Necesito pagar algo para registrarme?',a:'No. El registro es completamente gratuito. Solo pagas cuando confirmas tu primera semana de comidas.'},
+  {q:'¿Puedo cambiar de nutrióloga después de registrarme?',a:'Sí, en cualquier momento desde tu cuenta sin cancelar tu suscripción. El cambio aplica al inicio del siguiente ciclo semanal.'},
+  {q:'¿Qué pasa si no recojo mi comida el mismo día?',a:'La comida se descarta al cierre del punto de recogida (9 PM). No hay devolución ni crédito por porciones no recogidas, por eso te avisamos por WhatsApp cada tarde.'},
+  {q:'¿Dónde recojo mi comida?',a:'En la cafetería asignada más cercana a tu zona. Te la confirmamos por WhatsApp al momento de registrarte.'},
+  {q:'¿Puedo pausar o cancelar mi suscripción?',a:'Sí. Puedes pausar o cancelar en cualquier momento desde tu cuenta. Sin penalizaciones ni llamadas incómodas.'},
+  {q:'¿Quién prepara la comida?',a:'Una nutrióloga aliada certificada con cédula verificada por la SEP. Ella diseña el menú, compra los ingredientes y cocina el mismo día de entrega. NutriPalm coordina la logística.'},
+];
+const faqList=document.getElementById('faq-list');
+FAQS.forEach((f,i)=>{
+  const item=document.createElement('div');
+  item.style.cssText='border-bottom:1px solid rgba(255,255,255,.1);';
+  item.innerHTML=`
+    <button onclick="toggleFaq(${i},this)" style="width:100%;display:flex;justify-content:space-between;align-items:center;padding:22px 0;background:none;border:none;cursor:pointer;text-align:left;gap:16px">
+      <span style="font-size:16px;color:#fff;font-family:'DM Sans',sans-serif;font-weight:400">${f.q}</span>
+      <span id="faq-icon-${i}" style="width:32px;height:32px;border-radius:50%;border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:rgba(255,255,255,.6);font-size:18px;transition:transform .2s">→</span>
+    </button>
+    <div id="faq-ans-${i}" style="display:none;padding-bottom:20px">
+      <p style="font-size:14px;color:rgba(255,255,255,.55);line-height:1.7">${f.a}</p>
+    </div>`;
+  faqList.appendChild(item);
+});
+function toggleFaq(i,btn){
+  const ans=document.getElementById('faq-ans-'+i);
+  const icon=document.getElementById('faq-icon-'+i);
+  const open=ans.style.display==='block';
+  // cerrar todos
+  FAQS.forEach((_,j)=>{
+    document.getElementById('faq-ans-'+j).style.display='none';
+    document.getElementById('faq-icon-'+j).style.transform='';
+    document.getElementById('faq-icon-'+j).style.color='rgba(255,255,255,.6)';
+  });
+  if(!open){
+    ans.style.display='block';
+    icon.style.transform='rotate(90deg)';
+    icon.style.color='var(--gm)';
+  }
+}
+
+function submitReg(btn){
+  btn.textContent='¡Listo! Te contactamos pronto 🎉';
+  btn.style.background='var(--gm)';
+  btn.disabled=true;
+}
 function showDish(i,btn){
   document.querySelectorAll('.dtab').forEach(t=>t.classList.remove('active'));
   btn.classList.add('active');
